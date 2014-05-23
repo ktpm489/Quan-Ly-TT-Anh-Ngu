@@ -18,13 +18,15 @@ import javax.swing.table.DefaultTableModel;
 public class DataBase {
     
     //Tạo đối tượng kết nối với dữ liệu.
-    private  Connection Connect = null;
+    private  Connection connect = null;
+    
+  //  public Connection getConnect()
     //Tạo đối tượng thực hiện các thao tác.
     private  CallableStatement callableStatement = null;
     
     public DataBase() throws Exception
     {
-        Connect = ConnectionDataBase.getConnection();
+        connect = ConnectionDataBase.getConnection();
     }
     
      //Thực hiện câu lênh Stored procedures không có tham số đầu vào và trả về kiểu ResultSet
@@ -35,20 +37,20 @@ public class DataBase {
         try
         {
             // hủy chế độ comit tự động.
-            Connect.setAutoCommit(false);
+            connect.setAutoCommit(false);
 
             // Khởi tạo đối tượng để thực hiện câu Stored procedure
-            callableStatement = Connect.prepareCall(ProcedureName);
+            callableStatement = connect.prepareCall(ProcedureName);
             // Thực hiện câu StoreProcedures
             resultSet = callableStatement.executeQuery();
             
             // thực hiện việc xác nhận với hệ quản trị cơ sỏ dữ liệu.
-            Connect.commit();
+            connect.commit();
             
         } catch (SQLException ex) 
         {
-            if(Connect != null)
-                Connect.rollback();          
+            if(connect != null)
+                connect.rollback();          
            JOptionPane.showMessageDialog(null, ex.getMessage(),"Lỗi...!", JOptionPane.ERROR_MESSAGE);
         }          
         return resultSet;
@@ -93,20 +95,20 @@ public class DataBase {
         try
         {
             // hủy chế độ comit tự động.
-            Connect.setAutoCommit(false);
+            connect.setAutoCommit(false);
 
             // Khởi tạo đối tượng để thực hiện câu Stored procedure
-            callableStatement = Connect.prepareCall(ProcedureName);
+            callableStatement = connect.prepareCall(ProcedureName);
             // Thực hiện câu StoreProcedures
             resultSet = callableStatement.executeQuery();
             
             // thực hiện việc xác nhận với hệ quản trị cơ sỏ dữ liệu.
-            Connect.commit();
+            connect.commit();
             
         } catch (SQLException ex) 
         {
-            if(Connect != null)
-                Connect.rollback();          
+            if(connect != null)
+                connect.rollback();          
            JOptionPane.showMessageDialog(null, ex.getMessage(),"Lỗi...!", JOptionPane.ERROR_MESSAGE);
         }    
         
@@ -197,20 +199,20 @@ public class DataBase {
         try
         {
             // hủy chế độ comit tự động.
-            Connect.setAutoCommit(false);
+            connect.setAutoCommit(false);
 
             // Khởi tạo đối tượng để thực hiện câu Stored procedure
-            callableStatement = Connect.prepareCall(ProcedureName);
+            callableStatement = connect.prepareCall(ProcedureName);
             // Thực hiện câu StoreProcedures
             resultSet = callableStatement.executeQuery();
             
             // thực hiện việc xác nhận với hệ quản trị cơ sỏ dữ liệu.
-            Connect.commit();
+            connect.commit();
             
         } catch (SQLException ex) 
         {
-            if(Connect != null)
-                Connect.rollback();          
+            if(connect != null)
+                connect.rollback();          
            JOptionPane.showMessageDialog(null, ex.getMessage(),"Lỗi...!", JOptionPane.ERROR_MESSAGE);
         }    
         
@@ -267,20 +269,20 @@ public class DataBase {
         try
         {
             // hủy chế độ comit tự động.
-            Connect.setAutoCommit(false);
+            connect.setAutoCommit(false);
 
             // Khởi tạo đối tượng để thực hiện câu Stored procedure
-            callableStatement = Connect.prepareCall(ProcedureName);
+            callableStatement = connect.prepareCall(ProcedureName);
             // Thực hiện câu StoreProcedures
             resultSet = callableStatement.executeUpdate();
             
             // thực hiện việc xác nhận với hệ quản trị cơ sỏ dữ liệu.
-            Connect.commit();
+            connect.commit();
             
         } catch (SQLException ex) 
         {
-            if(Connect != null)
-                Connect.rollback();          
+            if(connect != null)
+                connect.rollback();          
            JOptionPane.showMessageDialog(null, ex.getMessage(),"Lỗi...!", JOptionPane.ERROR_MESSAGE);
         }          
         return resultSet;
@@ -326,6 +328,6 @@ public class DataBase {
 
      //Lấy đối tượng connect
     public Connection getConnection() {
-        return Connect;
+        return connect;
     }
 }

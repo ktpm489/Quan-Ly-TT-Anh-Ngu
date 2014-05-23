@@ -17,6 +17,8 @@ public class UserAccountDAO extends DataBase{
     }
     
     public boolean isUserExit(String username, String passwork){
+        
+        //if(this.executeQuery(null, null))
         return true;
     }
 }

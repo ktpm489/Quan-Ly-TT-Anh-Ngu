@@ -4,13 +4,22 @@
  */
 package qlttanhngu.bo;
 
+import qlttanhngu.dao.UserAccountDAO;
+
 /**
  *
  * @author XUANVINHTD
  */
 public class UserAccountBO {
     
+    private UserAccountDAO user;
+
+    public UserAccountBO() throws Exception {
+        this.user = new UserAccountDAO();
+    }
     public boolean isUserExit(String username, String passwork){
-    return true;
+        if(user.isUserExit(username, passwork))
+            return true;
+       return false;
     }
 }
