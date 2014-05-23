@@ -4,10 +4,16 @@
  */
 package qlttanhngu.dao;
 
+import qlttanhngu.connection.DataBase;
+
 /**
  *
  * @author XUANVINHTD
  */
-public class HocVienDAO {
+public class HocVienDAO extends DataBase{
+    
+    public HocVienDAO() throws Exception{
+        super();
+    }
     
 }
