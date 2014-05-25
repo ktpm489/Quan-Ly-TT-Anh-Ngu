@@ -4,6 +4,7 @@
  */
 package qlttanhngu.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
 public class HocVienDTO {
     
    // <editor-fold defaultstate="null" desc="Properties">
-   private Date namSinh; 
+   private java.sql.Date namSinh; 
    private String maHocVien;
    private String tenHocVien;
    private String cmnd;  
@@ -21,14 +22,19 @@ public class HocVienDTO {
    private String ngheNghiep;
    private String diaChi;
    private String email;
-   private String tinhTrangHoc;
+   private boolean tinhTrangHoc;
    private int soLuongLienLac;
    private int soDienThoai;
    private boolean gioiTinh;
    // </editor-fold>
    
    // <editor-fold defaultstate="" desc="Get propertise of HocVienDTO">
-   public Date getNamSinh(){
+   public String getNamSinh(){
+       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");     
+       return sdf.format(this.namSinh);
+   }
+   
+   public java.sql.Date getNamSinhUpdate(){        
        return this.namSinh;
    }
    
@@ -61,7 +67,14 @@ public class HocVienDTO {
    }
    
    public String getTinhTrangHoc(){
-       return this.tinhTrangHoc;
+       if(this.tinhTrangHoc)
+           return "Chính Thức";
+       else
+           return "Tiềm Năng";
+   }
+   
+    public boolean getTinhTrangHocUpdate(){
+      return this.tinhTrangHoc;
    }
    
    public int getSoDienThoai(){
@@ -72,20 +85,27 @@ public class HocVienDTO {
        return this.soLuongLienLac;
    }
    
-   public Boolean getGioiTinh(){
-       return this.gioiTinh;
+   public String getGioiTinh(){
+       if(this.gioiTinh)
+          return "Nam";
+       else
+           return "Nữ";
+   }
+   
+    public boolean getGioiTinhUpdate(){
+       return this.gioiTinh;     
    }
    // </editor-fold>
    
    // <editor-fold defaultstate="" desc="Set valuables">
-   public void setNamSinh(Date namSinh){
+   public void setNamSinh(java.sql.Date namSinh){
        this.namSinh = namSinh;
    }
    
    public void setMaHocVien(String maHocVien){
        this.maHocVien = maHocVien;
    }
-   
+
    public void setTenHocVien(String tenHocVien){
        this.tenHocVien = tenHocVien;
    }
@@ -110,7 +130,7 @@ public class HocVienDTO {
        this.email = email;
    }
    
-   public void setTinhTrangHoc(String tinhTrangHoc){
+   public void setTinhTrangHoc(boolean tinhTrangHoc){
        this.tinhTrangHoc = tinhTrangHoc;
    }
    

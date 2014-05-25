@@ -155,20 +155,35 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTenTaiKhoan">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTenTaiKhoanKeyPressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtTenTaiKhoan.setText(StoreSave.accountNameSave);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTenNguoiDung">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTenNguoiDungKeyPressed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtTenNguoiDung.setText(StoreSave.userNamSave);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtMKCu">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMKCuKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtMKMoi">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMKMoiKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtNhapLaiMK">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNhapLaiMKKeyPressed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="panelChucNang">
           <Properties>

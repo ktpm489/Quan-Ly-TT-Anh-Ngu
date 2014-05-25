@@ -64,8 +64,36 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
         lblNapLaiMK.setText("Nhập Lại Mật Khẩu");
 
         txtTenTaiKhoan.setText(StoreSave.accountNameSave);
+        txtTenTaiKhoan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTenTaiKhoanKeyPressed(evt);
+            }
+        });
 
         txtTenNguoiDung.setText(StoreSave.userNamSave);
+        txtTenNguoiDung.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTenNguoiDungKeyPressed(evt);
+            }
+        });
+
+        txtMKCu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMKCuKeyPressed(evt);
+            }
+        });
+
+        txtMKMoi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMKMoiKeyPressed(evt);
+            }
+        });
+
+        txtNhapLaiMK.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNhapLaiMKKeyPressed(evt);
+            }
+        });
 
         panelChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
@@ -224,6 +252,31 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameDoiMatKhau.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThayDoiActionPerformed
+
+    private void txtTenTaiKhoanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenTaiKhoanKeyPressed
+        if(txtTenTaiKhoan.getText().length() > 10)
+            txtTenTaiKhoan.setText(txtTenTaiKhoan.getText().substring(0, 10));
+    }//GEN-LAST:event_txtTenTaiKhoanKeyPressed
+
+    private void txtTenNguoiDungKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenNguoiDungKeyPressed
+       if(txtTenNguoiDung.getText().length() > 50)
+           txtTenNguoiDung.setText(txtTenNguoiDung.getText().substring(0, 50));
+    }//GEN-LAST:event_txtTenNguoiDungKeyPressed
+
+    private void txtMKCuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMKCuKeyPressed
+        if(txtMKCu.getText().length() > 15)
+            txtMKCu.setText(txtMKCu.getText().substring(0, 15));
+    }//GEN-LAST:event_txtMKCuKeyPressed
+
+    private void txtMKMoiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMKMoiKeyPressed
+        if(txtMKMoi.getText().length() > 15)
+            txtMKMoi.setText(txtMKMoi.getText().substring(0, 15));
+    }//GEN-LAST:event_txtMKMoiKeyPressed
+
+    private void txtNhapLaiMKKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNhapLaiMKKeyPressed
+        if(txtNhapLaiMK.getText().length() > 15)
+            txtNhapLaiMK.setText(txtNhapLaiMK.getText().substring(0, 15));
+    }//GEN-LAST:event_txtNhapLaiMKKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
