@@ -30,7 +30,7 @@ public class ConnectionDataBase
         Connection connect = null;
         dbURL = ""
                 + "jdbc:mysql://localhost:3306/"
-                + "DBTest?useUnicode=true&characterEncoding=UTF-8";
+                + "qlttanhngu?useUnicode=true&characterEncoding=UTF-8";
         dbUserName = "root";
         dbPassword = "12345";
         if (connect == null) 

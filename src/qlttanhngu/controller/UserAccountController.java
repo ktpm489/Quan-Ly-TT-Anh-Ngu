@@ -4,7 +4,10 @@
  */
 package qlttanhngu.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import qlttanhngu.bo.UserAccountBO;
+import qlttanhngu.dto.UserAccountDTO;
 
 /**
  *
@@ -13,14 +16,25 @@ import qlttanhngu.bo.UserAccountBO;
 public class UserAccountController {
     private UserAccountBO user;
 
-    public UserAccountController() throws Exception {
-        this.user = new UserAccountBO();
+    public UserAccountController()  {
+        try {
+            this.user = new UserAccountBO();
+        } catch (Exception ex) {
+            Logger.getLogger(UserAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public boolean isUserExit(String username, String pass){      
-        if(user.isUserExit(username, pass)) 
+    public boolean isUserExit(UserAccountDTO userDTO) throws Exception{      
+        if(user.isUserExit(userDTO)) 
            return true;
         else
            return false;
+    }
+    
+    public boolean isChangePassword(UserAccountDTO userDTO) throws Exception{
+        if(user.isChangePassword(userDTO))
+            return true;
+        else
+            return false;
     }
 }

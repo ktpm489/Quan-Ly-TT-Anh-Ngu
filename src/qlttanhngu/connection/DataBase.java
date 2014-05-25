@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,11 +28,11 @@ public class DataBase {
     
     public DataBase() throws Exception
     {
-        connect = ConnectionDataBase.getConnection();
+        connect = ConnectionDataBase.getConnection();      
     }
     
      //Thực hiện câu lênh Stored procedures không có tham số đầu vào và trả về kiểu ResultSet
-    public ResultSet executeQuery(String ProcedureName) throws SQLException 
+    public ResultSet executeQuery(String ProcedureName) 
     {
         ResultSet resultSet = null;
         //Tạo đối tượng kết nối.       
@@ -50,7 +52,11 @@ public class DataBase {
         } catch (SQLException ex) 
         {
             if(connect != null)
-                connect.rollback();          
+                try {
+                connect.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex1);
+            }          
            JOptionPane.showMessageDialog(null, ex.getMessage(),"Lỗi...!", JOptionPane.ERROR_MESSAGE);
         }          
         return resultSet;
@@ -79,6 +85,7 @@ public class DataBase {
         }        
         return resultSet;
     }
+      
     
      //Thực hiện câu lênh Stored procedures không có tham số đầu vào và trả về dữ liệu bảng 
     public  DefaultTableModel  executeQuery_Table(String ProcedureName) throws SQLException 
@@ -289,7 +296,7 @@ public class DataBase {
     }
     
     //Thực hiện câu lênh Stored procedures có tham số đầu vào (update , delete, insert..)
-    public static int executeQueryUpdate(Connection cnn ,CallableStatement callableStatement) throws SQLException 
+    public  int executeQueryUpdate(Connection cnn ,CallableStatement callableStatement) throws SQLException 
     {
         int resultSet = 0;       
         //Tạo đối tượng kết nối.     

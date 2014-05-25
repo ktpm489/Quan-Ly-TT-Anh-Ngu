@@ -11,22 +11,31 @@ package qlttanhngu.dto;
 public class UserAccountDTO {
     
     private String username;
-    private String passwork;
+    private String password;
+    private String passwordnew;
     
     public String getUsername(){
         return this.username;
     }
     
-    public String getPasswork(){
-        return this.passwork;
+    public String getPassword(){
+        return this.password;
+    }
+    
+    public String getPasswordNew(){
+    return this.passwordnew;    
     }
     
     public void setUsername(String username){
         this.username = username;
     }
     
-    public void setPasswork(String passwork){
-        this.passwork = passwork;
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
+    public void setPasswordNew(String passwordnew){
+        this.passwordnew = passwordnew;
     }
     
     public UserAccountDTO(){

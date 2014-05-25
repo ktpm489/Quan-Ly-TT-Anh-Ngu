@@ -4,6 +4,12 @@
  */
 package qlttanhngu.gui;
 
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import qlttanhngu.controller.UserAccountController;
+import qlttanhngu.dto.UserAccountDTO;
+
 /**
  *
  * @author XUANVINHTD
@@ -41,6 +47,16 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
 
         btnDangNHap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Accept1.png"))); // NOI18N
         btnDangNHap.setText("Đăng Nhập");
+        btnDangNHap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNHapActionPerformed(evt);
+            }
+        });
+        btnDangNHap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnDangNHapKeyPressed(evt);
+            }
+        });
 
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Đóng");
@@ -70,6 +86,7 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
         lblLoi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblLoi.setForeground(new java.awt.Color(255, 0, 0));
         lblLoi.setText("Thông tin nhập sai hoặc chưa đầy đủ !");
+        lblLoi.setVisible(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,26 +113,29 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblLoi)
-                .addGap(41, 41, 41))
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDangNhap))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDangNhap)
+                    .addComponent(txtDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatKhau)
-                    .addComponent(lblMatKhau))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblMatKhau)
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNHap)
                     .addComponent(btnDong))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblLoi)
-                .addGap(19, 19, 19))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,6 +169,31 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
           txtMatKhau.setText(txtMatKhau.getText().substring(0, 15));
        }
     }//GEN-LAST:event_txtMatKhauKeyPressed
+
+    private void btnDangNHapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNHapActionPerformed
+        
+        UserAccountDTO user = new UserAccountDTO();
+        user.setUsername(txtDangNhap.getText());
+        user.setPassword(txtMatKhau.getText());
+        String x = txtMatKhau.getText();
+        try {
+            UserAccountController UserController = new UserAccountController();
+            if(UserController.isUserExit(user))
+                this.dispose();
+            else
+                lblLoi.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDangNHapActionPerformed
+
+    private void btnDangNHapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNHapKeyPressed
+     
+        int id = evt.getID();
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            btnDangNHapActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnDangNHapKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNHap;

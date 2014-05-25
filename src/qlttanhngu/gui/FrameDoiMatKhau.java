@@ -4,6 +4,12 @@
  */
 package qlttanhngu.gui;
 
+import Assest.StoreSave;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import qlttanhngu.controller.UserAccountController;
+import qlttanhngu.dto.UserAccountDTO;
+
 /**
  *
  * @author XUANVINHTD
@@ -40,6 +46,8 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
         panelChucNang = new javax.swing.JPanel();
         btnThayDoi = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
+        lblThanhCong = new javax.swing.JLabel();
+        lblLoi = new javax.swing.JLabel();
 
         setTitle("Đổi Mật Khẩu");
 
@@ -55,10 +63,19 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
 
         lblNapLaiMK.setText("Nhập Lại Mật Khẩu");
 
+        txtTenTaiKhoan.setText(StoreSave.accountNameSave);
+
+        txtTenNguoiDung.setText(StoreSave.userNamSave);
+
         panelChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
         btnThayDoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Accept1.png"))); // NOI18N
         btnThayDoi.setText("Thay Đổi");
+        btnThayDoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThayDoiActionPerformed(evt);
+            }
+        });
 
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Đóng");
@@ -89,6 +106,16 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        lblThanhCong.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblThanhCong.setForeground(new java.awt.Color(0, 204, 51));
+        lblThanhCong.setText("Thay đổi thành công !");
+        lblThanhCong.setVisible(false);
+
+        lblLoi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblLoi.setForeground(new java.awt.Color(255, 51, 51));
+        lblLoi.setText("Thay đổi thất bại !");
+        lblLoi.setVisible(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,6 +142,11 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addComponent(panelChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblThanhCong)
+                .addGap(32, 32, 32)
+                .addComponent(lblLoi))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +173,11 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
                     .addComponent(txtNhapLaiMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblThanhCong)
+                    .addComponent(lblLoi))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,8 +193,8 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,15 +204,38 @@ public class FrameDoiMatKhau extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
+    private void btnThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThayDoiActionPerformed
+        UserAccountDTO userDTO = new UserAccountDTO();
+        UserAccountController userController = new UserAccountController();
+        userDTO.setUsername(txtTenTaiKhoan.getText());
+        userDTO.setPasswordNew(txtNhapLaiMK.getText());
+        userDTO.setPassword(txtMKCu.getText());
+        try {
+            if(!txtMKCu.getText().equals(txtMKMoi.getText()) && txtMKMoi.getText().equals(txtNhapLaiMK.getText()) && userController.isChangePassword(userDTO)){
+               lblThanhCong.setVisible(true);
+               lblLoi.setVisible(false);
+            }
+            else{
+                lblThanhCong.setVisible(false);
+                lblLoi.setVisible(true);
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDoiMatKhau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnThayDoiActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnThayDoi;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblLoi;
     private javax.swing.JLabel lblMKCu;
     private javax.swing.JLabel lblMKMoi;
     private javax.swing.JLabel lblNapLaiMK;
     private javax.swing.JLabel lblTenNguoiSuDung;
     private javax.swing.JLabel lblTenTaiKhoan;
+    private javax.swing.JLabel lblThanhCong;
     private javax.swing.JPanel panelChucNang;
     private javax.swing.JPasswordField txtMKCu;
     private javax.swing.JPasswordField txtMKMoi;
