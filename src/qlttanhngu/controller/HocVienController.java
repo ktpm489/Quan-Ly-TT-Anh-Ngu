@@ -12,6 +12,7 @@ import java.util.ListIterator;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import qlttanhngu.bo.HocVienBO;
 import qlttanhngu.dto.HocVienDTO;
@@ -30,7 +31,7 @@ public class HocVienController {
     public DefaultTableModel LoadListHocVien() throws Exception {
         DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
     new String [] {
-        "Mã học viên", "Họ tên", "CMND", "Năm sinh","Giới tính","Mã chứng chỉ học viên","Nghề nghiệp","Số điện thoại","Địa chỉ","Email","Số lượng liên lạc","Tình trạng học"
+        "Mã học viên", "Họ tên", "CMND", "Năm sinh","Giới tính","Tên chứng chỉ học viên","Nghề nghiệp","Số điện thoại","Địa chỉ","Email","Số lượng liên lạc","Tình trạng học"
     });       
         List<HocVienDTO> tempHocVien = hocvienbo.LoadListHocVien();
         Vector<Object> rowData ;
@@ -42,7 +43,7 @@ public class HocVienController {
             rowData.add(tempHocVien.get(i).getCmnd());
             rowData.add(tempHocVien.get(i).getNamSinh());
             rowData.add(tempHocVien.get(i).getGioiTinh());
-            rowData.add(tempHocVien.get(i).getMaChungChi());
+            rowData.add(new HocVienBO().GetTenChungChiTheoMa(tempHocVien.get(i).getMaChungChi()));
             rowData.add(tempHocVien.get(i).getNgheNghiep());
             rowData.add(tempHocVien.get(i).getSoDienThoai());
             rowData.add(tempHocVien.get(i).getDiaChi());
@@ -56,8 +57,21 @@ public class HocVienController {
     }
     
     public boolean UpdateHocVien(HocVienDTO hocviendto){
-        if(hocvienbo.UpdateHocVien(hocviendto))
-            return true;
+        try {
+            if(hocvienbo.UpdateHocVien(hocviendto))
+                return true;
+        } catch (Exception ex) {
+            Logger.getLogger(HocVienController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
+    }
+    
+    public DefaultComboBoxModel GetListTenChungChi() throws Exception{
+        DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(hocvienbo.GetListTenChungChi());
+        return defaultComboBox;
+    }
+    
+    public String GetMaChungChiTheoTen(String name) throws Exception{
+        return hocvienbo.GetMaChungChiTheoTen(name);
     }
 }

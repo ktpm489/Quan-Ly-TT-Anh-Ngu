@@ -14,7 +14,7 @@ import java.util.Date;
 public class HocVienDTO {
     
    // <editor-fold defaultstate="null" desc="Properties">
-   private java.sql.Date namSinh; 
+   private Date namSinh; 
    private String maHocVien;
    private String tenHocVien;
    private String cmnd;  
@@ -34,8 +34,11 @@ public class HocVienDTO {
        return sdf.format(this.namSinh);
    }
    
-   public java.sql.Date getNamSinhUpdate(){        
-       return this.namSinh;
+   public java.sql.Date getNamSinhUpdate(){ 
+       java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(this.namSinh.getTime());
+      return sqlDate;
+        //return java.sql.Date(this.namSinh);
    }
    
    public String getMaHocVien(){
@@ -98,7 +101,7 @@ public class HocVienDTO {
    // </editor-fold>
    
    // <editor-fold defaultstate="" desc="Set valuables">
-   public void setNamSinh(java.sql.Date namSinh){
+   public void setNamSinh(Date namSinh){
        this.namSinh = namSinh;
    }
    

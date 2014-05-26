@@ -5,11 +5,13 @@
 package qlttanhngu.dao;
 
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import qlttanhngu.connection.DataBase;
@@ -25,45 +27,50 @@ public class HocVienDAO extends DataBase{
         super();     
     }
     
-    public List<HocVienDTO> loadListHocVien() throws SQLException{
+    public List<HocVienDTO> loadListHocVien() throws Exception {
         List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
         HocVienDTO hv = null;
         ResultSet resultSet = null;
         int i = 0;
         
         resultSet = this.executeQuery("{call LayDanhSachHocVien()}");
-        
-        while(resultSet.next()){
-            hv = new HocVienDTO();
-            
-            hv.setMaHocVien(resultSet.getString(1));
-            hv.setTenHocVien(resultSet.getString(2));
-            hv.setCmnd(resultSet.getString(3));
-            hv.setNamSinh(resultSet.getDate(4));
-            hv.setGioiTinh(resultSet.getBoolean(5));
-            hv.setMaChungChi(resultSet.getString(6));
-            hv.setNgheNghiep(resultSet.getString(7));
-            hv.setSoDienThoai(resultSet.getInt(8));
-            hv.setDiaChi(resultSet.getString(9));
-            hv.setEmail(resultSet.getString(10));
-            hv.setSoLuongLienLac(resultSet.getInt(11));
-            hv.setTinhTrangHoc(resultSet.getBoolean(12));
-            
-            lstHV.add(hv);
-            i++;
-        }    
+        try {
+            while(resultSet.next()){
+                hv = new HocVienDTO();
+                
+                hv.setMaHocVien(resultSet.getString(1));
+                hv.setTenHocVien(resultSet.getString(2));
+                hv.setCmnd(resultSet.getString(3));
+                hv.setNamSinh(resultSet.getDate(4));
+                hv.setGioiTinh(resultSet.getBoolean(5));
+                hv.setMaChungChi(resultSet.getString(6));
+                hv.setNgheNghiep(resultSet.getString(7));
+                hv.setSoDienThoai(resultSet.getInt(8));
+                hv.setDiaChi(resultSet.getString(9));
+                hv.setEmail(resultSet.getString(10));
+                hv.setSoLuongLienLac(resultSet.getInt(11));
+                hv.setTinhTrangHoc(resultSet.getBoolean(12));
+                
+                lstHV.add(hv);
+                i++;
+            }    
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            this.closeConnection();
+        }
         return lstHV;
     }
     
    public boolean UpdateHocVien(HocVienDTO hocviendto){
-       ResultSet resultSet = null;
+       int resultSet = 0;
        CallableStatement callableStatement = null;
         try {
-            callableStatement = this.getConnection().prepareCall("{CapNhatHocVien(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call CapNhatHocVien(?,?,?,?,?,?,?,?,?,?,?,?)}");
             callableStatement.setString(1, hocviendto.getMaHocVien());
             callableStatement.setString(2, hocviendto.getTenHocVien());
             callableStatement.setString(3, hocviendto.getCmnd());
-            callableStatement.setDate(4, hocviendto.getNamSinhUpdate());
+            callableStatement.setDate(4,hocviendto.getNamSinhUpdate());
             callableStatement.setBoolean(5, hocviendto.getGioiTinhUpdate());
             callableStatement.setString(6, hocviendto.getMaChungChi());
             callableStatement.setString(7, hocviendto.getNgheNghiep());
@@ -73,13 +80,64 @@ public class HocVienDAO extends DataBase{
             callableStatement.setInt(11, hocviendto.getSoLuongLienLac());
             callableStatement.setBoolean(12, hocviendto.getTinhTrangHocUpdate());
             
-            this.executeQueryUpdate(this.getConnection(), callableStatement);
-           if(resultSet != null && resultSet.next())
+            resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
+           if(resultSet != 0)
                return true;
         } catch (SQLException ex) {
             Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
        return false;
    }
-    
+  
+   public Vector<String> GetListTenChungChi(){
+       Vector<String> dataTenChungChi = new Vector<String>();
+       ResultSet resultSet = null;
+       
+       
+        try {
+            resultSet = this.executeQuery("{call LayDanhSachTenChungChi()}");
+            while(resultSet.next()){
+                dataTenChungChi.add(resultSet.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return dataTenChungChi;
+   }
+   
+   public String GetMaChungChiTheoTen(String name){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayMaChungChiTheoTen(?)}");
+                 callableStatement.setString(1, name);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
+   }
+   
+   public String GetTenChungChiTheoMa(String ma) throws Exception{
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayTenChungChiTheoMa(?)}");
+                 callableStatement.setString(1, ma);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+       this.closeConnection();
+   }
+      return temp;
+   }
 }

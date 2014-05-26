@@ -4,6 +4,7 @@
  */
 package qlttanhngu.gui;
 
+import Assest.StoreSave;
 import java.awt.Frame;
 import java.awt.Rectangle;
 import java.beans.PropertyVetoException;
@@ -58,8 +59,8 @@ public class FrameMain extends javax.swing.JFrame {
         btnBCNo = new javax.swing.JButton();
         btnBCDangKy = new javax.swing.JButton();
         btnBCHocVu = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
+        desktopPanel = new javax.swing.JDesktopPane();
+        lblImageBackground = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -378,9 +379,11 @@ public class FrameMain extends javax.swing.JFrame {
 
         TabTrangChinh.addTab("Quản Lý Báo Cáo", jPanel1);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\XUANVINHTD\\Desktop\\wallpaper.png")); // NOI18N
-        jLabel1.setBounds(0, -220, 1380, 990);
-        jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        StoreSave.desktop = desktopPanel; // Lưu lại destopanel để sử dụng toàn cục chương trình.
+
+        lblImageBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\XUANVINHTD\\Desktop\\wallpaper.png")); // NOI18N
+        lblImageBackground.setBounds(0, -220, 1380, 990);
+        desktopPanel.add(lblImageBackground, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -388,7 +391,7 @@ public class FrameMain extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desktopPanel, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TabTrangChinh))
                 .addGap(1, 1, 1))
         );
@@ -397,7 +400,7 @@ public class FrameMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(TabTrangChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
+                .addComponent(desktopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE))
         );
 
         pack();
@@ -411,7 +414,7 @@ public class FrameMain extends javax.swing.JFrame {
          if(frameDoiMatKhau == null || frameDoiMatKhau.isClosed())
            {
                 frameDoiMatKhau = new FrameDoiMatKhau();
-                this.jDesktopPane1.add(frameDoiMatKhau);
+                this.desktopPanel.add(frameDoiMatKhau);
                 frameDoiMatKhau.show();
            }
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
@@ -439,7 +442,7 @@ public class FrameMain extends javax.swing.JFrame {
        if(frDangNhap == null || frDangNhap.isClosed())
        {
         frDangNhap = new FrameDangNhap();
-        this.jDesktopPane1.add(frDangNhap);
+        this.desktopPanel.add(frDangNhap);
         frDangNhap.show();
        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
@@ -448,7 +451,7 @@ public class FrameMain extends javax.swing.JFrame {
         if(frQuyDinh == null || frQuyDinh.isClosed())
        {
         frQuyDinh = new FrameQuyDinh();
-        this.jDesktopPane1.add(frQuyDinh);
+        this.desktopPanel.add(frQuyDinh);
         frQuyDinh.show();
        }
     }//GEN-LAST:event_btnQuyDinhActionPerformed
@@ -550,8 +553,7 @@ public class FrameMain extends javax.swing.JFrame {
     //Khởi Tạo các frameInternal
     private void InitFrameInternal(JInternalFrame jInternalFrame)
     {         
-            this.jDesktopPane1.add(jInternalFrame);
-
+          this.desktopPanel.add(jInternalFrame);
               try {
                      jInternalFrame.setMaximum(true);
                  } catch (PropertyVetoException ex) {
@@ -596,12 +598,12 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnThoiKhoaBieu;
     private javax.swing.JButton btnThongTin;
     private javax.swing.JButton btnXepLop;
+    private javax.swing.JDesktopPane desktopPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblImageBackground;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,7 +40,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jDesktopPane1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="desktopPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="TabTrangChinh" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -52,7 +52,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="TabTrangChinh" min="-2" pref="113" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jDesktopPane1" pref="598" max="32767" attributes="0"/>
+              <Component id="desktopPanel" pref="598" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -578,11 +578,14 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+    <Container class="javax.swing.JDesktopPane" name="desktopPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="StoreSave.desktop = desktopPanel; // L&#x1b0;u l&#x1ea1;i destopanel &#x111;&#x1ec3; s&#x1eed; d&#x1ee5;ng to&#xe0;n c&#x1ee5;c ch&#x1b0;&#x1a1;ng tr&#xec;nh."/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblImageBackground">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\XUANVINHTD\Desktop\wallpaper.png"/>
