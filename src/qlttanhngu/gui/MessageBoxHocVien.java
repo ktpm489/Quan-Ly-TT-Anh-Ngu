@@ -4,6 +4,11 @@
  */
 package qlttanhngu.gui;
 
+import Assest.StoreSave;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import qlttanhngu.controller.HocVienController;
+
 /**
  *
  * @author XUANVINHTD
@@ -84,7 +89,15 @@ public class MessageBoxHocVien extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        
+        try {
+            StoreSave.hocvien.setMaChungChi(new HocVienController().GetMaChungChiTheoTen(StoreSave.hocvien.getTenChungChi()));
+            new HocVienController().UpdateHocVien(StoreSave.hocvien);
+        } catch (Exception ex) {
+            Logger.getLogger(MessageBoxHocVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //refresh lại table ds hoc vien
+         StoreSave.frameDSHocVien.refreshTable();      
+        this.dispose();
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed

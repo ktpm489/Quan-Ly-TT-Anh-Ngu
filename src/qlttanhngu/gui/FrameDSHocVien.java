@@ -125,6 +125,11 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Button-Refresh-icon.png"))); // NOI18N
         jButton1.setText("Làm mới");
@@ -147,7 +152,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         panelChuCNangLayout.setVerticalGroup(
             panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,57 +195,40 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableDSHocVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDSHocVienMouseClicked
-        JTable table = (JTable)evt.getSource();
-        int row = table.getSelectedRow();
-        HocVienDTO hocvienDTO =  new HocVienDTO();
-        //StoreSave.hocvien.getMaHocVien(table.getValueAt(row,0).toString());
-        hocvienDTO.setMaHocVien(table.getValueAt(row, 0).toString());
-        hocvienDTO.setTenHocVien(table.getValueAt(row, 1).toString());
-        hocvienDTO.setCmnd(table.getValueAt(row, 2).toString());
-        
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
-        String dateString = table.getValueAt(row, 3).toString();
-        Date date = null;
-        try{
-             date = (Date) formatDate.parse(dateString);  
-        }catch(ParseException e){
-            e.printStackTrace();
-        }         
-        hocvienDTO.setNamSinh(date);
-        hocvienDTO.setGioiTinh(table.getValueAt(row, 4).toString() == "Nam" ? true : false);
-        hocvienDTO.setTenMaChungChi(table.getValueAt(row, 5).toString());
-        hocvienDTO.setNgheNghiep(table.getValueAt(row, 6).toString());
-        hocvienDTO.setSoDienThoai(Integer.parseInt(table.getValueAt(row, 7).toString()));
-        hocvienDTO.setDiaChi(table.getValueAt(row, 8).toString());
-        hocvienDTO.setEmail(table.getValueAt(row, 9).toString());
-        hocvienDTO.setSoLuongLienLac(Integer.parseInt(table.getValueAt(row, 10).toString()));
-        hocvienDTO.setTinhTrangHoc(table.getValueAt(row, 11).toString() == "Tiềm Năng" ? true : false);
-        
-        //Luu lai , load vao frame cap nhat học viên
-        StoreSave.hocvien  = hocvienDTO;
-        
-//        txtMaHocVien.setText(table.getValueAt(row, 0).toString());
-//        txtHoTen.setText(table.getValueAt(row, 1).toString());
-//        txtCMND.setText(table.getValueAt(row, 2).toString());
-//              
-//        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
-//        String dateString = table.getValueAt(row, 3).toString();
-//        Date date = null;
-//        try{
-//             date = (Date) formatDate.parse(dateString);  
-//        }catch(ParseException e){
-//            e.printStackTrace();
-//        }  
-//        dateChooserNgaySinh.setDate(date);
-        
-//        comboxGioiTinh.setSelectedIndex(table.getValueAt(row, 4).toString() == "Nam" ? 0 : 1);
-//        comboBoxTenChungChi.setSelectedItem(table.getValueAt(row, 5).toString());
-//        txtNgheNghiep.setText(table.getValueAt(row, 6).toString());
-//        txtSoDT.setText(table.getValueAt(row, 7).toString());
-//        txtDiaChi.setText(table.getValueAt(row, 8).toString());
-//        txtEmail.setText(table.getValueAt(row, 9).toString());
-//        txtSoLuongCuocHen.setText(table.getValueAt(row, 10).toString());
-//        comboxTinhTrangHoc.setSelectedIndex(table.getValueAt(row, 11) == "Chính Thức" ? 1 : 0);         
+        try {
+            JTable table = (JTable)evt.getSource();
+            int row = table.getSelectedRow();
+            HocVienDTO hocvienDTO =  new HocVienDTO();
+            //StoreSave.hocvien.getMaHocVien(table.getValueAt(row,0).toString());
+            hocvienDTO.setMaHocVien(table.getValueAt(row, 0).toString());
+            hocvienDTO.setTenHocVien(table.getValueAt(row, 1).toString());
+            hocvienDTO.setCmnd(table.getValueAt(row, 2).toString());
+            
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+            String dateString = table.getValueAt(row, 3).toString();
+            Date date = null;
+            try{
+                 date = (Date) formatDate.parse(dateString);  
+            }catch(ParseException e){
+                e.printStackTrace();
+            }         
+            hocvienDTO.setNamSinh(date);
+            hocvienDTO.setGioiTinh(table.getValueAt(row, 4).toString() == "Nam" ? true : false);
+            hocvienDTO.setMaChungChi(new HocVienController().GetMaChungChiTheoTen(table.getValueAt(row, 5).toString()));
+            hocvienDTO.setTenMaChungChi(table.getValueAt(row, 5).toString());
+            hocvienDTO.setNgheNghiep(table.getValueAt(row, 6).toString());
+            hocvienDTO.setSoDienThoai(Integer.parseInt(table.getValueAt(row, 7).toString()));
+            hocvienDTO.setDiaChi(table.getValueAt(row, 8).toString());
+            hocvienDTO.setEmail(table.getValueAt(row, 9).toString());
+            hocvienDTO.setSoLuongLienLac(Integer.parseInt(table.getValueAt(row, 10).toString()));
+            hocvienDTO.setTinhTrangHoc(table.getValueAt(row, 11).toString() == "Tiềm Năng" ? true : false);
+            
+            //Luu lai , load vao frame cap nhat học viên
+            StoreSave.hocvien  = hocvienDTO;
+            
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tableDSHocVienMouseClicked
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
@@ -250,45 +238,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         FrameCapNhatHocVien frameCapNhatHocVien = new FrameCapNhatHocVien();
         StoreSave.desktop.add(frameCapNhatHocVien);
-        frameCapNhatHocVien.show();
-        //        HocVienDTO hocviendto = new HocVienDTO();
-        //        //Kiểm tra mã không dc null
-        //        if("".equals(txtMaHocVien.getText())){
-            //             MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
-            //             StoreSave.desktop.add(messageBoxHocVien);
-            //             messageBoxHocVien.setBounds(400, 300, 511, 189);
-            //             messageBoxHocVien.show();
-            //             return;
-            //        }
-        //        try {
-            //            HocVienController hocvienController = new HocVienController();
-            //
-            //            hocviendto.setMaHocVien(txtMaHocVien.getText());
-            //            hocviendto.setCmnd(txtCMND.getText());
-            //            hocviendto.setDiaChi(txtDiaChi.getText());
-            //            hocviendto.setEmail(txtEmail.getText());
-            //            hocviendto.setGioiTinh(comboxGioiTinh.getSelectedItem()== "Nam" ? true : false);
-            //            hocviendto.setMaChungChi(new HocVienController().GetMaChungChiTheoTen(comboBoxTenChungChi.getSelectedItem().toString()));
-            //            hocviendto.setNamSinh(dateChooserNgaySinh.getDate());
-            //            hocviendto.setNgheNghiep(txtNgheNghiep.getText());
-            //            hocviendto.setSoDienThoai(Integer.parseInt("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
-            //            hocviendto.setSoLuongLienLac(Integer.parseInt("".equals(txtSoLuongCuocHen.getText()) ? "0" : txtSoLuongCuocHen.getText()));
-            //            hocviendto.setTenHocVien(txtHoTen.getText());
-            //            hocviendto.setTinhTrangHoc(comboxTinhTrangHoc.getSelectedIndex()== 1 ? true : false);
-            //            //Kiểm tra xem cập nhật thành công không?
-            //            if(hocvienController.UpdateHocVien(hocviendto)){
-                //                MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
-                //                StoreSave.desktop.add(messageBoxHocVien);
-                //                messageBoxHocVien.show();
-                //            }
-            //        } catch (Exception ex) {
-            //            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
-        //        try {
-            //            tableDSHocVien.setModel(new HocVienController().LoadListHocVien());
-            //        } catch (Exception ex) {
-            //            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
+        frameCapNhatHocVien.show();   
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
@@ -309,9 +259,13 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.refreshTable();
          // làm mới 
-
+        StoreSave.hocvien = null;
          txtTuKhoa.setText("");  
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXoaActionPerformed
 
         // Hàm load lại toàn bộ table
     public void refreshTable(){

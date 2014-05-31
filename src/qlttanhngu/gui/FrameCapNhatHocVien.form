@@ -229,10 +229,22 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHoTen">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHoTenKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCMND">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCMNDKeyPressed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSoDT">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoDTKeyPressed"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dateChooserNgaySinh">
           <Properties>
@@ -252,8 +264,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiaChi">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDiaChiKeyPressed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="panelChuCNang">
           <Properties>
@@ -345,6 +363,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNgheNghiep">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNgheNghiepKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSoLuongCuocHen">
           <Properties>
@@ -352,6 +373,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSoLuongCuocHen">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoLuongCuocHenKeyPressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboBoxTenChungChi">
           <Properties>

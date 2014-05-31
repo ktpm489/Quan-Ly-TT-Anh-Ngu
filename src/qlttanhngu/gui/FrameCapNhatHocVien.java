@@ -8,6 +8,9 @@ import Assest.StoreSave;
 import com.sun.org.apache.xml.internal.utils.StopParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.text.MaskFormatter;
 import qlttanhngu.controller.HocVienController;
 import qlttanhngu.dto.HocVienDTO;
 
@@ -98,9 +101,39 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Tình Trạng Học");
 
+        txtHoTen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyPressed(evt);
+            }
+        });
+
+        txtCMND.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCMNDKeyPressed(evt);
+            }
+        });
+
+        txtSoDT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSoDTKeyPressed(evt);
+            }
+        });
+
         dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
 
         comboxTinhTrangHoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tiềm Năng", "Chính Thức" }));
+
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
+
+        txtDiaChi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDiaChiKeyPressed(evt);
+            }
+        });
 
         panelChuCNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
@@ -151,7 +184,19 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
         lblNgheNghiep.setText("Nghề nghiệp");
 
+        txtNgheNghiep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNgheNghiepKeyPressed(evt);
+            }
+        });
+
         lblSoLuongCuocHen.setText("Số lượng cuộc hẹn");
+
+        txtSoLuongCuocHen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSoLuongCuocHenKeyPressed(evt);
+            }
+        });
 
         try{
             comboBoxTenChungChi.setModel(new HocVienController().GetListTenChungChi());
@@ -288,58 +333,56 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         HocVienDTO hocviendto = new HocVienDTO();
-        //Kiểm tra mã không dc null
-        if("".equals(txtMaHocVien.getText())){
-            MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 300, 511, 189);
-            messageBoxHocVien.show();
+        //Kiểm tra mã, họ tên không dc null, kiểm tra kiễu dữ số dt, ......
+        if ("".equals(txtMaHocVien.getText()) || "".equals(txtHoTen.getText()) || Kitu(txtCMND.getText()) || Kitu(txtSoDT.getText()) || Kitu(txtSoLuongCuocHen.getText())){
+            MessageBoxError messageBoxErorHocVien = new MessageBoxError();
+            StoreSave.desktop.add(messageBoxErorHocVien);
+            messageBoxErorHocVien.setBounds(400, 300, 380, 120);
+            messageBoxErorHocVien.show();
             return;
         }
         try {
-            HocVienController hocvienController = new HocVienController();
 
             hocviendto.setMaHocVien(txtMaHocVien.getText());
             hocviendto.setCmnd(txtCMND.getText());
             hocviendto.setDiaChi(txtDiaChi.getText());
             hocviendto.setEmail(txtEmail.getText());
-            hocviendto.setGioiTinh(comboxGioiTinh.getSelectedItem()== "Nam" ? true : false);
-            hocviendto.setMaChungChi(new HocVienController().GetMaChungChiTheoTen(comboBoxTenChungChi.getSelectedItem().toString()));
+            hocviendto.setGioiTinh(comboxGioiTinh.getSelectedItem() == "Nam" ? true : false);
+            hocviendto.setTenMaChungChi(comboBoxTenChungChi.getSelectedItem().toString());
             hocviendto.setNamSinh(dateChooserNgaySinh.getDate());
             hocviendto.setNgheNghiep(txtNgheNghiep.getText());
             hocviendto.setSoDienThoai(Integer.parseInt("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
             hocviendto.setSoLuongLienLac(Integer.parseInt("".equals(txtSoLuongCuocHen.getText()) ? "0" : txtSoLuongCuocHen.getText()));
             hocviendto.setTenHocVien(txtHoTen.getText());
-            hocviendto.setTinhTrangHoc(comboxTinhTrangHoc.getSelectedIndex()== 1 ? true : false);
-            //Kiểm tra xem cập nhật thành công không?
-            if(hocvienController.UpdateHocVien(hocviendto)){
-                MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
-                StoreSave.desktop.add(messageBoxHocVien);
-                messageBoxHocVien.show();
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-           // tableDSHocVien.setModel(new HocVienController().LoadListHocVien());
+            hocviendto.setTinhTrangHoc(comboxTinhTrangHoc.getSelectedIndex() == 1 ? false : true);
+
+            //Kiểm tra xem có chắc chắn cập nhât không? 
+            MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
+            StoreSave.desktop.add(messageBoxHocVien);
+            messageBoxHocVien.setBounds(400, 250, 511, 189);
+            messageBoxHocVien.show();
+
+            //Lay thong tin de cap nhat
+            StoreSave.hocvien = hocviendto;
+
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
-      //load lại frame danh sach hoc viên
-        StoreSave.frameDSHocVien.refreshTable();      
-      this.dispose();
+        //load lại frame danh sach hoc viên
+        // StoreSave.frameDSHocVien.refreshTable();      
+        this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
     //Load dữ liệu vào các compoment của frame
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-        if(StoreSave.hocvien != null){
+        if (StoreSave.hocvien != null) {
             txtMaHocVien.setText(StoreSave.hocvien.getMaHocVien());
             txtHoTen.setText(StoreSave.hocvien.getTenHocVien());
             txtCMND.setText(StoreSave.hocvien.getCmnd());
-            dateChooserNgaySinh.setDate(StoreSave.hocvien.getNamSinhUpdate());        
+            dateChooserNgaySinh.setDate(StoreSave.hocvien.getNamSinhUpdate());
             comboxGioiTinh.setSelectedIndex(StoreSave.hocvien.getGioiTinh() == "Nam" ? 0 : 1);
             comboBoxTenChungChi.setSelectedItem(StoreSave.hocvien.getTenChungChi());
             txtNgheNghiep.setText(StoreSave.hocvien.getNgheNghiep());
@@ -347,13 +390,71 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
             txtDiaChi.setText(StoreSave.hocvien.getDiaChi());
             txtEmail.setText(StoreSave.hocvien.getEmail());
             txtSoLuongCuocHen.setText(StoreSave.hocvien.getSoLuongLienLac().toString());
-            comboxTinhTrangHoc.setSelectedIndex(StoreSave.hocvien.getTinhTrangHoc() == "Chính Thức" ? 0 : 1);         
-            
-            //reset hoc vien
-            StoreSave.hocvien = null; 
+            comboxTinhTrangHoc.setSelectedIndex(StoreSave.hocvien.getTinhTrangHoc() == "Chính Thức" ? 0 : 1);
         }
     }//GEN-LAST:event_formInternalFrameActivated
 
+    private void txtHoTenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyPressed
+        if (txtHoTen.getText().length() > 50) {
+            txtHoTen.setText(txtHoTen.getText().substring(0, 50));
+        }
+    }//GEN-LAST:event_txtHoTenKeyPressed
+
+    private void txtCMNDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCMNDKeyPressed
+  
+        if (txtCMND.getText().length() > 11) {
+            txtCMND.setText(txtCMND.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtCMNDKeyPressed
+
+    private void txtSoDTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoDTKeyPressed
+        if (txtSoDT.getText().length() > 11) {
+            txtSoDT.setText(txtSoDT.getText().substring(0, 11));
+        }
+    }//GEN-LAST:event_txtSoDTKeyPressed
+
+    private void txtNgheNghiepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNgheNghiepKeyPressed
+        if (txtNgheNghiep.getText().length() > 120) {
+            txtNgheNghiep.setText(txtNgheNghiep.getText().substring(0, 120));
+        }
+    }//GEN-LAST:event_txtNgheNghiepKeyPressed
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        if (txtEmail.getText().length() > 20) {
+            txtEmail.setText(txtEmail.getText().substring(0, 20));
+        }
+    }//GEN-LAST:event_txtEmailKeyPressed
+
+    private void txtDiaChiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyPressed
+        if (txtDiaChi.getText().length() > 100) {
+            txtDiaChi.setText(txtDiaChi.getText().substring(0, 100));
+        }
+    }//GEN-LAST:event_txtDiaChiKeyPressed
+
+    private void txtSoLuongCuocHenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongCuocHenKeyPressed
+         if (txtSoLuongCuocHen.getText().length() > 2) {
+            txtSoLuongCuocHen.setText(txtSoLuongCuocHen.getText().substring(0, 2));
+        }
+    }//GEN-LAST:event_txtSoLuongCuocHenKeyPressed
+
+    /// Loi So ///
+    public boolean LoiSo(String str) {
+        Pattern pt = Pattern.compile("[0-9]");
+        Matcher mc = pt.matcher(str);
+        if (!mc.find()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean Kitu(String str5) {
+        Pattern pt = Pattern.compile("[a-zA-Z]");
+        Matcher mc = pt.matcher(str5);
+        if (!mc.find()) {
+            return false;
+        }
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnLuu;
