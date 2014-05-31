@@ -307,16 +307,21 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTraCuuActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         try {
-            tableDSHocVien.setModel(new HocVienController().LoadListHocVien());
-        } catch (Exception ex) {
-            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.refreshTable();
          // làm mới 
 
          txtTuKhoa.setText("");  
     }//GEN-LAST:event_jButton1ActionPerformed
 
+        // Hàm load lại toàn bộ table
+    public void refreshTable(){
+         try {
+            tableDSHocVien.setModel(new HocVienController().LoadListHocVien());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDong;

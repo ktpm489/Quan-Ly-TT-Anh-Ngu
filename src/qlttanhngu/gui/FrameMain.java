@@ -459,7 +459,9 @@ public class FrameMain extends javax.swing.JFrame {
     private void btnDSHocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSHocVienActionPerformed
          if(frameDSHocVien == null || frameDSHocVien.isClosed())
          {
-            InitFrameInternal(new FrameDSHocVien());
+             FrameDSHocVien temp = new FrameDSHocVien();
+             StoreSave.frameDSHocVien = temp;
+            InitFrameInternal(temp);
          } 
     }//GEN-LAST:event_btnDSHocVienActionPerformed
 
@@ -562,7 +564,7 @@ public class FrameMain extends javax.swing.JFrame {
                jInternalFrame.show();              
     }
     
-    
+
     private  FrameDangNhap frDangNhap;
     private  FrameDoiMatKhau frameDoiMatKhau;
     private  FrameQuyDinh frQuyDinh;

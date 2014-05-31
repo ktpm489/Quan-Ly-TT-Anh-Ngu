@@ -7,6 +7,7 @@ package Assest;
 
 import javax.swing.JDesktopPane;
 import qlttanhngu.dto.HocVienDTO;
+import qlttanhngu.gui.FrameDSHocVien;
 
 /**
  *
@@ -22,4 +23,7 @@ public class StoreSave {
     
     //Properties hoc vien
     public static HocVienDTO hocvien;
+    
+    //Lưu frame FrameDSHocVien 
+    public static FrameDSHocVien frameDSHocVien;
 }

@@ -28,6 +28,7 @@ public class MessageBoxHocVien extends javax.swing.JInternalFrame {
 
         btnOK = new javax.swing.JButton();
         lblLoi = new javax.swing.JLabel();
+        btnDong = new javax.swing.JButton();
 
         setTitle("Thông báo");
         setNormalBounds(new java.awt.Rectangle(400, 300, 60, 0));
@@ -41,21 +42,31 @@ public class MessageBoxHocVien extends javax.swing.JInternalFrame {
         });
 
         lblLoi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblLoi.setText("Cập nhật lỗi ! Xin vui lòng xem lại các giá trị nhập vào.");
+        lblLoi.setText("Bạn có chắc chắn muốn sửa thông tin này không ?");
+
+        btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
+        btnDong.setText("Đóng");
+        btnDong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDongActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(lblLoi)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addComponent(lblLoi))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +74,9 @@ public class MessageBoxHocVien extends javax.swing.JInternalFrame {
                 .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(lblLoi)
                 .addGap(32, 32, 32)
-                .addComponent(btnOK)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOK)
+                    .addComponent(btnDong))
                 .addGap(29, 29, 29))
         );
 
@@ -71,10 +84,15 @@ public class MessageBoxHocVien extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
-        this.dispose();
+        
     }//GEN-LAST:event_btnOKActionPerformed
 
+    private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnDongActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDong;
     private javax.swing.JButton btnOK;
     private javax.swing.JLabel lblLoi;
     // End of variables declaration//GEN-END:variables
