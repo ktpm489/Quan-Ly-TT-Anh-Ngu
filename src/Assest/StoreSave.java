@@ -6,6 +6,7 @@ package Assest;
 
 
 import javax.swing.JDesktopPane;
+import qlttanhngu.dto.HocVienDTO;
 
 /**
  *
@@ -18,4 +19,7 @@ public class StoreSave {
     public static JDesktopPane desktop;
     
     //"Mã học viên", "Họ tên", "CMND", "Năm sinh","Giới tính","Mã chứng chỉ học viên","Nghề nghiệp","Số điện thoại","Địa chỉ","Email","Số lượng liên lạc","Tình trạng học"
+    
+    //Properties hoc vien
+    public static HocVienDTO hocvien;
 }

@@ -84,5 +84,14 @@ public class HocVienBO {
         }
        return "";
    }
-    
+     public List<HocVienDTO> SearchHocVien(String tukhoa) throws Exception{
+        try {
+            return hocviendao.SearchHocVien(tukhoa);
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            hocviendao.closeConnection();
+        }
+        return null;    
+    }
 }

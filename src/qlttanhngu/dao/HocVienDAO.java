@@ -140,4 +140,41 @@ public class HocVienDAO extends DataBase{
    }
       return temp;
    }
+   
+    public List<HocVienDTO> SearchHocVien(String tukhoa) throws Exception {
+        List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
+        CallableStatement callableStatement = null;
+        HocVienDTO hv = null;
+        ResultSet resultSet = null;
+        int i = 0;
+        callableStatement = getConnection().prepareCall("{call TimKiemHocVien(?)}");
+        callableStatement.setString(1, tukhoa);
+        resultSet = this.executeQuery(getConnection(), callableStatement);
+        try {
+            while(resultSet.next()){
+                hv = new HocVienDTO();
+                
+                hv.setMaHocVien(resultSet.getString(1));
+                hv.setTenHocVien(resultSet.getString(2));
+                hv.setCmnd(resultSet.getString(3));
+                hv.setNamSinh(resultSet.getDate(4));
+                hv.setGioiTinh(resultSet.getBoolean(5));
+                hv.setMaChungChi(resultSet.getString(6));
+                hv.setNgheNghiep(resultSet.getString(7));
+                hv.setSoDienThoai(resultSet.getInt(8));
+                hv.setDiaChi(resultSet.getString(9));
+                hv.setEmail(resultSet.getString(10));
+                hv.setSoLuongLienLac(resultSet.getInt(11));
+                hv.setTinhTrangHoc(resultSet.getBoolean(12));
+                
+                lstHV.add(hv);
+                i++;
+            }    
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            this.closeConnection();
+        }
+        return lstHV;
+    }
 }

@@ -24,8 +24,9 @@ public class HocVienDTO {
    private String email;
    private boolean tinhTrangHoc;
    private int soLuongLienLac;
-   private int soDienThoai;
+   private Integer soDienThoai;
    private boolean gioiTinh;
+   private String TenNghanhHoc;
    // </editor-fold>
    
    // <editor-fold defaultstate="" desc="Get propertise of HocVienDTO">
@@ -80,11 +81,11 @@ public class HocVienDTO {
       return this.tinhTrangHoc;
    }
    
-   public int getSoDienThoai(){
+   public Integer getSoDienThoai(){
        return this.soDienThoai;
    }
    
-   public int getSoLuongLienLac(){
+   public Integer getSoLuongLienLac(){
        return this.soLuongLienLac;
    }
    
@@ -98,9 +99,17 @@ public class HocVienDTO {
     public boolean getGioiTinhUpdate(){
        return this.gioiTinh;     
    }
+    
+    public String getTenChungChi(){
+        return TenNghanhHoc;
+    }
    // </editor-fold>
    
    // <editor-fold defaultstate="" desc="Set valuables">
+    
+    public void setTenMaChungChi(String name){
+        this.TenNghanhHoc = name;
+    }
    public void setNamSinh(Date namSinh){
        this.namSinh = namSinh;
    }

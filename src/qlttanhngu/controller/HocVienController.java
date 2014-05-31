@@ -74,4 +74,33 @@ public class HocVienController {
     public String GetMaChungChiTheoTen(String name) throws Exception{
         return hocvienbo.GetMaChungChiTheoTen(name);
     }
+    
+     //Trả về danh sách các học viên được tìm kiếm theo từ khóa.
+    public DefaultTableModel SearchHocVien(String tukhoa) throws Exception {
+        DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
+    new String [] {
+        "Mã học viên", "Họ tên", "CMND", "Năm sinh","Giới tính","Tên chứng chỉ học viên","Nghề nghiệp","Số điện thoại","Địa chỉ","Email","Số lượng liên lạc","Tình trạng học"
+    });       
+        List<HocVienDTO> tempHocVien = hocvienbo.SearchHocVien(tukhoa);
+        Vector<Object> rowData ;
+        
+        for(int i = 0; i < tempHocVien.size(); i++){
+            rowData = new Vector<>();
+            rowData.add(tempHocVien.get(i).getMaHocVien());
+            rowData.add(tempHocVien.get(i).getTenHocVien());
+            rowData.add(tempHocVien.get(i).getCmnd());
+            rowData.add(tempHocVien.get(i).getNamSinh());
+            rowData.add(tempHocVien.get(i).getGioiTinh());
+            rowData.add(new HocVienBO().GetTenChungChiTheoMa(tempHocVien.get(i).getMaChungChi()));
+            rowData.add(tempHocVien.get(i).getNgheNghiep());
+            rowData.add(tempHocVien.get(i).getSoDienThoai());
+            rowData.add(tempHocVien.get(i).getDiaChi());
+            rowData.add(tempHocVien.get(i).getEmail());
+            rowData.add(tempHocVien.get(i).getSoLuongLienLac());
+            rowData.add(tempHocVien.get(i).getTinhTrangHoc());
+            
+            tableDefault.addRow(rowData);
+        }      
+        return tableDefault;     
+    }
 }
