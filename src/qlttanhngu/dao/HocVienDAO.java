@@ -31,7 +31,6 @@ public class HocVienDAO extends DataBase{
         List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
         HocVienDTO hv = null;
         ResultSet resultSet = null;
-        int i = 0;
         
         resultSet = this.executeQuery("{call LayDanhSachHocVien()}");
         try {
@@ -52,7 +51,6 @@ public class HocVienDAO extends DataBase{
                 hv.setTinhTrangHoc(resultSet.getBoolean(12));
                 
                 lstHV.add(hv);
-                i++;
             }    
         } catch (SQLException ex) {
             Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -176,5 +174,21 @@ public class HocVienDAO extends DataBase{
             this.closeConnection();
         }
         return lstHV;
+    }
+    
+    public boolean DeleteHocVien(String mahocvien){
+        int result = 0;
+        CallableStatement callableStatement = null;
+        try {
+            callableStatement = getConnection().prepareCall("{call XoaHocVien(?)}");
+            callableStatement.setString(1, mahocvien);
+            result = this.executeQueryUpdate(getConnection(), callableStatement);
+            
+            if(result != 0)
+                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

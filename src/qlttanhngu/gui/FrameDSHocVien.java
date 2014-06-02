@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import qlttanhngu.controller.HocVienController;
 import qlttanhngu.dto.HocVienDTO;
 
@@ -196,22 +198,22 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
 
     private void tableDSHocVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDSHocVienMouseClicked
         try {
-            JTable table = (JTable)evt.getSource();
+            JTable table = (JTable) evt.getSource();
             int row = table.getSelectedRow();
-            HocVienDTO hocvienDTO =  new HocVienDTO();
+            HocVienDTO hocvienDTO = new HocVienDTO();
             //StoreSave.hocvien.getMaHocVien(table.getValueAt(row,0).toString());
             hocvienDTO.setMaHocVien(table.getValueAt(row, 0).toString());
             hocvienDTO.setTenHocVien(table.getValueAt(row, 1).toString());
             hocvienDTO.setCmnd(table.getValueAt(row, 2).toString());
-            
+
             SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
             String dateString = table.getValueAt(row, 3).toString();
             Date date = null;
-            try{
-                 date = (Date) formatDate.parse(dateString);  
-            }catch(ParseException e){
+            try {
+                date = (Date) formatDate.parse(dateString);
+            } catch (ParseException e) {
                 e.printStackTrace();
-            }         
+            }
             hocvienDTO.setNamSinh(date);
             hocvienDTO.setGioiTinh(table.getValueAt(row, 4).toString() == "Nam" ? true : false);
             hocvienDTO.setMaChungChi(new HocVienController().GetMaChungChiTheoTen(table.getValueAt(row, 5).toString()));
@@ -222,10 +224,10 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
             hocvienDTO.setEmail(table.getValueAt(row, 9).toString());
             hocvienDTO.setSoLuongLienLac(Integer.parseInt(table.getValueAt(row, 10).toString()));
             hocvienDTO.setTinhTrangHoc(table.getValueAt(row, 11).toString() == "Tiềm Năng" ? true : false);
-            
+
             //Luu lai , load vao frame cap nhat học viên
-            StoreSave.hocvien  = hocvienDTO;
-            
+            StoreSave.hocvien = hocvienDTO;
+
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -236,21 +238,30 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDongActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+
+        //kiểm tra xem thử có chọn học vien muốn cập nhật chưa.
+        if (StoreSave.hocvien == null) {
+            JOptionPane.showMessageDialog(this, " Vui lòng chọn học viên để cập nhật !");
+            return;
+        }
+
         FrameCapNhatHocVien frameCapNhatHocVien = new FrameCapNhatHocVien();
         StoreSave.desktop.add(frameCapNhatHocVien);
-        frameCapNhatHocVien.show();   
+        frameCapNhatHocVien.show();
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
-         if("".equals(txtTuKhoa.getText())){
-             MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
-             StoreSave.desktop.add(messageBoxHocVien);
-             messageBoxHocVien.setBounds(400, 300, 511, 189);
-             messageBoxHocVien.show();
-             return;
+        if ("".equals(txtTuKhoa.getText())) {           
+            JOptionPane.showMessageDialog(this, "Từ Khóa không tồn tại, vui lòng nhập từ khác để chọn!");
+            return;
         }
         try {
-            tableDSHocVien.setModel(new HocVienController().SearchHocVien(txtTuKhoa.getText()));
+           DefaultTableModel defaultTableModel =  new HocVienController().SearchHocVien(txtTuKhoa.getText());
+           if(defaultTableModel.getRowCount() == 0){
+             JOptionPane.showMessageDialog(this, "Từ Khóa không tồn tại, vui lòng nhập từ khác để chọn!");  
+             return;
+           }
+            tableDSHocVien.setModel(defaultTableModel);
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -258,24 +269,40 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.refreshTable();
-         // làm mới 
+        // làm mới 
         StoreSave.hocvien = null;
-         txtTuKhoa.setText("");  
+        txtTuKhoa.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        //kiểm tra xem thử có chọn học vien muốn xóa chưa.
+        if (StoreSave.hocvien == null) {
+            JOptionPane.showMessageDialog(this, " Vui lòng chọn học viên để xóa !");
+            return;
+        }
+
+        try {
+            HocVienController hocvienController = new HocVienController();
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn xóa học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
+            if (x == 0) {
+                hocvienController.DeleteHocVien(StoreSave.hocvien.getMaHocVien());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //update lại table ds học viên
+        refreshTable();
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
-        // Hàm load lại toàn bộ table
-    public void refreshTable(){
-         try {
+    // Hàm load lại toàn bộ table
+    public void refreshTable() {
+        try {
             tableDSHocVien.setModel(new HocVienController().LoadListHocVien());
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDong;

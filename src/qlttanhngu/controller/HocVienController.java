@@ -103,4 +103,8 @@ public class HocVienController {
         }      
         return tableDefault;     
     }
+    
+    public Boolean DeleteHocVien(String mahocvien) throws Exception{
+        return hocvienbo.DeleteHocVien(mahocvien);      
+    }
 }
