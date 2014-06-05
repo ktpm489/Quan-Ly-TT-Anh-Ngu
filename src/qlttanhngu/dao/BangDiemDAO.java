@@ -51,24 +51,24 @@ public class BangDiemDAO extends DataBase {
         return lstHV;
     }
 
-    public Vector<String> GetListTenKiThiOfHocVien(String mahocvien) {
-        Vector<String> lstTenKiThi = new Vector<String>();
-        CallableStatement callableStatement = null;
+    public Vector<String> GetListTenLopHocHocVien() {
+        Vector<String> lstTenLop = new Vector<String>();
+      //  CallableStatement callableStatement = null;
         ResultSet result = null;
 
         try {
-            callableStatement = getConnection().prepareCall("{call ................(?)}");
-            callableStatement.setString(1, mahocvien);
-            result = this.executeQuery(this.getConnection(), callableStatement);
+          //  callableStatement = getConnection().prepareCall("{LayDanhSachTenLopHoc()}");
+          //  callableStatement.setString(1, mahocvien);
+            result = this.executeQuery("{call LayDanhSachTenLopHoc()}");
 
             while (result.next()) {
-                lstTenKiThi.add(result.getString(1));
+                lstTenLop.add(result.getString(1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return lstTenKiThi;
+        return lstTenLop;
     }
 
     public List<BangDiemDTO> GetListBangDiemHocVien(String mahv) {
@@ -104,21 +104,98 @@ public class BangDiemDAO extends DataBase {
         int result = 0;
         CallableStatement callableStatement = null;
         try {
-            
+
             callableStatement = getConnection().prepareCall("{call ....................(?,?,?,?)}");
             callableStatement.setString(1, mabangdiem);
             callableStatement.setString(2, makythi);
             callableStatement.setString(3, mahocvien);
             callableStatement.setDouble(4, diem);
-            
+
             result = this.executeQueryUpdate(getConnection(), callableStatement);
-            if(result != 0)
+            if (result != 0) {
                 return true;
-            
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
     }
+
+    public Boolean DeleteBangDiemOfHocVien(String mahocvien) {
+        int result = 0;
+        CallableStatement callableStatement = null;
+
+        try {
+            callableStatement = getConnection().prepareCall("{call .................(?)}");
+            callableStatement.setString(1, mahocvien);
+
+            result = this.executeQueryUpdate(getConnection(), callableStatement);
+            if (result != 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public String GetMaKyThiTheoTen(String tenkythi) throws SQLException {
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+
+        try {
+            callableStatement = getConnection().prepareCall("{call .............(?)}");
+            callableStatement.setString(1, tenkythi);
+            resultSet = this.executeQuery(getConnection(), callableStatement);
+
+            while (resultSet.next()) {
+                return resultSet.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "";
+    }
+
+    public Vector<String> GetListMaHocVienChinhThuc() {
+
+        Vector<String> lstmahocvien = new Vector<>();
+        CallableStatement callableStatement = null;
+        ResultSet result = null;
+        try {
+            callableStatement  = getConnection().prepareCall("{call LayDachDachMaHocVien(?)}");
+            callableStatement.setBoolean(1, true);
+            
+            result = this.executeQuery(getConnection(), callableStatement);
+            while (result.next()) {
+                lstmahocvien.add(result.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lstmahocvien;
+    }
+
+    public String GetTenHocVienByMaHocVien(String mahocvien) {
+        ResultSet result = null;
+        CallableStatement callableStatement = null;
+        
+        try {
+            callableStatement = getConnection().prepareCall("{call ....(?)}");
+            callableStatement.setString(1, mahocvien);
+            result = this.executeQuery(this.getConnection(),callableStatement);
+            
+            while(result.next()){
+             return result.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "";
+    }
+
 }

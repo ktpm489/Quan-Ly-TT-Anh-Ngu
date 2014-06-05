@@ -52,7 +52,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Component id="lblSoDT" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -61,7 +61,6 @@
                       <Component id="lblNgaySinh" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblHoTen" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="lblMaHocVien" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblMaChungChi" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -69,8 +68,7 @@
                       <Component id="dateChooserNgaySinh" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                       <Component id="txtMaHocVien" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="comboBoxTenChungChi" alignment="0" pref="197" max="32767" attributes="0"/>
-                          <Component id="txtSoDT" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtSoDT" alignment="0" pref="197" max="32767" attributes="0"/>
                           <Component id="txtCMND" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -141,21 +139,10 @@
                               <Component id="lblSoDT" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtSoDT" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtSoLuongCuocHen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblSoLuongCuocHen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="comboBoxTenChungChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblMaChungChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtSoLuongCuocHen" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSoLuongCuocHen" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -230,12 +217,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtHoTen">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHoTenKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHoTenKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCMND">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCMNDKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCMNDKeyTyped"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
@@ -244,6 +231,7 @@
         <Component class="javax.swing.JTextField" name="txtSoDT">
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoDTKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoDTKeyTyped"/>
           </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dateChooserNgaySinh">
@@ -265,12 +253,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEmailKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiaChi">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDiaChiKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDiaChiKeyTyped"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="panelChuCNang">
@@ -352,11 +340,6 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblMaChungChi">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="T&#xea;n Ch&#x1ee9;ng Ch&#x1ec9;"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblNgheNghiep">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ngh&#x1ec1; nghi&#x1ec7;p"/>
@@ -364,7 +347,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNgheNghiep">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNgheNghiepKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNgheNghiepKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSoLuongCuocHen">
@@ -374,18 +357,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtSoLuongCuocHen">
           <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoLuongCuocHenKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoLuongCuocHenKeyTyped"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="comboBoxTenChungChi">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xa;comboBoxTenChungChi.setModel(new HocVienController().GetListTenChungChi());&#xa;}catch(Exception e){&#xa;&#xa;}"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

@@ -35,9 +35,9 @@ public class BangDiemDO {
         return null;
     }
 
-    public Vector<String> GetListTenKiThiOfHocVien(String mahocvien) throws Exception {
+    public Vector<String> GetListTenLopHocHocVien() throws Exception {
         try {
-            return bangdiemdao.GetListTenKiThiOfHocVien(mahocvien);
+            return bangdiemdao.GetListTenLopHocHocVien();
         } catch (Exception e) {
 
         } finally {
@@ -57,17 +57,63 @@ public class BangDiemDO {
         }
         return null;
     }
-    
-    public Boolean UpdateBangDiemHocVien(String mabangdiem, String mahocvien, String makythi, Double diem) throws Exception{
+
+    public Boolean UpdateBangDiemHocVien(String mabangdiem, String mahocvien, String makythi, Double diem) throws Exception {
         try {
-        return bangdiemdao.UpdateBangDienHocVien(mabangdiem, mahocvien, makythi, diem);
+            return bangdiemdao.UpdateBangDienHocVien(mabangdiem, mahocvien, makythi, diem);
+        } catch (Exception e) {
+
+        } finally {
+            bangdiemdao.closeConnection();
+        }
+
+        return false;
+    }
+
+    public Boolean DeleteBangDiemHocVien(String mahocvien) throws Exception {
+        try {
+            return bangdiemdao.DeleteBangDiemOfHocVien(mahocvien);
+        } catch (Exception e) {
+
+        } finally {
+            bangdiemdao.closeConnection();
+        }
+        return false;
+    }
+
+    public String GetMaKyThiTheoTen(String tenkythi) throws Exception {
+        try {
+            return bangdiemdao.GetMaKyThiTheoTen(tenkythi);
+        } catch (Exception e) {
+
+        } finally {
+            bangdiemdao.closeConnection();
+        }
+
+        return "";
+    }
+
+    public Vector<String> GetListMaHocVien() throws Exception {
+        try {
+            return bangdiemdao.GetListMaHocVienChinhThuc();
+        } catch (Exception e) {
+
+        } finally {
+            bangdiemdao.closeConnection();
+        }
+
+        return null;
+    }
+    
+    public String GetTenHocVienByMaHocVien(String mahocvien) throws Exception{
+        try { 
+        return bangdiemdao.GetTenHocVienByMaHocVien(mahocvien);
         }catch(Exception e){
             
         }finally{
             bangdiemdao.closeConnection();
         }
-        
-        return false;
+        return "";
     }
 
 }

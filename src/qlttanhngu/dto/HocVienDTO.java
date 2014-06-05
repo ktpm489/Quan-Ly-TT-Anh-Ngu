@@ -24,7 +24,7 @@ public class HocVienDTO {
    private String email;
    private boolean tinhTrangHoc;
    private int soLuongLienLac;
-   private Integer soDienThoai;
+   private String soDienThoai;
    private boolean gioiTinh;
    private String TenNghanhHoc;
    // </editor-fold>
@@ -81,7 +81,7 @@ public class HocVienDTO {
       return this.tinhTrangHoc;
    }
    
-   public Integer getSoDienThoai(){
+   public String getSoDienThoai(){
        return this.soDienThoai;
    }
    
@@ -150,7 +150,7 @@ public class HocVienDTO {
        this.soLuongLienLac = soLuongLienLac;
    }
    
-   public void setSoDienThoai(int soDienThoai){
+   public void setSoDienThoai(String soDienThoai){
        this.soDienThoai = soDienThoai;
    }
    

@@ -41,14 +41,13 @@ public class HocVienDAO extends DataBase{
                 hv.setTenHocVien(resultSet.getString(2));
                 hv.setCmnd(resultSet.getString(3));
                 hv.setNamSinh(resultSet.getDate(4));
-                hv.setGioiTinh(resultSet.getBoolean(5));
-                hv.setMaChungChi(resultSet.getString(6));
-                hv.setNgheNghiep(resultSet.getString(7));
-                hv.setSoDienThoai(resultSet.getInt(8));
-                hv.setDiaChi(resultSet.getString(9));
-                hv.setEmail(resultSet.getString(10));
-                hv.setSoLuongLienLac(resultSet.getInt(11));
-                hv.setTinhTrangHoc(resultSet.getBoolean(12));
+                hv.setGioiTinh(resultSet.getBoolean(5));             
+                hv.setNgheNghiep(resultSet.getString(6));
+                hv.setSoDienThoai(resultSet.getString(7));
+                hv.setDiaChi(resultSet.getString(8));
+                hv.setEmail(resultSet.getString(9));
+                hv.setSoLuongLienLac(resultSet.getInt(10));
+                hv.setTinhTrangHoc(resultSet.getBoolean(11));
                 
                 lstHV.add(hv);
             }    
@@ -64,19 +63,18 @@ public class HocVienDAO extends DataBase{
        int resultSet = 0;
        CallableStatement callableStatement = null;
         try {
-            callableStatement = this.getConnection().prepareCall("{call CapNhatHocVien(?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call CapNhatHocVien(?,?,?,?,?,?,?,?,?,?,?)}");
             callableStatement.setString(1, hocviendto.getMaHocVien());
             callableStatement.setString(2, hocviendto.getTenHocVien());
             callableStatement.setString(3, hocviendto.getCmnd());
             callableStatement.setDate(4,hocviendto.getNamSinhUpdate());
             callableStatement.setBoolean(5, hocviendto.getGioiTinhUpdate());
-            callableStatement.setString(6, hocviendto.getMaChungChi());
-            callableStatement.setString(7, hocviendto.getNgheNghiep());
-            callableStatement.setInt(8, hocviendto.getSoDienThoai());
-            callableStatement.setString(9, hocviendto.getDiaChi());
-            callableStatement.setString(10, hocviendto.getEmail());
-            callableStatement.setInt(11, hocviendto.getSoLuongLienLac());
-            callableStatement.setBoolean(12, hocviendto.getTinhTrangHocUpdate());
+            callableStatement.setString(6, hocviendto.getNgheNghiep());
+            callableStatement.setString(7, hocviendto.getSoDienThoai());
+            callableStatement.setString(8, hocviendto.getDiaChi());
+            callableStatement.setString(9, hocviendto.getEmail());
+            callableStatement.setInt(10, hocviendto.getSoLuongLienLac());
+            callableStatement.setBoolean(11, hocviendto.getTinhTrangHocUpdate());
             
             resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
            if(resultSet != 0)
@@ -156,14 +154,13 @@ public class HocVienDAO extends DataBase{
                 hv.setTenHocVien(resultSet.getString(2));
                 hv.setCmnd(resultSet.getString(3));
                 hv.setNamSinh(resultSet.getDate(4));
-                hv.setGioiTinh(resultSet.getBoolean(5));
-                hv.setMaChungChi(resultSet.getString(6));
-                hv.setNgheNghiep(resultSet.getString(7));
-                hv.setSoDienThoai(resultSet.getInt(8));
-                hv.setDiaChi(resultSet.getString(9));
-                hv.setEmail(resultSet.getString(10));
-                hv.setSoLuongLienLac(resultSet.getInt(11));
-                hv.setTinhTrangHoc(resultSet.getBoolean(12));
+                hv.setGioiTinh(resultSet.getBoolean(5));            
+                hv.setNgheNghiep(resultSet.getString(6));
+                hv.setSoDienThoai(resultSet.getString(7));
+                hv.setDiaChi(resultSet.getString(8));
+                hv.setEmail(resultSet.getString(9));
+                hv.setSoLuongLienLac(resultSet.getInt(10));
+                hv.setTinhTrangHoc(resultSet.getBoolean(11));
                 
                 lstHV.add(hv);
                 i++;

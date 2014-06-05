@@ -49,9 +49,9 @@ public class BangDiemController {
         return defaultTableModel;
     }
 
-    public DefaultComboBoxModel GetistTenKiThiOfHocVien(String mahocvien) {
+    public DefaultComboBoxModel GetListTenLopHocHocVien() {
         try {
-            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(bangdiemdo.GetListTenKiThiOfHocVien(mahocvien));
+            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(bangdiemdo.GetListTenLopHocHocVien());
             return defaultComboBoxModel;
         } catch (Exception ex) {
             Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,5 +92,43 @@ public class BangDiemController {
         
         return false;
     }
-
+    
+    public Boolean DeleteBangDiemHocVien(String mahocvien){
+        try {
+            return bangdiemdo.DeleteBangDiemHocVien(mahocvien);
+        } catch (Exception ex) {
+            Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public String GetMaKyThiTheoTen(String tenkythi){
+        try {
+            return bangdiemdo.GetMaKyThiTheoTen(tenkythi);
+        } catch (Exception ex) {
+            Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+    
+    public DefaultComboBoxModel GetMaHocVienChinhThuc(){
+        DefaultComboBoxModel defaultComboBoxModel;
+        try {
+            defaultComboBoxModel = new DefaultComboBoxModel(bangdiemdo.GetListMaHocVien());
+            return defaultComboBoxModel;
+        } catch (Exception ex) {
+            Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
+    public String GetTenHocVienByMaHocVien(String mahocvien){
+        try {
+            return bangdiemdo.GetTenHocVienByMaHocVien(mahocvien);
+        } catch (Exception ex) {
+            Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
 }

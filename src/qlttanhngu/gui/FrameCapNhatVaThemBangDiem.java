@@ -1,23 +1,21 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package qlttanhngu.gui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import qlttanhngu.controller.BangDiemController;
+package qlttanhngu.gui;
 
 /**
  *
- * @author XUANVINHTD
+ * @author XuanVinh
  */
-public class FrameBangDiem extends javax.swing.JInternalFrame {
+public class FrameCapNhatVaThemBangDiem extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FrameBangDiem
+     * Creates new form FrameCapNhatVaThemBangDiem
      */
-    public FrameBangDiem() {
+    public FrameCapNhatVaThemBangDiem() {
         initComponents();
     }
 
@@ -31,11 +29,14 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         panelThongTin = new javax.swing.JPanel();
+        lblMaBangDiem = new javax.swing.JLabel();
         lblMaHocVien = new javax.swing.JLabel();
         lblTenHocVien = new javax.swing.JLabel();
         lblTenKyThi = new javax.swing.JLabel();
         lblDiemThi = new javax.swing.JLabel();
+        txtMaBangDiem = new javax.swing.JTextField();
         txtTenHocVien = new javax.swing.JTextField();
+        txtTenKyThi = new javax.swing.JTextField();
         txtDiem = new javax.swing.JTextField();
         panelTraCuu = new javax.swing.JPanel();
         lblTraCuuTheo = new javax.swing.JLabel();
@@ -47,21 +48,23 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
         btnCapNhat = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
-        btnXoaBangDiem = new javax.swing.JButton();
-        comboBoxMaHV = new javax.swing.JComboBox();
-        comboBoxTebKyThi = new javax.swing.JComboBox();
+        btnChiTiet = new javax.swing.JButton();
+        txtMaHocVien = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableBangDiem = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
 
-        setTitle("Bảng Điểm Học Viên");
+        setTitle("Thêm mới và cập nhật bảng điểm");
+        setToolTipText("");
 
         panelThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin"));
+
+        lblMaBangDiem.setText("Mã Bảng Điểm");
 
         lblMaHocVien.setText("Mã Học Viên");
 
         lblTenHocVien.setText("Tên Học Viên");
 
-        lblTenKyThi.setText("Tên Lớp Học");
+        lblTenKyThi.setText("Tên Kỳ Thi");
 
         lblDiemThi.setText("Điểm Thi");
 
@@ -69,7 +72,7 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
 
         lblTraCuuTheo.setText("Tra Cứu Theo");
 
-        comboBoxTraCuuTheo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mã Học Viên", "Tên Học Viên", "Tên Kỳ Thi", "Điểm" }));
+        comboBoxTraCuuTheo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tên kỳ thi", "Điểm số" }));
 
         btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Timkiem.png"))); // NOI18N
         btnTraCuu.setText("Tra Cứu");
@@ -80,27 +83,27 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
             panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTraCuuLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnTraCuu)
-                    .addGroup(panelTraCuuLayout.createSequentialGroup()
-                        .addComponent(lblTraCuuTheo)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboBoxTraCuuTheo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(lblTraCuuTheo)
+                .addGap(18, 18, 18)
+                .addComponent(comboBoxTraCuuTheo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(txtTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTraCuuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTraCuu)
+                .addGap(65, 65, 65))
         );
         panelTraCuuLayout.setVerticalGroup(
             panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTraCuuLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTraCuuTheo)
                     .addComponent(comboBoxTraCuuTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnTraCuu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTraCuu))
         );
 
         panelChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
@@ -127,9 +130,9 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
             }
         });
 
-        btnXoaBangDiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete.png"))); // NOI18N
-        btnXoaBangDiem.setText("Xóa");
-        btnXoaBangDiem.setToolTipText("Cho Biết Thông Tin Chi Tiết Điểm Của Một Học Viên");
+        btnChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ChiTiet.png"))); // NOI18N
+        btnChiTiet.setText("Chi Tiết");
+        btnChiTiet.setToolTipText("Cho Biết Thông Tin Chi Tiết Điểm Của Một Học Viên");
 
         javax.swing.GroupLayout panelChucNangLayout = new javax.swing.GroupLayout(panelChucNang);
         panelChucNang.setLayout(panelChucNangLayout);
@@ -138,15 +141,15 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
             .addGroup(panelChucNangLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnXoaBangDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                    .addComponent(btnChiTiet, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCapNhat)
                 .addGap(18, 18, 18)
                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelChucNangLayout.setVerticalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,48 +161,39 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
                     .addComponent(btnLamMoi)
                     .addComponent(btnDong))
                 .addGap(18, 18, 18)
-                .addComponent(btnXoaBangDiem)
+                .addComponent(btnChiTiet)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        try {
-            comboBoxMaHV.setModel(new BangDiemController().GetMaHocVienChinhThuc());
-        }catch(Exception e){
-
-        }
-        comboBoxMaHV.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboBoxMaHVItemStateChanged(evt);
-            }
-        });
-
-        try {
-            comboBoxTebKyThi.setModel(new BangDiemController().GetListTenLopHocHocVien());
-        }catch(Exception e){
-
-        }
 
         javax.swing.GroupLayout panelThongTinLayout = new javax.swing.GroupLayout(panelThongTin);
         panelThongTin.setLayout(panelThongTinLayout);
         panelThongTinLayout.setHorizontalGroup(
             panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelThongTinLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblMaHocVien)
-                    .addComponent(lblTenHocVien)
-                    .addComponent(lblTenKyThi)
-                    .addComponent(lblDiemThi))
+                    .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblMaBangDiem)
+                        .addComponent(lblMaHocVien, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblTenHocVien, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblTenKyThi))
                 .addGap(18, 18, 18)
+                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTenHocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTenKyThi, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelThongTinLayout.createSequentialGroup()
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMaBangDiem, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(txtMaHocVien))
+                        .addGap(97, 97, 97)
+                        .addComponent(lblDiemThi)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTenHocVien)
-                    .addComponent(comboBoxMaHV, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxTebKyThi, 0, 243, Short.MAX_VALUE))
-                .addGap(59, 59, 59)
-                .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelThongTinLayout.setVerticalGroup(
             panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,27 +202,35 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
                     .addGroup(panelThongTinLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaHocVien)
-                            .addComponent(comboBoxMaHV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTenHocVien)
-                            .addComponent(txtTenHocVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTenKyThi)
-                            .addComponent(comboBoxTebKyThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMaBangDiem)
+                            .addComponent(txtMaBangDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDiemThi)
-                            .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(panelTraCuu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelChucNang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMaHocVien)
+                            .addComponent(txtMaHocVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTenHocVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTenHocVien)))
+                    .addComponent(panelTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelThongTinLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelThongTinLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblTenKyThi))
+                            .addComponent(txtTenKyThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelThongTinLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tableBangDiem.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -239,7 +241,7 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableBangDiem);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,9 +258,9 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                .addGap(9, 9, 9))
         );
 
         pack();
@@ -272,22 +274,19 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
-    private void comboBoxMaHVItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxMaHVItemStateChanged
-        int x = 0;
-    }//GEN-LAST:event_comboBoxMaHVItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
+    private javax.swing.JButton btnChiTiet;
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTraCuu;
-    private javax.swing.JButton btnXoaBangDiem;
-    private javax.swing.JComboBox comboBoxMaHV;
-    private javax.swing.JComboBox comboBoxTebKyThi;
     private javax.swing.JComboBox comboBoxTraCuuTheo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDiemThi;
+    private javax.swing.JLabel lblMaBangDiem;
     private javax.swing.JLabel lblMaHocVien;
     private javax.swing.JLabel lblTenHocVien;
     private javax.swing.JLabel lblTenKyThi;
@@ -295,9 +294,11 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelChucNang;
     private javax.swing.JPanel panelThongTin;
     private javax.swing.JPanel panelTraCuu;
-    private javax.swing.JTable tableBangDiem;
     private javax.swing.JTextField txtDiem;
+    private javax.swing.JTextField txtMaBangDiem;
+    private javax.swing.JTextField txtMaHocVien;
     private javax.swing.JTextField txtTenHocVien;
+    private javax.swing.JTextField txtTenKyThi;
     private javax.swing.JTextField txtTraCuu;
     // End of variables declaration//GEN-END:variables
 }

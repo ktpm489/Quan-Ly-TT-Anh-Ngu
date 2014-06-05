@@ -6,10 +6,13 @@ package qlttanhngu.gui;
 
 import Assest.StoreSave;
 import com.sun.org.apache.xml.internal.utils.StopParseException;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import qlttanhngu.controller.HocVienController;
 import qlttanhngu.dto.HocVienDTO;
@@ -58,12 +61,10 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
         comboxGioiTinh = new javax.swing.JComboBox();
         lblMaHocVien = new javax.swing.JLabel();
         txtMaHocVien = new javax.swing.JTextField();
-        lblMaChungChi = new javax.swing.JLabel();
         lblNgheNghiep = new javax.swing.JLabel();
         txtNgheNghiep = new javax.swing.JTextField();
         lblSoLuongCuocHen = new javax.swing.JLabel();
         txtSoLuongCuocHen = new javax.swing.JTextField();
-        comboBoxTenChungChi = new javax.swing.JComboBox();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -102,20 +103,23 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
         jLabel8.setText("Tình Trạng Học");
 
         txtHoTen.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtHoTenKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHoTenKeyTyped(evt);
             }
         });
 
         txtCMND.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCMNDKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCMNDKeyTyped(evt);
             }
         });
 
         txtSoDT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSoDTKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSoDTKeyTyped(evt);
             }
         });
 
@@ -124,14 +128,14 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
         comboxTinhTrangHoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tiềm Năng", "Chính Thức" }));
 
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtEmailKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmailKeyTyped(evt);
             }
         });
 
         txtDiaChi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDiaChiKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiaChiKeyTyped(evt);
             }
         });
 
@@ -180,52 +184,42 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
         txtMaHocVien.setEnabled(false);
 
-        lblMaChungChi.setText("Tên Chứng Chỉ");
-
         lblNgheNghiep.setText("Nghề nghiệp");
 
         txtNgheNghiep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNgheNghiepKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNgheNghiepKeyTyped(evt);
             }
         });
 
         lblSoLuongCuocHen.setText("Số lượng cuộc hẹn");
 
         txtSoLuongCuocHen.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSoLuongCuocHenKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSoLuongCuocHenKeyTyped(evt);
             }
         });
-
-        try{
-            comboBoxTenChungChi.setModel(new HocVienController().GetListTenChungChi());
-        }catch(Exception e){
-
-        }
 
         javax.swing.GroupLayout panelTTCaNhanLayout = new javax.swing.GroupLayout(panelTTCaNhan);
         panelTTCaNhan.setLayout(panelTTCaNhanLayout);
         panelTTCaNhanLayout.setHorizontalGroup(
             panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTTCaNhanLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(41, 41, 41)
                 .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblSoDT)
                         .addComponent(lblCMND, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(lblNgaySinh)
                     .addComponent(lblHoTen)
-                    .addComponent(lblMaHocVien)
-                    .addComponent(lblMaChungChi))
+                    .addComponent(lblMaHocVien))
                 .addGap(18, 18, 18)
                 .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateChooserNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaHocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(comboBoxTenChungChi, javax.swing.GroupLayout.Alignment.LEADING, 0, 197, Short.MAX_VALUE)
-                        .addComponent(txtSoDT, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtSoDT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                         .addComponent(txtCMND, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -280,17 +274,10 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
                         .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblSoDT)
                             .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelTTCaNhanLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtSoLuongCuocHen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSoLuongCuocHen)))
-                            .addGroup(panelTTCaNhanLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(comboBoxTenChungChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMaChungChi)))))
+                        .addGap(20, 20, 20)
+                        .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSoLuongCuocHen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSoLuongCuocHen)))
                     .addGroup(panelTTCaNhanLayout.createSequentialGroup()
                         .addGroup(panelTTCaNhanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -334,11 +321,8 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         HocVienDTO hocviendto = new HocVienDTO();
         //Kiểm tra mã, họ tên không dc null, kiểm tra kiễu dữ số dt, ......
-        if ("".equals(txtMaHocVien.getText()) || "".equals(txtHoTen.getText()) || Kitu(txtCMND.getText()) || Kitu(txtSoDT.getText()) || Kitu(txtSoLuongCuocHen.getText())){
-            MessageBoxError messageBoxErorHocVien = new MessageBoxError();
-            StoreSave.desktop.add(messageBoxErorHocVien);
-            messageBoxErorHocVien.setBounds(400, 300, 380, 120);
-            messageBoxErorHocVien.show();
+        if ("".equals(txtMaHocVien.getText()) || "".equals(txtHoTen.getText())) {
+            JOptionPane.showMessageDialog(this, "Lỗi .Xin vui lòng kiểm tra lại kiểu dữ liệu đã nhập vào !");
             return;
         }
         try {
@@ -348,31 +332,34 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
             hocviendto.setDiaChi(txtDiaChi.getText());
             hocviendto.setEmail(txtEmail.getText());
             hocviendto.setGioiTinh(comboxGioiTinh.getSelectedItem() == "Nam" ? true : false);
-            hocviendto.setTenMaChungChi(comboBoxTenChungChi.getSelectedItem().toString());
             hocviendto.setNamSinh(dateChooserNgaySinh.getDate());
             hocviendto.setNgheNghiep(txtNgheNghiep.getText());
-            hocviendto.setSoDienThoai(Integer.parseInt("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
+            hocviendto.setSoDienThoai(("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
             hocviendto.setSoLuongLienLac(Integer.parseInt("".equals(txtSoLuongCuocHen.getText()) ? "0" : txtSoLuongCuocHen.getText()));
             hocviendto.setTenHocVien(txtHoTen.getText());
-            hocviendto.setTinhTrangHoc(comboxTinhTrangHoc.getSelectedIndex() == 1 ? false : true);
-
-            //Kiểm tra xem có chắc chắn cập nhât không? 
-            MessageBoxHocVien messageBoxHocVien = new MessageBoxHocVien();
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 250, 511, 189);
-            messageBoxHocVien.show();
+            hocviendto.setTinhTrangHoc(comboxTinhTrangHoc.getSelectedIndex() == 0 ? false : true);
 
             //Lay thong tin de cap nhat
             StoreSave.hocvien = hocviendto;
-
+            //Kiểm tra xem có chắc chắn cập nhât không? 
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
+            if (x == 0) {
+                try {
+                    new HocVienController().UpdateHocVien(StoreSave.hocvien);
+                } catch (Exception ex) {
+                    Logger.getLogger(MessageBoxHocVien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            //refresh lại table ds hoc vien
+            StoreSave.frameDSHocVien.refreshTable();
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
-        //load lại frame danh sach hoc viên
-        // StoreSave.frameDSHocVien.refreshTable();      
+        //giải phóng object hocvien;
+        StoreSave.hocvien = null;   
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
@@ -384,7 +371,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
             txtCMND.setText(StoreSave.hocvien.getCmnd());
             dateChooserNgaySinh.setDate(StoreSave.hocvien.getNamSinhUpdate());
             comboxGioiTinh.setSelectedIndex(StoreSave.hocvien.getGioiTinh() == "Nam" ? 0 : 1);
-            comboBoxTenChungChi.setSelectedItem(StoreSave.hocvien.getTenChungChi());
+            //comboBoxTenChungChi.setSelectedItem(StoreSave.hocvien.getTenChungChi());
             txtNgheNghiep.setText(StoreSave.hocvien.getNgheNghiep());
             txtSoDT.setText(StoreSave.hocvien.getSoDienThoai().toString());
             txtDiaChi.setText(StoreSave.hocvien.getDiaChi());
@@ -394,71 +381,82 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_formInternalFrameActivated
 
-    private void txtHoTenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyPressed
-        if (txtHoTen.getText().length() > 50) {
-            txtHoTen.setText(txtHoTen.getText().substring(0, 50));
-        }
-    }//GEN-LAST:event_txtHoTenKeyPressed
-
-    private void txtCMNDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCMNDKeyPressed
-  
-        if (txtCMND.getText().length() > 11) {
-            txtCMND.setText(txtCMND.getText().substring(0, 11));
-        }
-    }//GEN-LAST:event_txtCMNDKeyPressed
-
     private void txtSoDTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoDTKeyPressed
-        if (txtSoDT.getText().length() > 11) {
-            txtSoDT.setText(txtSoDT.getText().substring(0, 11));
-        }
+     //   if (txtSoDT.getText().length() > 11) {
+        //     evt.consume();
+        //txtSoDT.setText(txtSoDT.getText().substring(0, 11));
+        //   }
     }//GEN-LAST:event_txtSoDTKeyPressed
 
-    private void txtNgheNghiepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNgheNghiepKeyPressed
-        if (txtNgheNghiep.getText().length() > 120) {
-            txtNgheNghiep.setText(txtNgheNghiep.getText().substring(0, 120));
+    //Kiểm tra chi cho textfield số điện thoại và cnmd nhập số. 
+    private void txtSoDTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoDTKeyTyped
+        char vChar = evt.getKeyChar();
+        int len = txtSoDT.getText().length();
+        if (!(Character.isDigit(vChar))
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE)
+                || (vChar == KeyEvent.VK_ENTER)
+                || (vChar == KeyEvent.VK_TAB) || (len > 11)) {
+            evt.consume();
         }
-    }//GEN-LAST:event_txtNgheNghiepKeyPressed
+    }//GEN-LAST:event_txtSoDTKeyTyped
 
-    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
-        if (txtEmail.getText().length() > 20) {
-            txtEmail.setText(txtEmail.getText().substring(0, 20));
+    private void txtCMNDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCMNDKeyTyped
+        char vChar = evt.getKeyChar();
+        int len = txtCMND.getText().length();
+        if (!(Character.isDigit(vChar))
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE)
+                || (vChar == KeyEvent.VK_ENTER)
+                || (vChar == KeyEvent.VK_TAB) || (len > 10)) {
+            evt.consume();
         }
-    }//GEN-LAST:event_txtEmailKeyPressed
+    }//GEN-LAST:event_txtCMNDKeyTyped
 
-    private void txtDiaChiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyPressed
-        if (txtDiaChi.getText().length() > 100) {
-            txtDiaChi.setText(txtDiaChi.getText().substring(0, 100));
+    private void txtHoTenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyTyped
+        int len = txtHoTen.getText().length();
+        if (len > 50) {
+            evt.consume();
         }
-    }//GEN-LAST:event_txtDiaChiKeyPressed
+    }//GEN-LAST:event_txtHoTenKeyTyped
 
-    private void txtSoLuongCuocHenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongCuocHenKeyPressed
-         if (txtSoLuongCuocHen.getText().length() > 2) {
-            txtSoLuongCuocHen.setText(txtSoLuongCuocHen.getText().substring(0, 2));
+    private void txtNgheNghiepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNgheNghiepKeyTyped
+        int len = txtNgheNghiep.getText().length();
+        if (len > 150) {
+            evt.consume();
         }
-    }//GEN-LAST:event_txtSoLuongCuocHenKeyPressed
+    }//GEN-LAST:event_txtNgheNghiepKeyTyped
 
-    /// Loi So ///
-    public boolean LoiSo(String str) {
-        Pattern pt = Pattern.compile("[0-9]");
-        Matcher mc = pt.matcher(str);
-        if (!mc.find()) {
-            return false;
+    private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
+        int len = txtEmail.getText().length();
+        if (len > 50) {
+            evt.consume();
         }
-        return true;
-    }
+    }//GEN-LAST:event_txtEmailKeyTyped
 
-    public boolean Kitu(String str5) {
-        Pattern pt = Pattern.compile("[a-zA-Z]");
-        Matcher mc = pt.matcher(str5);
-        if (!mc.find()) {
-            return false;
+    private void txtDiaChiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyTyped
+        int len = txtDiaChi.getText().length();
+        if (len > 50) {
+            evt.consume();
         }
-        return true;
-    }
+    }//GEN-LAST:event_txtDiaChiKeyTyped
+
+    private void txtSoLuongCuocHenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongCuocHenKeyTyped
+        char vChar = evt.getKeyChar();
+        int len = txtSoLuongCuocHen.getText().length();
+        if (!(Character.isDigit(vChar))
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE)
+                || (vChar == KeyEvent.VK_ENTER)
+                || (vChar == KeyEvent.VK_TAB) || (len > 2)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSoLuongCuocHenKeyTyped
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnLuu;
-    private javax.swing.JComboBox comboBoxTenChungChi;
     private javax.swing.JComboBox comboxGioiTinh;
     private javax.swing.JComboBox comboxTinhTrangHoc;
     private com.toedter.calendar.JDateChooser dateChooserNgaySinh;
@@ -468,7 +466,6 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblDiaChi;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblHoTen;
-    private javax.swing.JLabel lblMaChungChi;
     private javax.swing.JLabel lblMaHocVien;
     private javax.swing.JLabel lblNgaySinh;
     private javax.swing.JLabel lblNgheNghiep;
