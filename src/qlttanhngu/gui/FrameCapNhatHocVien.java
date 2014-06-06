@@ -115,9 +115,6 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
         });
 
         txtSoDT.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtSoDTKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSoDTKeyTyped(evt);
             }
@@ -325,8 +322,8 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Lỗi .Xin vui lòng kiểm tra lại kiểu dữ liệu đã nhập vào !");
             return;
         }
-        try {
 
+        try {
             hocviendto.setMaHocVien(txtMaHocVien.getText());
             hocviendto.setCmnd(txtCMND.getText());
             hocviendto.setDiaChi(txtDiaChi.getText());
@@ -359,7 +356,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
         //giải phóng object hocvien;
-        StoreSave.hocvien = null;   
+        StoreSave.hocvien = null;
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
@@ -371,7 +368,6 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
             txtCMND.setText(StoreSave.hocvien.getCmnd());
             dateChooserNgaySinh.setDate(StoreSave.hocvien.getNamSinhUpdate());
             comboxGioiTinh.setSelectedIndex(StoreSave.hocvien.getGioiTinh() == "Nam" ? 0 : 1);
-            //comboBoxTenChungChi.setSelectedItem(StoreSave.hocvien.getTenChungChi());
             txtNgheNghiep.setText(StoreSave.hocvien.getNgheNghiep());
             txtSoDT.setText(StoreSave.hocvien.getSoDienThoai().toString());
             txtDiaChi.setText(StoreSave.hocvien.getDiaChi());
@@ -381,17 +377,11 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_formInternalFrameActivated
 
-    private void txtSoDTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoDTKeyPressed
-     //   if (txtSoDT.getText().length() > 11) {
-        //     evt.consume();
-        //txtSoDT.setText(txtSoDT.getText().substring(0, 11));
-        //   }
-    }//GEN-LAST:event_txtSoDTKeyPressed
-
     //Kiểm tra chi cho textfield số điện thoại và cnmd nhập số. 
     private void txtSoDTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoDTKeyTyped
         char vChar = evt.getKeyChar();
         int len = txtSoDT.getText().length();
+
         if (!(Character.isDigit(vChar))
                 || (vChar == KeyEvent.VK_BACK_SPACE)
                 || (vChar == KeyEvent.VK_DELETE)
@@ -404,6 +394,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
     private void txtCMNDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCMNDKeyTyped
         char vChar = evt.getKeyChar();
         int len = txtCMND.getText().length();
+
         if (!(Character.isDigit(vChar))
                 || (vChar == KeyEvent.VK_BACK_SPACE)
                 || (vChar == KeyEvent.VK_DELETE)
@@ -415,6 +406,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
     private void txtHoTenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoTenKeyTyped
         int len = txtHoTen.getText().length();
+
         if (len > 50) {
             evt.consume();
         }
@@ -422,6 +414,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
     private void txtNgheNghiepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNgheNghiepKeyTyped
         int len = txtNgheNghiep.getText().length();
+
         if (len > 150) {
             evt.consume();
         }
@@ -429,6 +422,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
     private void txtEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyTyped
         int len = txtEmail.getText().length();
+
         if (len > 50) {
             evt.consume();
         }
@@ -436,6 +430,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
 
     private void txtDiaChiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyTyped
         int len = txtDiaChi.getText().length();
+
         if (len > 50) {
             evt.consume();
         }
@@ -444,6 +439,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
     private void txtSoLuongCuocHenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongCuocHenKeyTyped
         char vChar = evt.getKeyChar();
         int len = txtSoLuongCuocHen.getText().length();
+
         if (!(Character.isDigit(vChar))
                 || (vChar == KeyEvent.VK_BACK_SPACE)
                 || (vChar == KeyEvent.VK_DELETE)

@@ -5,25 +5,67 @@
 package Assest;
 
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import qlttanhngu.dto.HocVienDTO;
 import qlttanhngu.gui.FrameDSHocVien;
+import qlttanhngu.gui.FrameMain;
 
 /**
  *
  * @author XUANVINHTD
  */
 public class StoreSave {
+    //Sử dụng để kiểm tra một số quyền hạng
     public static String accountNameSave;
     public static String userNamSave;
     public int number;
+    
+    //dùng để hiển thị một frame mới
     public static JDesktopPane desktop;
     
-    //"Mã học viên", "Họ tên", "CMND", "Năm sinh","Giới tính","Mã chứng chỉ học viên","Nghề nghiệp","Số điện thoại","Địa chỉ","Email","Số lượng liên lạc","Tình trạng học"
+    // sử dụng trong frame bảng điểm học viên
+    public static String mahocvien;
+    public static String tenhocvien;
     
-    //Properties hoc vien
+    //Lưu lại một số giá trị của học viên để frame khác sử dụng
     public static HocVienDTO hocvien;
     
-    //Lưu frame FrameDSHocVien 
+    //sử dụng để update lại frame danh sách học viên
     public static FrameDSHocVien frameDSHocVien;
+    
+     //Khởi Tạo các frameInternal 
+    public static void InitFrameInternal(JInternalFrame jInternalFrame) {
+        
+        StoreSave.desktop.add(jInternalFrame);
+        try {
+            jInternalFrame.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jInternalFrame.show();
+        
+    }
+
+    //Kiểm tra xem frame đó đã được khởi tạo và show lên chưa
+    public static Boolean isExsting(JInternalFrame jInternalFrame) {
+        JInternalFrame[] lstDesktop;
+        lstDesktop =   StoreSave.desktop.getAllFrames();
+        
+        for (int i = 0; i < lstDesktop.length; i++) {
+            if (lstDesktop[i].getClass() == jInternalFrame.getClass()) {
+                try {
+                    lstDesktop[i].setSelected(true);
+                } catch (PropertyVetoException ex) {
+                    Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return false;
+            }
+        }
+        return true;
+    }
 }

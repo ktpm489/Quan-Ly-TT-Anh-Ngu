@@ -52,6 +52,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setTitle("Danh Sách Học Viên");
+        setName("DSHV"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1305, 565));
 
         tableDSHocVien.setCellSelectionEnabled(false);
@@ -206,14 +207,17 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
 
     private void tableDSHocVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDSHocVienMouseClicked
         try {
+            //Khởi tạo bảng để lấy giá trị của một dòng khi click
             JTable table = (JTable) evt.getSource();
             int row = table.getSelectedRow();
+
             HocVienDTO hocvienDTO = new HocVienDTO();
-            //StoreSave.hocvien.getMaHocVien(table.getValueAt(row,0).toString());
+
             hocvienDTO.setMaHocVien(table.getValueAt(row, 0).toString());
             hocvienDTO.setTenHocVien(table.getValueAt(row, 1).toString());
             hocvienDTO.setCmnd(table.getValueAt(row, 2).toString());
 
+            //chuyển đổi kiểu String thành kiểu Date
             SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
             String dateString = table.getValueAt(row, 3).toString();
             Date date = null;
@@ -223,9 +227,8 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
                 e.printStackTrace();
             }
             hocvienDTO.setNamSinh(date);
+
             hocvienDTO.setGioiTinh(table.getValueAt(row, 4).toString() == "Nam" ? true : false);
-           // hocvienDTO.setMaChungChi(new HocVienController().GetMaChungChiTheoTen(table.getValueAt(row, 5).toString()));
-            //hocvienDTO.setTenMaChungChi(table.getValueAt(row, 5).toString());
             hocvienDTO.setNgheNghiep(table.getValueAt(row, 5).toString());
             hocvienDTO.setSoDienThoai((table.getValueAt(row, 6).toString()));
             hocvienDTO.setDiaChi(table.getValueAt(row, 7).toString());
@@ -233,7 +236,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
             hocvienDTO.setSoLuongLienLac(Integer.parseInt(table.getValueAt(row, 9).toString()));
             hocvienDTO.setTinhTrangHoc(table.getValueAt(row, 10).toString() == "Tiềm Năng" ? true : false);
 
-            //Luu lai , load vao frame cap nhat học viên
+            //Lưu lại thông tin học viên để cập nhật trong bảng cập nhật học viên
             StoreSave.hocvien = hocvienDTO;
 
         } catch (Exception ex) {
@@ -247,29 +250,33 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
 
-        //kiểm tra xem thử có chọn học vien muốn cập nhật chưa.
+        //kiểm tra xem thử có chọn học viên muốn cập nhật chưa.
         if (StoreSave.hocvien == null) {
             JOptionPane.showMessageDialog(this, " Vui lòng chọn học viên để cập nhật !");
             return;
         }
 
+        //Khởi tạo frame cập nhật học viên
         FrameCapNhatHocVien frameCapNhatHocVien = new FrameCapNhatHocVien();
-        StoreSave.desktop.add(frameCapNhatHocVien);
-        frameCapNhatHocVien.show();
+        if (StoreSave.isExsting(frameCapNhatHocVien)) {
+            StoreSave.InitFrameInternal(frameCapNhatHocVien);
+        }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
-        if ("".equals(txtTuKhoa.getText())) {           
+        if ("".equals(txtTuKhoa.getText())) {
             JOptionPane.showMessageDialog(this, "Từ Khóa không tồn tại, vui lòng nhập từ khác để chọn!");
             return;
         }
+
         try {
-            String strtemp = "%"+ txtTuKhoa.getText() + "%";
-           DefaultTableModel defaultTableModel =  new HocVienController().SearchHocVien(strtemp);
-           if(defaultTableModel.getRowCount() == 0){
-             JOptionPane.showMessageDialog(this, "Từ Khóa không tồn tại, vui lòng nhập từ khác để chọn!");  
-             return;
-           }
+            String strtemp = "%" + txtTuKhoa.getText() + "%";
+            DefaultTableModel defaultTableModel = new HocVienController().SearchHocVien(strtemp);
+            if (defaultTableModel.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Từ Khóa không tồn tại, vui lòng nhập từ khác để chọn!");
+                return;
+            }
+            
             tableDSHocVien.setModel(defaultTableModel);
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
@@ -293,6 +300,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
         try {
             HocVienController hocvienController = new HocVienController();
             int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn xóa học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
+            
             if (x == 0) {
                 hocvienController.DeleteHocVien(StoreSave.hocvien.getMaHocVien());
             }
@@ -306,7 +314,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
 
     private void txtTuKhoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTuKhoaKeyTyped
         int len = txtTuKhoa.getText().length();
-        if(len > 50){
+        if (len > 50) {
             evt.consume();
         }
     }//GEN-LAST:event_txtTuKhoaKeyTyped
@@ -317,8 +325,9 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
             tableDSHocVien.setModel(new HocVienController().LoadListHocVien());
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
-        }     
+        }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDong;

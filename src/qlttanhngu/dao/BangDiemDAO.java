@@ -33,14 +33,49 @@ public class BangDiemDAO extends DataBase {
         ResultSet result = null;
 
         //lấy danh sách học viên 
-        result = this.executeQuery("{call ...................}");
+        result = this.executeQuery("{call LayDanhSachHocVienBangDiem()}");
         try {
             while (result.next()) {
                 hocviendto = new HocVienDTO();
 
                 hocviendto.setMaHocVien(result.getString(1));
                 hocviendto.setTenHocVien(result.getString(2));
-                hocviendto.setEmail(result.getString(3));
+                hocviendto.setGioiTinh(result.getBoolean(3));
+                hocviendto.setSoDienThoai(result.getString(4));
+                hocviendto.setEmail(result.getString(5));
+
+                lstHV.add(hocviendto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lstHV;
+    }
+    
+    public List<HocVienDTO> SearchHocVienInBangDiem(String ma, String ten){
+        List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
+        HocVienDTO hocviendto = null;
+        CallableStatement callableStatement = null;
+        ResultSet result = null;
+
+        //lấy danh sách học viên 
+       
+        try {
+            callableStatement = getConnection().prepareCall("{call TraCuuHVTrongBangDiem(?,?)}");
+            callableStatement.setString(1, ten);
+            callableStatement.setString(2, ma);
+            
+            result = this.executeQuery(getConnection(), callableStatement);
+            
+            while (result.next()) {
+                hocviendto = new HocVienDTO();
+
+                hocviendto.setMaHocVien(result.getString(1));
+                hocviendto.setTenHocVien(result.getString(2));
+                hocviendto.setGioiTinh(result.getBoolean(3));
+                hocviendto.setSoDienThoai(result.getString(4));
+                hocviendto.setEmail(result.getString(5));
 
                 lstHV.add(hocviendto);
             }
@@ -51,14 +86,15 @@ public class BangDiemDAO extends DataBase {
         return lstHV;
     }
 
+//    //lấy danh sách lớp học hiện tại đang và đã học
     public Vector<String> GetListTenLopHocHocVien() {
         Vector<String> lstTenLop = new Vector<String>();
-      //  CallableStatement callableStatement = null;
+        //  CallableStatement callableStatement = null;
         ResultSet result = null;
 
         try {
-          //  callableStatement = getConnection().prepareCall("{LayDanhSachTenLopHoc()}");
-          //  callableStatement.setString(1, mahocvien);
+            //  callableStatement = getConnection().prepareCall("{LayDanhSachTenLopHoc()}");
+            //  callableStatement.setString(1, mahocvien);
             result = this.executeQuery("{call LayDanhSachTenLopHoc()}");
 
             while (result.next()) {
@@ -71,25 +107,21 @@ public class BangDiemDAO extends DataBase {
         return lstTenLop;
     }
 
-    public List<BangDiemDTO> GetListBangDiemHocVien(String mahv) {
+    public List<BangDiemDTO> GetListBangDiemHocVien(String mahocvien) {
         List<BangDiemDTO> lstBangDiem = new ArrayList<>();
-        BangDiemDTO bangDiemDTO = null;
         CallableStatement callableStatement = null;
+        BangDiemDTO bangDiemDTO = null;
         ResultSet result = null;
 
         try {
-            callableStatement = getConnection().prepareCall("{call ...............(?)}");
-            callableStatement.setString(1, mahv);
-
+            callableStatement = getConnection().prepareCall("{call LayDanhSachBangDiemCuaHocVien(?)}");
+            callableStatement.setString(1, mahocvien);
             result = this.executeQuery(getConnection(), callableStatement);
 
             while (result.next()) {
                 bangDiemDTO = new BangDiemDTO();
-
-                bangDiemDTO.setMaBangDiem(result.getString(1));
-                bangDiemDTO.setMaKiThi(result.getString(2));
-                bangDiemDTO.setMaHocVien(result.getString(3));
-                bangDiemDTO.setDiem(result.getDouble(4));
+                bangDiemDTO.setTenlophoc(result.getString(1));
+                bangDiemDTO.setDiem(result.getDouble(2));
 
                 lstBangDiem.add(bangDiemDTO);
             }
@@ -100,54 +132,88 @@ public class BangDiemDAO extends DataBase {
         return lstBangDiem;
     }
 
-    public Boolean UpdateBangDienHocVien(String mabangdiem, String mahocvien, String makythi, Double diem) {
+    public Boolean UpdateBangDienHocVien(String mahocvien, String malop, Double diem) {
         int result = 0;
         CallableStatement callableStatement = null;
         try {
 
-            callableStatement = getConnection().prepareCall("{call ....................(?,?,?,?)}");
-            callableStatement.setString(1, mabangdiem);
-            callableStatement.setString(2, makythi);
-            callableStatement.setString(3, mahocvien);
-            callableStatement.setDouble(4, diem);
-
-            result = this.executeQueryUpdate(getConnection(), callableStatement);
-            if (result != 0) {
-                return true;
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return false;
-    }
-
-    public Boolean DeleteBangDiemOfHocVien(String mahocvien) {
-        int result = 0;
-        CallableStatement callableStatement = null;
-
-        try {
-            callableStatement = getConnection().prepareCall("{call .................(?)}");
+            callableStatement = getConnection().prepareCall("{call CapNhatDiemChoHocVien(?,?,?)}");
             callableStatement.setString(1, mahocvien);
+            callableStatement.setString(2, malop);
+            callableStatement.setDouble(3, diem);
 
             result = this.executeQueryUpdate(getConnection(), callableStatement);
             if (result != 0) {
                 return true;
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return false;
     }
 
-    public String GetMaKyThiTheoTen(String tenkythi) throws SQLException {
+    // lấy ra danh sách học viên nằm trong một lớp
+    public List<HocVienDTO> GetListHocVienInLopHoc(String malop) {
+        List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
+        HocVienDTO hocviendto = null;
+        CallableStatement callableStatement = null;
+        ResultSet result = null;
+
+        
+        try {
+            callableStatement = getConnection().prepareCall("{call LayDSHVTrong1Lop(?)}");
+            callableStatement.setString(1, malop);
+            
+            //lấy danh sách học viên 
+            result = this.executeQuery(getConnection(), callableStatement);
+        
+            while (result.next()) {
+                hocviendto = new HocVienDTO();
+
+                hocviendto.setMaHocVien(result.getString(1));
+                hocviendto.setTenHocVien(result.getString(2));
+                hocviendto.setGioiTinh(result.getBoolean(3));
+                hocviendto.setSoDienThoai(result.getString(4));
+                hocviendto.setEmail(result.getString(5));
+
+                lstHV.add(hocviendto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lstHV;
+    }
+
+    public String GetTenHocVienByMaHV(String mahocvien) throws SQLException {
         ResultSet resultSet = null;
         CallableStatement callableStatement = null;
 
         try {
-            callableStatement = getConnection().prepareCall("{call .............(?)}");
-            callableStatement.setString(1, tenkythi);
+            callableStatement = getConnection().prepareCall("{call TimKiemHocVien(?)}");
+            callableStatement.setString(1, mahocvien);
+            resultSet = this.executeQuery(getConnection(), callableStatement);
+
+            while (resultSet.next()) {
+                return resultSet.getString(2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return "";
+    }
+
+    public String GetMaLopByTenLop(String tenlop, String mahv) throws SQLException {
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+
+        try {
+            callableStatement = getConnection().prepareCall("{call LayMaLopTheoTen(?,?)}");
+            callableStatement.setString(1, tenlop);
+            callableStatement.setString(2, mahv);
             resultSet = this.executeQuery(getConnection(), callableStatement);
 
             while (resultSet.next()) {
@@ -160,15 +226,35 @@ public class BangDiemDAO extends DataBase {
         return "";
     }
 
+    public Double GetDiemHocVien(String mahocvien, String malop) {
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+
+        try {
+            callableStatement = getConnection().prepareCall("{call LayDiemHocVien(?,?)}");
+            callableStatement.setString(1, mahocvien);
+            callableStatement.setString(2, malop);
+            resultSet = this.executeQuery(getConnection(), callableStatement);
+
+            while (resultSet.next()) {
+                return resultSet.getDouble(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0.0;
+    }
+
+    //lấy danh sách mã học viên chính thức để cập nhật điểm
     public Vector<String> GetListMaHocVienChinhThuc() {
 
         Vector<String> lstmahocvien = new Vector<>();
         CallableStatement callableStatement = null;
         ResultSet result = null;
         try {
-            callableStatement  = getConnection().prepareCall("{call LayDachDachMaHocVien(?)}");
+            callableStatement = getConnection().prepareCall("{call LayDachDachMaHocVien(?)}");
             callableStatement.setBoolean(1, true);
-            
+
             result = this.executeQuery(getConnection(), callableStatement);
             while (result.next()) {
                 lstmahocvien.add(result.getString(1));
@@ -179,23 +265,24 @@ public class BangDiemDAO extends DataBase {
         return lstmahocvien;
     }
 
-    public String GetTenHocVienByMaHocVien(String mahocvien) {
-        ResultSet result = null;
+    //Lấy danh sách lớp mà học viên đó đã và đang học
+    public Vector<String> GetListLopOfHocVien(String mahocvien) {
+
+        Vector<String> lsttenlop = new Vector<>();
         CallableStatement callableStatement = null;
-        
+        ResultSet result = null;
         try {
-            callableStatement = getConnection().prepareCall("{call ....(?)}");
+            callableStatement = getConnection().prepareCall("{call LayDSLopHocTheoMaHV(?)}");
             callableStatement.setString(1, mahocvien);
-            result = this.executeQuery(this.getConnection(),callableStatement);
-            
-            while(result.next()){
-             return result.getString(1);
+
+            result = this.executeQuery(getConnection(), callableStatement);
+            while (result.next()) {
+                lsttenlop.add(result.getString(1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return "";
+        return lsttenlop;
     }
 
 }

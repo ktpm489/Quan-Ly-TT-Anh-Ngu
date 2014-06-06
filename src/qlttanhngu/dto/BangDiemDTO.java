@@ -12,7 +12,9 @@ public class BangDiemDTO {
     
     private String maBangDiem;
     private String maHocVien;
-    private String maKiThi;
+    private String TenHocVien;
+    private String Malop;
+    private String Tenlophoc;
     private Double diem;
     
     public String getMaBangDiem(){
@@ -23,8 +25,15 @@ public class BangDiemDTO {
         return this.maHocVien;
     }
     
-    public String getMaKiThi(){
-        return this.maKiThi;
+    public String getTenHocVien(){
+        return this.TenHocVien;
+    }
+    
+    private String getMalop(){
+        return this.Malop;
+    }
+    public String getTenlophoc(){
+        return this.Tenlophoc;
     }
     
     public Double getDiem(){
@@ -35,12 +44,18 @@ public class BangDiemDTO {
         this.maBangDiem = maBangDiem;
     }
     
+    public void setTenHocVien(String tenhocvien){
+        this.TenHocVien = tenhocvien;
+    }
     public void setMaHocVien(String maHocVien){
         this.maHocVien = maHocVien;
     }
     
-    public void setMaKiThi(String maKiThi){
-        this.maKiThi = maKiThi;
+    public void setMaLop(String malop){
+        this.Malop = malop;
+    }
+    public void setTenlophoc(String tenlophoc){
+        this.Tenlophoc = tenlophoc;
     }
     
     public void setDiem(Double diem){

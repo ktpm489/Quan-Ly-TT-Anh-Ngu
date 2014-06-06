@@ -5,11 +5,15 @@
 package qlttanhngu.gui;
 
 import Assest.StoreSave;
+import java.awt.Desktop;
 import java.awt.Frame;
 import java.awt.Rectangle;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
 /**
@@ -411,107 +415,139 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuongDanActionPerformed
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
-         if(frameDoiMatKhau == null || frameDoiMatKhau.isClosed())
-           {
-                frameDoiMatKhau = new FrameDoiMatKhau();
-                this.desktopPanel.add(frameDoiMatKhau);
-                frameDoiMatKhau.show();
-           }
+        if (frameDoiMatKhau == null || frameDoiMatKhau.isClosed()) {
+            FrameDoiMatKhau frameDoiMatKhau = new FrameDoiMatKhau();
+            
+            if (StoreSave.isExsting(frameDoiMatKhau)) {
+                StoreSave.InitFrameInternal(frameDoiMatKhau);
+            }            
+        }
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnDangKyHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyHocActionPerformed
-         if(frDangKy == null || frDangKy.isClosed())
-         {
-            InitFrameInternal(new FrameDangKy());
-         }
+        if (frDangKy == null || frDangKy.isClosed()) {
+            FrameDangKy frameDangKy = new FrameDangKy();
+            
+            if (StoreSave.isExsting(frameDangKy)) {
+                StoreSave.InitFrameInternal(frameDangKy);
+            }
+        }
     }//GEN-LAST:event_btnDangKyHocActionPerformed
 
     private void btnHoaDonHocPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonHocPhiActionPerformed
-        if(frHoaDonHocPhi == null || frHoaDonHocPhi.isClosed())
-         {
-            InitFrameInternal(new FrameHoaDonHocPhi());
-         } 
-       
+        if (frHoaDonHocPhi == null || frHoaDonHocPhi.isClosed()) {            
+            FrameHoaDonHocPhi frameHoaDonHocPhi = new FrameHoaDonHocPhi();
+            
+            if (StoreSave.isExsting(frameHoaDonHocPhi)) {
+                StoreSave.InitFrameInternal(frameHoaDonHocPhi);
+            }
+        }
+
     }//GEN-LAST:event_btnHoaDonHocPhiActionPerformed
 
     private void btnThoiKhoaBieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoiKhoaBieuActionPerformed
-        
+
     }//GEN-LAST:event_btnThoiKhoaBieuActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-       if(frDangNhap == null || frDangNhap.isClosed())
-       {
-        frDangNhap = new FrameDangNhap();
-        this.desktopPanel.add(frDangNhap);
-        frDangNhap.show();
-       }
+        if (frDangNhap == null || frDangNhap.isClosed()) {
+            FrameDangNhap frDangNhap = new FrameDangNhap();
+            
+            if (StoreSave.isExsting(frDangNhap)) {
+                StoreSave.InitFrameInternal(frDangNhap);
+            }
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnQuyDinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuyDinhActionPerformed
-        if(frQuyDinh == null || frQuyDinh.isClosed())
-       {
-        frQuyDinh = new FrameQuyDinh();
-        this.desktopPanel.add(frQuyDinh);
-        frQuyDinh.show();
-       }
+        if (frQuyDinh == null || frQuyDinh.isClosed()) {
+            FrameQuyDinh frQuyDinh = new FrameQuyDinh();
+            
+            if (StoreSave.isExsting(frQuyDinh)) {
+                StoreSave.InitFrameInternal(frQuyDinh);
+            }
+        }
     }//GEN-LAST:event_btnQuyDinhActionPerformed
 
     private void btnDSHocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSHocVienActionPerformed
-         if(frameDSHocVien == null || frameDSHocVien.isClosed())
-         {
-             FrameDSHocVien temp = new FrameDSHocVien();
-             StoreSave.frameDSHocVien = temp;
-            InitFrameInternal(temp);
-         } 
+        if ((frameDSHocVien == null || frameDSHocVien.isClosed())) {
+            FrameDSHocVien temp = new FrameDSHocVien();
+            StoreSave.frameDSHocVien = temp;
+            
+            if (StoreSave.isExsting(temp)) {
+                StoreSave.InitFrameInternal(temp);
+            }
+        }
     }//GEN-LAST:event_btnDSHocVienActionPerformed
 
     private void btnDSGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSGiangVienActionPerformed
-         if(frameNhanVien == null || frameNhanVien.isClosed())
-         {
-            InitFrameInternal(new FrameNhanVien());
-         } 
+        if (frameNhanVien == null || frameNhanVien.isClosed()) {
+            FrameNhanVien frameNhanVien = new FrameNhanVien();
+            
+            if (StoreSave.isExsting(frameNhanVien)) {
+                StoreSave.InitFrameInternal(frameNhanVien);
+            }
+        }
     }//GEN-LAST:event_btnDSGiangVienActionPerformed
 
     private void btnBCNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCNoActionPerformed
-         if(frameBaoCaoNo == null || frameBaoCaoNo.isClosed())
-         {
-            InitFrameInternal(new FrameBaoCaoNo());
-         } 
+        if (frameBaoCaoNo == null || frameBaoCaoNo.isClosed()) {           
+            FrameBaoCaoNo frameBaoCaoNo = new FrameBaoCaoNo();
+            
+            if (StoreSave.isExsting(frameBaoCaoNo)) {
+                StoreSave.InitFrameInternal(frameBaoCaoNo);
+            }
+        }
     }//GEN-LAST:event_btnBCNoActionPerformed
 
     private void btnBCDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCDangKyActionPerformed
-        if(frameBaoCaoDangKy == null || frameBaoCaoDangKy.isClosed())
-         {
-            InitFrameInternal(new FrameBaoCaoDangKy());
-         } 
+        if (frameBaoCaoDangKy == null || frameBaoCaoDangKy.isClosed()) {
+            FrameBaoCaoDangKy frameBaoCaoDangKy = new FrameBaoCaoDangKy();
+            
+            if (StoreSave.isExsting(frameBaoCaoDangKy)) {
+                StoreSave.InitFrameInternal(frameBaoCaoDangKy);
+            }
+        }
     }//GEN-LAST:event_btnBCDangKyActionPerformed
 
     private void btnBCHocVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCHocVuActionPerformed
-         if(frameBaoCaoHocVu == null || frameBaoCaoHocVu.isClosed())
-         {
-           InitFrameInternal(new FrameBaoCaoHocVu());
-         } 
+        if (frameBaoCaoHocVu == null || frameBaoCaoHocVu.isClosed()) {
+            FrameBaoCaoHocVu frameBaoCaoHocVu = new FrameBaoCaoHocVu();
+            
+            if (StoreSave.isExsting(frameBaoCaoHocVu)) {
+                StoreSave.InitFrameInternal(frameBaoCaoHocVu);
+            }
+        }
     }//GEN-LAST:event_btnBCHocVuActionPerformed
 
     private void btnBangDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBangDiemActionPerformed
-         if(frameBangDiem == null || frameBangDiem.isClosed())
-         {
-           InitFrameInternal(new FrameBangDiem());
-         } 
+        if ((frameBangDiem == null || frameBangDiem.isClosed())) {
+            FrameBangDiem frameBangDiem = new FrameBangDiem();
+            
+            if (StoreSave.isExsting(frameBangDiem)) {
+                StoreSave.InitFrameInternal(frameBangDiem);
+            }
+        }
     }//GEN-LAST:event_btnBangDiemActionPerformed
 
     private void btnLopHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopHocActionPerformed
-        if(frameLopHoc == null || frameLopHoc.isClosed())
-         {
-           InitFrameInternal(new FrameLopHoc());
-         } 
+        if (frameLopHoc == null || frameLopHoc.isClosed()) {
+            FrameLopHoc frameLopHoc = new FrameLopHoc();
+            
+            if (StoreSave.isExsting(frameLopHoc)) {
+                StoreSave.InitFrameInternal(frameLopHoc);
+            }
+        }
     }//GEN-LAST:event_btnLopHocActionPerformed
 
     private void btnXepLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXepLopActionPerformed
-         if(frameXepLop == null || frameXepLop.isClosed())
-         {
-           InitFrameInternal(new FrameXepLop());
-         } 
+        if (frameXepLop == null || frameXepLop.isClosed()) {
+            FrameXepLop frameXepLop = new FrameXepLop();
+            
+            if (StoreSave.isExsting(frameXepLop)) {
+                StoreSave.InitFrameInternal(frameXepLop);
+            }
+        }
     }//GEN-LAST:event_btnXepLopActionPerformed
 
     /**
@@ -547,38 +583,25 @@ public class FrameMain extends javax.swing.JFrame {
                 FrameMain frMain = new FrameMain();
                 frMain.setVisible(true);
                 frMain.setExtendedState(Frame.MAXIMIZED_BOTH);
-               
+                
             }
         });
     }
     
-    //Khởi Tạo các frameInternal
-    private void InitFrameInternal(JInternalFrame jInternalFrame)
-    {         
-          this.desktopPanel.add(jInternalFrame);
-              try {
-                     jInternalFrame.setMaximum(true);
-                 } catch (PropertyVetoException ex) {
-                     Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-               jInternalFrame.show();              
-    }
-    
+    private FrameDangNhap frDangNhap;
+    private FrameDoiMatKhau frameDoiMatKhau;
+    private FrameQuyDinh frQuyDinh;
+    private FrameDangKy frDangKy;
+    private FrameHoaDonHocPhi frHoaDonHocPhi;
+    private FrameDSHocVien frameDSHocVien;
+    private FrameNhanVien frameNhanVien;
+    private FrameXepLop frameXepLop;
+    private FrameBaoCaoNo frameBaoCaoNo;
+    private FrameBaoCaoDangKy frameBaoCaoDangKy;
+    private FrameBaoCaoHocVu frameBaoCaoHocVu;
+    private FrameBangDiem frameBangDiem;
+    private FrameLopHoc frameLopHoc;
 
-    private  FrameDangNhap frDangNhap;
-    private  FrameDoiMatKhau frameDoiMatKhau;
-    private  FrameQuyDinh frQuyDinh;
-    private  FrameDangKy frDangKy;
-    private  FrameHoaDonHocPhi frHoaDonHocPhi;
-    private  FrameDSHocVien frameDSHocVien;
-    private  FrameNhanVien frameNhanVien;
-    private  FrameXepLop frameXepLop;
-    private  FrameBaoCaoNo frameBaoCaoNo;
-    private  FrameBaoCaoDangKy frameBaoCaoDangKy;
-    private  FrameBaoCaoHocVu frameBaoCaoHocVu;
-    private  FrameBangDiem frameBangDiem;
-    private  FrameLopHoc  frameLopHoc;
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabTrangChinh;
     private javax.swing.JButton btnBCDangKy;
