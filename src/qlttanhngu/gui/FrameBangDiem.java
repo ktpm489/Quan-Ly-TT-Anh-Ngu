@@ -259,7 +259,9 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
         FrameChiTietBangDiem frameChiTietBangDiem = new FrameChiTietBangDiem();
 
         if (StoreSave.isExsting(frameChiTietBangDiem)) {
-            StoreSave.InitFrameInternal(frameChiTietBangDiem);
+            StoreSave.desktop.add(frameChiTietBangDiem);
+            frameChiTietBangDiem.setLocation(300, 200);
+            frameChiTietBangDiem.show();
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 

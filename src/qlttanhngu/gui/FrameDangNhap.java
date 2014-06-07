@@ -4,6 +4,7 @@
  */
 package qlttanhngu.gui;
 
+import Assest.StoreSave;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -153,44 +154,45 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDangNhapKeyPressed
-       if(txtDangNhap.getText().length() > 15)
-       {
-          txtDangNhap.setText(txtDangNhap.getText().substring(0, 15));
-       }
+        if (txtDangNhap.getText().length() > 15) {
+            txtDangNhap.setText(txtDangNhap.getText().substring(0, 15));
+        }
     }//GEN-LAST:event_txtDangNhapKeyPressed
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
     private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
-         if(txtMatKhau.getText().length() > 15)
-       {
-          txtMatKhau.setText(txtMatKhau.getText().substring(0, 15));
-       }
+        if (txtMatKhau.getText().length() > 15) {
+            txtMatKhau.setText(txtMatKhau.getText().substring(0, 15));
+        }
     }//GEN-LAST:event_txtMatKhauKeyPressed
 
     private void btnDangNHapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNHapActionPerformed
-        
+
         UserAccountDTO user = new UserAccountDTO();
         user.setUsername(txtDangNhap.getText());
         user.setPassword(txtMatKhau.getText());
         String x = txtMatKhau.getText();
+        
         try {
             UserAccountController UserController = new UserAccountController();
-            if(UserController.isUserExit(user))
+            if (UserController.isUserExit(user)) {
+                StoreSave.frameMain.ChangeNamUser(StoreSave.userNamSave);
                 this.dispose();
-            else
+            } else {
                 lblLoi.setVisible(true);
+            }
         } catch (Exception ex) {
             Logger.getLogger(FrameDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDangNHapActionPerformed
 
     private void btnDangNHapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNHapKeyPressed
-     
+
         int id = evt.getID();
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnDangNHapActionPerformed(null);
         }
     }//GEN-LAST:event_btnDangNHapKeyPressed

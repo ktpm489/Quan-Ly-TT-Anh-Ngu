@@ -96,33 +96,43 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="btnDangNhap" min="-2" pref="149" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDangXuat" min="-2" pref="152" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDoiMatKhau" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                       <Component id="btnQuyDinh" min="-2" pref="147" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="btnHuongDan" min="-2" pref="152" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="btnThongTin" min="-2" pref="152" max="-2" attributes="0"/>
-                      <EmptySpace pref="314" max="32767" attributes="0"/>
+                      <EmptySpace pref="457" max="32767" attributes="0"/>
+                      <Component id="lbluser" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnDangNhap" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnDangXuat" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnQuyDinh" max="32767" attributes="0"/>
-                          <Component id="btnDoiMatKhau" alignment="3" max="32767" attributes="0"/>
-                          <Component id="btnHuongDan" alignment="3" pref="63" max="32767" attributes="0"/>
-                          <Component id="btnThongTin" alignment="3" pref="66" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnDangNhap" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnDangXuat" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnQuyDinh" max="32767" attributes="0"/>
+                                  <Component id="btnDoiMatKhau" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="btnHuongDan" alignment="3" pref="63" max="32767" attributes="0"/>
+                                  <Component id="btnThongTin" alignment="3" pref="66" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lbluser" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -193,6 +203,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQuyDinhActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="lbluser">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Resources/Administrator-3-icon (1).png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="User Guest"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
@@ -226,18 +247,23 @@
                       <Component id="btnLichHoc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnHoaDonHocPhi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="918" max="32767" attributes="0"/>
+                      <EmptySpace pref="1071" max="32767" attributes="0"/>
+                      <Component id="lblUser4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnLichHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnHoaDonHocPhi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDangKyHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="btnLichHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnHoaDonHocPhi" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDangKyHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblUser4" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -311,6 +337,17 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="javax.swing.JLabel" name="lblUser4">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Resources/Administrator-3-icon (1).png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="User Guest"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -355,22 +392,28 @@
                       <Component id="btnThoiKhoaBieu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnLichThi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="165" max="32767" attributes="0"/>
+                      <EmptySpace pref="308" max="32767" attributes="0"/>
+                      <Component id="lbluser1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnDSHocVien" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="lbluser1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnDSHocVien" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnBangDiem" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnDSGiangVien" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnLopHoc" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnXepLop" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnThoiKhoaBieu" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnLichThi" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnXepLop" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnLichThi" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -493,6 +536,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXepLopActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="lbluser1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Resources/Administrator-3-icon (1).png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="User Guest"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -519,7 +573,9 @@
                       <Component id="btnBCDangKy" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnBCHocVu" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="828" max="32767" attributes="0"/>
+                      <EmptySpace pref="950" max="32767" attributes="0"/>
+                      <Component id="lbluser2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -533,6 +589,11 @@
                           <Component id="btnBCHocVu" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lbluser2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -573,6 +634,17 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBCHocVuActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lbluser2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Resources/Administrator-3-icon (1).png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="User Guest"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

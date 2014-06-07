@@ -37,6 +37,9 @@ public class StoreSave {
     //sử dụng để update lại frame danh sách học viên
     public static FrameDSHocVien frameDSHocVien;
     
+    //sử dụng để update frame main
+    public static FrameMain frameMain;
+    
      //Khởi Tạo các frameInternal 
     public static void InitFrameInternal(JInternalFrame jInternalFrame) {
         

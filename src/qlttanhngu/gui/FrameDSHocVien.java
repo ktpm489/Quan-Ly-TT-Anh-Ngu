@@ -259,7 +259,9 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
         //Khởi tạo frame cập nhật học viên
         FrameCapNhatHocVien frameCapNhatHocVien = new FrameCapNhatHocVien();
         if (StoreSave.isExsting(frameCapNhatHocVien)) {
-            StoreSave.InitFrameInternal(frameCapNhatHocVien);
+            StoreSave.desktop.add(frameCapNhatHocVien);
+            frameCapNhatHocVien.setLocation(200, 200);
+            frameCapNhatHocVien.show();
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
@@ -276,7 +278,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Từ Khóa không tồn tại, vui lòng nhập từ khác để chọn!");
                 return;
             }
-            
+
             tableDSHocVien.setModel(defaultTableModel);
         } catch (Exception ex) {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
@@ -300,7 +302,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
         try {
             HocVienController hocvienController = new HocVienController();
             int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn xóa học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
-            
+
             if (x == 0) {
                 hocvienController.DeleteHocVien(StoreSave.hocvien.getMaHocVien());
             }
@@ -327,7 +329,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameDSHocVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDong;
