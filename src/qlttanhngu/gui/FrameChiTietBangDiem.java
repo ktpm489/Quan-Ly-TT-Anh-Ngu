@@ -263,7 +263,7 @@ public class FrameChiTietBangDiem extends javax.swing.JInternalFrame {
                 selectFile = new File(selectFile.toString() + ".xlsx");
                 //in file excel 
                 try {
-                    Excel.WriteListToExcelToListInBangDiem(selectFile.getName(), txtTenHocVien.getText(), directory.toString(), tableBangDiemCT);
+                  //  Excel.WriteListToExcelToListInBangDiem(selectFile.getName(), txtTenHocVien.getText(), directory.toString(), tableBangDiemCT);
                 } catch (Exception ex) {
                     Logger.getLogger(FrameChiTietBangDiem.class.getName()).log(Level.SEVERE, null, ex);
                 }

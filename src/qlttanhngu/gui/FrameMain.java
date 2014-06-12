@@ -656,16 +656,16 @@ public class FrameMain extends javax.swing.JFrame {
 
     public void KiemTraPhanQuyen() {
 
-        if ((StoreSave.accountNameSave) == null) {
-            this.TabTrangChinh.setEnabledAt(1, false);
-            this.TabTrangChinh.setEnabledAt(2, false);
-            this.TabTrangChinh.setEnabledAt(3, false);
-        }
-        else{
+//        if ((StoreSave.accountNameSave) == null) {
+//            this.TabTrangChinh.setEnabledAt(1, false);
+//            this.TabTrangChinh.setEnabledAt(2, false);
+//            this.TabTrangChinh.setEnabledAt(3, false);
+//        }
+//        else{
             this.TabTrangChinh.setEnabledAt(1, true);
             this.TabTrangChinh.setEnabledAt(2, true);
             this.TabTrangChinh.setEnabledAt(3, true);
-        }
+       // }
     }
 
     /**
