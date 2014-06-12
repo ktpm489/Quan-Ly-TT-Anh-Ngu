@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import qlttanhngu.dto.HocVienDTO;
+import qlttanhngu.dto.PhanQuyenDTO;
 import qlttanhngu.gui.FrameDSHocVien;
 import qlttanhngu.gui.FrameMain;
 
@@ -22,6 +23,9 @@ public class StoreSave {
     //Sử dụng để kiểm tra một số quyền hạng
     public static String accountNameSave;
     public static String userNamSave;
+    public static String machucvu;
+    public static PhanQuyenDTO phanquyen;
+    
     public int number;
     
     //dùng để hiển thị một frame mới

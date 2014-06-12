@@ -5,6 +5,8 @@
  */
 package qlttanhngu.controller;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -98,10 +100,20 @@ public class BangDiemController {
         return defaultTableModel;
     }
 
-    public DefaultComboBoxModel GetListTenLopHocHocVien() {
+    public DefaultComboBoxModel GetListTenLopHocHocVien(String makhoa) {
         try {
-            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(bangdiemdo.GetListTenLopHocHocVien());
+            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(bangdiemdo.GetListTenLopHocVien(makhoa));
             return defaultComboBoxModel;
+        } catch (Exception ex) {
+            Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+    
+    public HashMap<String, String> GetListKhoaHocVien(){
+        try {
+            return bangdiemdo.GetListKhoaHocVien();
         } catch (Exception ex) {
             Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -151,7 +163,16 @@ public class BangDiemController {
         
         return false;
     }
-       
+     
+    public Boolean CheckUpdateScore(String mahocvien, String malop, Date date){
+         try {
+            return bangdiemdo.CheckUpdateScore(mahocvien, malop, date);
+        } catch (Exception ex) {
+            Logger.getLogger(BangDiemController.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+        return false;
+    }
+    
     public String GetTenHocVienByMaHV(String mahocvien){
         try {
             return bangdiemdo.GetTenHocVienByMaHV(mahocvien);

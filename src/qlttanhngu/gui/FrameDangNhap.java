@@ -6,8 +6,12 @@ package qlttanhngu.gui;
 
 import Assest.StoreSave;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import qlttanhngu.controller.PhanQuyenController;
 import qlttanhngu.controller.UserAccountController;
 import qlttanhngu.dto.UserAccountDTO;
 
@@ -170,25 +174,40 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtMatKhauKeyPressed
 
     private void btnDangNHapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNHapActionPerformed
-
-        UserAccountDTO user = new UserAccountDTO();
-        user.setUsername(txtDangNhap.getText());
-        user.setPassword(txtMatKhau.getText());
-        String x = txtMatKhau.getText();
-        
         try {
-            UserAccountController UserController = new UserAccountController();
-            if (UserController.isUserExit(user)) {
-                StoreSave.frameMain.ChangeNamUser(StoreSave.userNamSave);
-                this.dispose();
-            } else {
-                lblLoi.setVisible(true);
+            UserAccountDTO user = new UserAccountDTO();
+            user.setUsername(txtDangNhap.getText());
+            user.setPassword(txtMatKhau.getText());
+            String x = txtMatKhau.getText();
+
+            try {
+                UserAccountController UserController = new UserAccountController();
+
+                //kiểm tra đang nhâp
+                if (UserController.isUserExit(user)) {
+                    StoreSave.frameMain.ChangeNameUser(StoreSave.userNamSave);
+                    StoreSave.frameMain.KiemTraPhanQuyen();
+                    this.dispose();
+                } else {
+                    lblLoi.setVisible(true);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(FrameDangNhap.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            //lấy danh sách quyền của user để kiêm tra.
+            DefaultTableModel defaultTableModel = (new PhanQuyenController().CheckListAuthorizationOfUser(StoreSave.mahocvien));
+            List<String> lstQuyen = new ArrayList<String>();
+            
+            for (int i = 0; i < defaultTableModel.getRowCount(); i++) {
+                lstQuyen.add(defaultTableModel.getValueAt(i, 0).toString());
+            }
+            StoreSave.phanquyen.setQuyen(lstQuyen);
         } catch (Exception ex) {
             Logger.getLogger(FrameDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnDangNHapActionPerformed
-
+    //bắt sự kiện nhấn Enter
     private void btnDangNHapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNHapKeyPressed
 
         int id = evt.getID();

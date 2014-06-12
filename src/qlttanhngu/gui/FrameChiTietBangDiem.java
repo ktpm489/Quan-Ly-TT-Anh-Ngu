@@ -4,14 +4,23 @@
  */
 package qlttanhngu.gui;
 
+import Assest.Excel;
 import Assest.StoreSave;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.text.DateFormat;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import qlttanhngu.controller.BangDiemController;
-import qlttanhngu.controller.HocVienController;
 
 /**
  *
@@ -232,13 +241,41 @@ public class FrameChiTietBangDiem extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInDiemActionPerformed
-        // TODO add your handling code here:
+        if (tableBangDiemCT.getRowCount() >= 1) {
+            JFileChooser jFileChooser = new JFileChooser();
+            //set loại file cần lưu
+            FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("Excel (*.xlsx)", "xlsx");
+            FileNameExtensionFilter xmlFilter1 = new FileNameExtensionFilter("Excel (*.xls)", "xls");
+            jFileChooser.addChoosableFileFilter(xmlFilter);
+            jFileChooser.addChoosableFileFilter(xmlFilter1);
+            jFileChooser.setFileFilter(xmlFilter);
+
+            //hiển thị 1 dialog Lưu
+            int savedialog = jFileChooser.showSaveDialog(this);
+            //kiểm tra nhấn nút
+            if (savedialog == JFileChooser.OPEN_DIALOG) {
+                //Tên file
+                File selectFile = jFileChooser.getSelectedFile();
+                //đường dẫn lưu file đó.
+                File directory = jFileChooser.getCurrentDirectory();
+
+                //mặc định lưu file
+                selectFile = new File(selectFile.toString() + ".xlsx");
+                //in file excel 
+                try {
+                    Excel.WriteListToExcelToListInBangDiem(selectFile.getName(), txtTenHocVien.getText(), directory.toString(), tableBangDiemCT);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrameChiTietBangDiem.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
     }//GEN-LAST:event_btnInDiemActionPerformed
 
     private void comboBoxTenLopHocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxTenLopHocItemStateChanged
         String mahocvien = txtMaHocVien.getText();
         String malop;
-        
+
         try {
             malop = new BangDiemController().GetMaLopByTenLop(comboBoxTenLopHoc.getSelectedItem().toString(), mahocvien);
             Double diem = new BangDiemController().GetDiemHocVien(mahocvien, malop);
@@ -250,63 +287,83 @@ public class FrameChiTietBangDiem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboBoxTenLopHocItemStateChanged
 
     private void btnDOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDOngActionPerformed
-       StoreSave.mahocvien = null;
-       StoreSave.tenhocvien = null;
+        StoreSave.mahocvien = null;
+        StoreSave.tenhocvien = null;
         this.dispose();
     }//GEN-LAST:event_btnDOngActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-          try {
+        try {
             comboBoxTenLopHoc.setModel(new BangDiemController().GetListLopOfHocVien(txtMaHocVien.getText()));
         } catch (Exception ex) {
             Logger.getLogger(FrameBangDiem.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
+
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void tableBangDiemCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBangDiemCTMouseClicked
-       JTable table = (JTable)evt.getSource();     
-       int row = table.getSelectedRow();
-       
-       comboBoxTenLopHoc.setSelectedItem(table.getValueAt(row, 0));
-       txtDiem.setText(table.getValueAt(row, 1).toString());
+        try {
+            JTable table = (JTable) evt.getSource();
+            int row = table.getSelectedRow();
+
+            comboBoxTenLopHoc.setSelectedItem(table.getValueAt(row, 0));
+            txtDiem.setText(table.getValueAt(row, 1).toString());
+
+            malop = new BangDiemController().GetMaLopByTenLop(table.getValueAt(row, 0).toString(), txtMaHocVien.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameChiTietBangDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tableBangDiemCTMouseClicked
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         //Kiểm tra xem có chắc chắn cập nhât không? 
-            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật điểm cho học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
-            if (x == 0) {
-                try {
-                     String malop = new BangDiemController().GetMaLopByTenLop(comboBoxTenLopHoc.getSelectedItem().toString(), txtMaHocVien.getText());
-                    new BangDiemController().UpdateBangDiemHocVien(txtMaHocVien.getText(),malop, Double.parseDouble(txtDiem.getText()));
-                    
-                    //
-                   this.refreshTable();
-                } catch (Exception ex) {
-                    Logger.getLogger(MessageBoxHocVien.class.getName()).log(Level.SEVERE, null, ex);
+        int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật điểm cho học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
+        if (x == 0) {
+            try {
+
+                Date date = new Date();
+
+                //kiểm tra xem lớp đó học xong chưa mới cập nhạt điểm.
+                if (new BangDiemController().CheckUpdateScore(txtMaHocVien.getText(), malop, date)) {
+                    try {
+                        String malop = new BangDiemController().GetMaLopByTenLop(comboBoxTenLopHoc.getSelectedItem().toString(), txtMaHocVien.getText());
+                        new BangDiemController().UpdateBangDiemHocVien(txtMaHocVien.getText(), malop, Double.parseDouble(txtDiem.getText()));
+
+                        //
+                        this.refreshTable();
+                    } catch (Exception ex) {
+                        Logger.getLogger(MessageBoxHocVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(this, "Lớp học chưa kết thúc, Không thể cập nhật điểm!","Thông báo",JOptionPane.ERROR_MESSAGE);
                 }
+            } catch (Exception ex) {
+                Logger.getLogger(FrameChiTietBangDiem.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void txtDiemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiemKeyTyped
         char vChar = evt.getKeyChar();
         int len = txtDiem.getText().length();
-        
-        if(!Character.isDigit(vChar)
+
+        if (!Character.isDigit(vChar)
                 || (vChar == KeyEvent.VK_SPACE)
-                || len > 5){
+                || len > 5) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_txtDiemKeyTyped
 
-    private  void refreshTable(){
+    private void refreshTable() {
         try {
             tableBangDiemCT.setModel(new BangDiemController().GetListBangDiemHocVien(txtMaHocVien.getText()));
         } catch (Exception ex) {
             Logger.getLogger(FrameChiTietBangDiem.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private static String malop;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDOng;
     private javax.swing.JButton btnInDiem;

@@ -35,6 +35,8 @@ public class UserAccountDAO extends DataBase{
             if(c != null && c.next()){
              StoreSave.accountNameSave = c.getString(1);
              StoreSave.userNamSave = c.getString(2);
+             StoreSave.mahocvien = c.getString(3);
+             StoreSave.machucvu = c.getString(4);
              return true;
             }
         } catch (SQLException ex) {

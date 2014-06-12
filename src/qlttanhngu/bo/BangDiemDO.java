@@ -5,6 +5,8 @@
  */
 package qlttanhngu.bo;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import qlttanhngu.dao.BangDiemDAO;
@@ -34,8 +36,8 @@ public class BangDiemDO {
 
         return null;
     }
-    
-     public List<HocVienDTO> SearchHocVienInBangDiem(String ma, String ten) throws Exception {
+
+    public List<HocVienDTO> SearchHocVienInBangDiem(String ma, String ten) throws Exception {
         try {
             return bangdiemdao.SearchHocVienInBangDiem(ma, ten);
         } catch (Exception e) {
@@ -46,8 +48,8 @@ public class BangDiemDO {
 
         return null;
     }
-     
-      public List<HocVienDTO> GetListHocVienInLopHoc(String malop) throws Exception {
+
+    public List<HocVienDTO> GetListHocVienInLopHoc(String malop) throws Exception {
         try {
             return bangdiemdao.GetListHocVienInLopHoc(malop);
         } catch (Exception e) {
@@ -59,9 +61,22 @@ public class BangDiemDO {
         return null;
     }
 
-    public Vector<String> GetListTenLopHocHocVien() throws Exception {
+    public Vector<String> GetListTenLopHocVien(String makhoa) throws Exception {
         try {
-            return bangdiemdao.GetListTenLopHocHocVien();
+            return bangdiemdao.GetListTenLopHocVien(makhoa);
+        } catch (Exception e) {
+
+        } finally {
+            bangdiemdao.closeConnection();
+        }
+
+        return null;
+    }
+    
+     //lấy danh sách khóa học hiện tại đang và đã học
+    public HashMap<String, String> GetListKhoaHocVien() throws Exception{
+         try {
+            return bangdiemdao.GetListKhoaHocVien();
         } catch (Exception e) {
 
         } finally {
@@ -94,6 +109,18 @@ public class BangDiemDO {
         return false;
     }
 
+    //Kiểm tra xem học viên có dượdc cập nhật diểm hay không ?
+    public Boolean CheckUpdateScore(String mahocvien, String malop, Date date) throws Exception {
+        try {
+            return bangdiemdao.CheckUpdateScore(mahocvien, malop, date);
+        } catch (Exception e) {
+
+        } finally {
+            bangdiemdao.closeConnection();
+        }
+
+        return false;
+    }
 
     public String GetTenHocVienByMaHV(String mahocvien) throws Exception {
         try {
@@ -106,8 +133,8 @@ public class BangDiemDO {
 
         return "";
     }
-    
-     public String GetMaLopByTenLop(String tenlop, String mahv) throws Exception {
+
+    public String GetMaLopByTenLop(String tenlop, String mahv) throws Exception {
         try {
             return bangdiemdao.GetMaLopByTenLop(tenlop, mahv);
         } catch (Exception e) {
@@ -118,8 +145,8 @@ public class BangDiemDO {
 
         return "";
     }
-     
-      public Double GetDiemHocVien(String mahocvien, String malop) throws Exception {
+
+    public Double GetDiemHocVien(String mahocvien, String malop) throws Exception {
         try {
             return bangdiemdao.GetDiemHocVien(mahocvien, malop);
         } catch (Exception e) {
@@ -142,8 +169,8 @@ public class BangDiemDO {
 
         return null;
     }
-    
-     public Vector<String> GetListLopOfHocVien(String mahocvien) throws Exception {
+
+    public Vector<String> GetListLopOfHocVien(String mahocvien) throws Exception {
         try {
             return bangdiemdao.GetListLopOfHocVien(mahocvien);
         } catch (Exception e) {
@@ -154,5 +181,5 @@ public class BangDiemDO {
 
         return null;
     }
-    
+
 }

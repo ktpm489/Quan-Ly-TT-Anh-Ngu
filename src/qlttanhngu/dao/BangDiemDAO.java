@@ -9,6 +9,8 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -27,6 +29,7 @@ public class BangDiemDAO extends DataBase {
         super();
     }
 
+    //lấy danh sách học viên để hiển thị trong frame bảng điểm
     public List<HocVienDTO> GetListHocVienInBangDiem() {
         List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
         HocVienDTO hocviendto = null;
@@ -52,22 +55,22 @@ public class BangDiemDAO extends DataBase {
 
         return lstHV;
     }
-    
-    public List<HocVienDTO> SearchHocVienInBangDiem(String ma, String ten){
+
+    //Tìm kiếm học viên trong frame bảng điểm
+    public List<HocVienDTO> SearchHocVienInBangDiem(String ma, String ten) {
         List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
         HocVienDTO hocviendto = null;
         CallableStatement callableStatement = null;
         ResultSet result = null;
 
         //lấy danh sách học viên 
-       
         try {
             callableStatement = getConnection().prepareCall("{call TraCuuHVTrongBangDiem(?,?)}");
             callableStatement.setString(1, ten);
             callableStatement.setString(2, ma);
-            
+
             result = this.executeQuery(getConnection(), callableStatement);
-            
+
             while (result.next()) {
                 hocviendto = new HocVienDTO();
 
@@ -87,15 +90,15 @@ public class BangDiemDAO extends DataBase {
     }
 
 //    //lấy danh sách lớp học hiện tại đang và đã học
-    public Vector<String> GetListTenLopHocHocVien() {
+    public Vector<String> GetListTenLopHocVien(String makhoa) {
         Vector<String> lstTenLop = new Vector<String>();
-        //  CallableStatement callableStatement = null;
+        CallableStatement callableStatement = null;
         ResultSet result = null;
 
         try {
-            //  callableStatement = getConnection().prepareCall("{LayDanhSachTenLopHoc()}");
-            //  callableStatement.setString(1, mahocvien);
-            result = this.executeQuery("{call LayDanhSachTenLopHoc()}");
+            callableStatement = getConnection().prepareCall("{LayDanhSachTenLopHoc(?)}");
+            callableStatement.setString(1, makhoa);
+            result = this.executeQuery(getConnection(), callableStatement);
 
             while (result.next()) {
                 lstTenLop.add(result.getString(1));
@@ -107,6 +110,26 @@ public class BangDiemDAO extends DataBase {
         return lstTenLop;
     }
 
+    //lấy danh sách khóa học hiện tại đang và đã học
+    public HashMap<String, String> GetListKhoaHocVien() {
+        HashMap<String,String> hashMapTenLop = new HashMap<String,String>();    
+        ResultSet result = null;
+
+        try {           
+        
+            result = this.executeQuery("{call LayDanhSachKhoaHoc()}");
+
+            while (result.next()) {
+                hashMapTenLop.put(result.getString(1), result.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return hashMapTenLop;
+    }
+
+    //Lấy danh sách điểm của một học viên
     public List<BangDiemDTO> GetListBangDiemHocVien(String mahocvien) {
         List<BangDiemDTO> lstBangDiem = new ArrayList<>();
         CallableStatement callableStatement = null;
@@ -154,6 +177,32 @@ public class BangDiemDAO extends DataBase {
         return false;
     }
 
+    //Kiểm tra xem học viên có dượdc cập nhật diểm hay không ?
+    public Boolean CheckUpdateScore(String mahocvien, String malop, Date date) {
+        ResultSet result = null;
+        CallableStatement callableStatement = null;
+
+        try {
+            callableStatement = getConnection().prepareCall("{call KiemTraNgayCapNhatDiem(?,?)}");
+            callableStatement.setString(1, mahocvien);
+            callableStatement.setString(2, malop);
+
+            result = this.executeQuery(getConnection(), callableStatement);
+
+            // so sanh 2 ngay
+            while (result.next()) {
+                result.getDate(1);
+                if (date.compareTo(result.getDate(1)) > 0) {
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
     // lấy ra danh sách học viên nằm trong một lớp
     public List<HocVienDTO> GetListHocVienInLopHoc(String malop) {
         List<HocVienDTO> lstHV = new ArrayList<HocVienDTO>();
@@ -161,14 +210,13 @@ public class BangDiemDAO extends DataBase {
         CallableStatement callableStatement = null;
         ResultSet result = null;
 
-        
         try {
             callableStatement = getConnection().prepareCall("{call LayDSHVTrong1Lop(?)}");
             callableStatement.setString(1, malop);
-            
+
             //lấy danh sách học viên 
             result = this.executeQuery(getConnection(), callableStatement);
-        
+
             while (result.next()) {
                 hocviendto = new HocVienDTO();
 

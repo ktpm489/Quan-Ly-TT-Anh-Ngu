@@ -5,8 +5,11 @@
 package qlttanhngu.gui;
 
 import Assest.StoreSave;
+import java.util.HashMap;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import qlttanhngu.controller.BangDiemController;
@@ -47,10 +50,29 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
         lblBoLoc = new javax.swing.JLabel();
         comboBoxLop = new javax.swing.JComboBox();
         btnLoc = new javax.swing.JButton();
+        lblKhoaHoc = new javax.swing.JLabel();
+        comboBoxKhoaHoc = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBangDiem = new javax.swing.JTable();
 
         setTitle("Bảng Điểm Học Viên");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         panelThongTin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -148,18 +170,20 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblBoLoc.setText("Lọc Hoc Viên Theo Lớp:");
-
-        try{
-            comboBoxLop.setModel(new BangDiemController().GetListTenLopHocHocVien());
-        }catch(Exception e){
-
-        }
+        lblBoLoc.setText("Lớp học");
 
         btnLoc.setText("Lọc ");
         btnLoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLocActionPerformed(evt);
+            }
+        });
+
+        lblKhoaHoc.setText("Khóa học ");
+
+        comboBoxKhoaHoc.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxKhoaHocItemStateChanged(evt);
             }
         });
 
@@ -174,31 +198,39 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
                         .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelThongTinLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(lblBoLoc)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblKhoaHoc)
+                            .addComponent(lblBoLoc))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboBoxLop, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboBoxLop, 0, 252, Short.MAX_VALUE)
+                            .addComponent(comboBoxKhoaHoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addComponent(panelTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
         panelThongTinLayout.setVerticalGroup(
             panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelThongTinLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
-                        .addComponent(panelTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
+                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelThongTinLayout.createSequentialGroup()
+                        .addContainerGap(16, Short.MAX_VALUE)
                         .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBoLoc)
+                            .addComponent(lblKhoaHoc)
+                            .addComponent(comboBoxKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboBoxLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLoc))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                            .addComponent(btnLoc)
+                            .addComponent(lblBoLoc))
+                        .addGap(18, 18, 18)
+                        .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         try{
@@ -228,8 +260,8 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -294,18 +326,63 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrameBangDiem.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        StoreSave.mahocvien = null;
+        StoreSave.tenhocvien = null;
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        try {
+            //đổ danh sách khóa học vào combobox.
+            Vector<String> vectorTenKhoa = new Vector<>();
+            hashMapKhoaHoc = new BangDiemController().GetListKhoaHocVien();
+
+            DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(hashMapKhoaHoc.values().toArray());
+            
+            //set model cho comboBoxKhoaHoc
+            comboBoxKhoaHoc.setModel(defaultComboBoxModel);
+
+        } catch (Exception ex) {
+            Logger.getLogger(FrameBangDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }//GEN-LAST:event_formInternalFrameActivated
+   
+     // Lấy danh sách lớp học trong một khóa.
+    private void comboBoxKhoaHocItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxKhoaHocItemStateChanged
+       
+        //lấy mã khoa hoc
+        String maKhoaHoc = getKey(comboBoxKhoaHoc.getSelectedItem().toString());
+        
+        try {
+            comboBoxLop.setModel(new BangDiemController().GetListLopOfHocVien(maKhoaHoc));
+        } catch (Exception ex) {
+            Logger.getLogger(FrameBangDiem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboBoxKhoaHocItemStateChanged
+
+    //get key theo value
+    private String getKey(String value) {
+        for (Object s : hashMapKhoaHoc.keySet()) {
+            if (hashMapKhoaHoc.get(s).equals(value)) {
+                return (String) s;
+            }
+        }
+    return null;
+}
+    //Luu lai danh sach khoa hoc
+    private static HashMap hashMapKhoaHoc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnTraCuu;
+    private javax.swing.JComboBox comboBoxKhoaHoc;
     private javax.swing.JComboBox comboBoxLop;
     private javax.swing.JComboBox comboBoxTraCuuTheo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBoLoc;
+    private javax.swing.JLabel lblKhoaHoc;
     private javax.swing.JLabel lblTraCuuTheo;
     private javax.swing.JPanel panelChucNang;
     private javax.swing.JPanel panelThongTin;

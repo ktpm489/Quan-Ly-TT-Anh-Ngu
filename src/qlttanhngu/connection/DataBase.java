@@ -3,9 +3,11 @@ package qlttanhngu.connection;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +32,7 @@ public class DataBase {
     {
         connect = ConnectionDataBase.getConnection();      
     }
-    
+   
      //Thực hiện câu lênh Stored procedures không có tham số đầu vào và trả về kiểu ResultSet
     public ResultSet executeQuery(String ProcedureName) 
     {

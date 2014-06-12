@@ -339,7 +339,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
             //Lay thong tin de cap nhat
             StoreSave.hocvien = hocviendto;
             //Kiểm tra xem có chắc chắn cập nhât không? 
-            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_OPTION);
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
             if (x == 0) {
                 try {
                     new HocVienController().UpdateHocVien(StoreSave.hocvien);
