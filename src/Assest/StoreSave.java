@@ -27,6 +27,7 @@ public class StoreSave {
     public static PhanQuyenDTO phanquyen;
     
     public int number;
+    private int demo;
     
     //dùng để hiển thị một frame mới
     public static JDesktopPane desktop;
