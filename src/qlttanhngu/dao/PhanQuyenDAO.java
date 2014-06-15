@@ -8,10 +8,13 @@ package qlttanhngu.dao;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import qlttanhngu.connection.DataBase;
+import qlttanhngu.dto.NhanVienDTO;
 import qlttanhngu.dto.PhanQuyenDTO;
 
 /**
@@ -128,5 +131,31 @@ public class PhanQuyenDAO extends DataBase {
         }
         return false;
     }
+    
+    //lay danh sach cac tai khoan
+   public List<NhanVienDTO> loadListAccount() throws Exception {
+        List<NhanVienDTO> lstNV = new ArrayList<NhanVienDTO>();
+        NhanVienDTO nv = null;
+        ResultSet resultSet = null;
+        
+        resultSet = this.executeQuery("{call LayDanhSachTaiKhoan()}");
+        try {
+            while(resultSet.next()){
+                nv = new NhanVienDTO();
+                
+                nv.setMaNhanVien(resultSet.getString(1));
+                nv.setHoTen(resultSet.getString(2));
+                nv.setMaChucVu(resultSet.getString(3));
+                nv.setTaiKhoan(resultSet.getString(4));               
+                
+                lstNV.add(nv);
+            }    
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            this.closeConnection();
+        }
+        return lstNV;
+    } 
 
 }

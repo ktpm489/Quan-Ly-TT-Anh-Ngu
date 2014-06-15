@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import qlttanhngu.controller.PhanQuyenController;
 import qlttanhngu.controller.UserAccountController;
+import qlttanhngu.dto.PhanQuyenDTO;
 import qlttanhngu.dto.UserAccountDTO;
 
 /**
@@ -185,27 +186,30 @@ public class FrameDangNhap extends javax.swing.JInternalFrame {
 
                 //kiểm tra đang nhâp
                 if (UserController.isUserExit(user)) {
-                    StoreSave.frameMain.ChangeNameUser(StoreSave.userNamSave);
-                    StoreSave.frameMain.KiemTraPhanQuyen();
+                    StoreSave.frameMain.ChangeNameUser(StoreSave.userNamSave);                   
                     this.dispose();
                 } else {
                     lblLoi.setVisible(true);
+                    return;
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FrameDangNhap.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             //lấy danh sách quyền của user để kiêm tra.
-            DefaultTableModel defaultTableModel = (new PhanQuyenController().CheckListAuthorizationOfUser(StoreSave.mahocvien));
+            DefaultTableModel defaultTableModel = (new PhanQuyenController().CheckListAuthorizationOfUser(StoreSave.manhanvien));
             List<String> lstQuyen = new ArrayList<String>();
             
             for (int i = 0; i < defaultTableModel.getRowCount(); i++) {
                 lstQuyen.add(defaultTableModel.getValueAt(i, 0).toString());
             }
+            StoreSave.phanquyen = new PhanQuyenDTO();
             StoreSave.phanquyen.setQuyen(lstQuyen);
         } catch (Exception ex) {
             Logger.getLogger(FrameDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        StoreSave.frameMain.KiemTraPhanQuyen();
     }//GEN-LAST:event_btnDangNHapActionPerformed
     //bắt sự kiện nhấn Enter
     private void btnDangNHapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNHapKeyPressed

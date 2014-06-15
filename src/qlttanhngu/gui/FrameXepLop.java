@@ -304,15 +304,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
 
      //Khởi Tạo các frameInternal
     private void InitFrameInternal(JInternalFrame jInternalFrame)
-    {         
-           Assets.jDesktopPanel.add(jInternalFrame);
-
-              try {
-                     jInternalFrame.setMaximum(true);
-                 } catch (PropertyVetoException ex) {
-                     Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-               jInternalFrame.show();
+    {     
     }
     
     private FrameChiTietXepLop frameChiTietXepLop;

@@ -11,11 +11,14 @@ import java.awt.Rectangle;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import qlttanhngu.controller.PhanQuyenController;
+import qlttanhngu.dto.PhanQuyenDTO;
 
 /**
  *
@@ -83,6 +86,12 @@ public class FrameMain extends javax.swing.JFrame {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
         TabTrangChinh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
@@ -121,6 +130,7 @@ public class FrameMain extends javax.swing.JFrame {
 
         btnDoiMatKhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ChangePass.png"))); // NOI18N
         btnDoiMatKhau.setText("Đổi Mật Khẩu");
+        btnDoiMatKhau.setEnabled(false);
         btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoiMatKhauActionPerformed(evt);
@@ -130,6 +140,7 @@ public class FrameMain extends javax.swing.JFrame {
         btnQuyDinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/rules-icon.png"))); // NOI18N
         btnQuyDinh.setText("Quy Định");
         btnQuyDinh.setToolTipText("Quy Định và Một Số Yêu Cầu Của Trung Tâm Anh Ngữ");
+        btnQuyDinh.setEnabled(false);
         btnQuyDinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuyDinhActionPerformed(evt);
@@ -140,7 +151,9 @@ public class FrameMain extends javax.swing.JFrame {
         lbluser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Administrator-3-icon (1).png"))); // NOI18N
         lbluser.setText("User Guest");
 
+        btnQuanTri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Admin-icon.png"))); // NOI18N
         btnQuanTri.setText("Quản Trị");
+        btnQuanTri.setEnabled(false);
         btnQuanTri.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuanTriActionPerformed(evt);
@@ -158,15 +171,15 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDoiMatKhau)
-                .addGap(94, 94, 94)
+                .addGap(55, 55, 55)
                 .addComponent(btnQuyDinh, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(btnQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnHuongDan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(235, 235, 235)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
                 .addComponent(lbluser)
                 .addGap(21, 21, 21))
         );
@@ -522,9 +535,8 @@ public class FrameMain extends javax.swing.JFrame {
                 StoreSave.desktop.add(frDangNhap);
                 frDangNhap.show();
             }
-        }
-        else{
-            JOptionPane.showMessageDialog(this,"Đăng xuất trước khi đăng nhập lại!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Đăng xuất trước khi đăng nhập lại!");
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -532,8 +544,10 @@ public class FrameMain extends javax.swing.JFrame {
         if (frQuyDinh == null || frQuyDinh.isClosed()) {
             FrameQuyDinh frQuyDinh = new FrameQuyDinh();
 
-            if (StoreSave.isExsting(frQuyDinh)) {
-                StoreSave.InitFrameInternal(frQuyDinh);
+           if (StoreSave.isExsting(frQuyDinh)) {
+                StoreSave.desktop.add(frQuyDinh);
+                frQuyDinh.setLocation(600, 200);
+                frQuyDinh.show();
             }
         }
     }//GEN-LAST:event_btnQuyDinhActionPerformed
@@ -624,27 +638,51 @@ public class FrameMain extends javax.swing.JFrame {
         //reset User
         StoreSave.accountNameSave = null;
         StoreSave.machucvu = null;
-        StoreSave.mahocvien = null;
-         
+        StoreSave.manhanvien = null;
+
         KiemTraPhanQuyen();
+        
+        //đóng tất cr các frame
+        JInternalFrame[] arr = desktopPanel.getAllFrames();
+        
+        for(int i = 0;i < arr.length; i++){
+            arr[i].dispose();
+        }
+       desktopPanel.removeAll();
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         KiemTraPhanQuyen();
+       // this.btnDangNhapActionPerformed(null);
     }//GEN-LAST:event_formWindowActivated
 
     private void btnQuanTriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanTriActionPerformed
-      
+
         if (frameQuanTri == null || frameQuanTri.isClosed()) {
             FrameQuanTri frameQuanTri = new FrameQuanTri();
 
-             if (StoreSave.isExsting(frameQuanTri)) {
+            if (StoreSave.isExsting(frameQuanTri)) {
                 StoreSave.desktop.add(frameQuanTri);
-                frameQuanTri.setLocation(600, 200);
+                frameQuanTri.setLocation(300, 200);
                 frameQuanTri.show();
             }
         }
     }//GEN-LAST:event_btnQuanTriActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.btnDangNhapActionPerformed(null);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Frame frame = (Frame)evt.getSource();
+        
+        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
+        if(result == JOptionPane.OK_OPTION){
+            System.exit(0);
+        }
+        
+        frame.setExtendedState(EXIT_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
 
     //thay đổi tên user
     public void ChangeNameUser(String name) {
@@ -655,17 +693,58 @@ public class FrameMain extends javax.swing.JFrame {
     }
 
     public void KiemTraPhanQuyen() {
+        //kiểm tra phần quyền
+        if (StoreSave.manhanvien == null) {
+            this.TabTrangChinh.setEnabledAt(1, false);
+            this.TabTrangChinh.setEnabledAt(2, false);
+            this.TabTrangChinh.setEnabledAt(3, false);
+             this.btnQuyDinh.setEnabled(false);
+             this.btnQuanTri.setEnabled(false);
+             this.btnDoiMatKhau.setEnabled(false);
+            return;
+        }
 
-//        if ((StoreSave.accountNameSave) == null) {
-//            this.TabTrangChinh.setEnabledAt(1, false);
-//            this.TabTrangChinh.setEnabledAt(2, false);
-//            this.TabTrangChinh.setEnabledAt(3, false);
-//        }
-//        else{
-            this.TabTrangChinh.setEnabledAt(1, true);
-            this.TabTrangChinh.setEnabledAt(2, true);
-            this.TabTrangChinh.setEnabledAt(3, true);
-       // }
+        //lấy danh sách các quyền
+        Vector<PhanQuyenDTO> dsphanquyen = new Vector<PhanQuyenDTO>();
+        try {
+            dsphanquyen = new PhanQuyenController().GetListAuthorization();
+        } catch (Exception ex) {
+            Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String value = "";
+        for (int i = 0; i < StoreSave.phanquyen.getQuyen().size(); i++) {
+            //lấy mã quyền
+            for (int j = 0; j < dsphanquyen.size(); j++) {
+                if (dsphanquyen.get(j).getTenQuyen().equals(StoreSave.phanquyen.getQuyen().get(i))) {
+                    value = dsphanquyen.get(j).getMaQuyen();
+                }
+            }
+            switch (value) {
+                case "1":
+                    this.TabTrangChinh.setEnabledAt(1, true);
+                    this.TabTrangChinh.setEnabledAt(2, true);
+                    this.TabTrangChinh.setEnabledAt(3, true);
+                    this.btnQuyDinh.setEnabled(true);
+                    this.btnQuanTri.setEnabled(true);                   
+                    break;
+                case "2":
+                    this.TabTrangChinh.setEnabledAt(1, true);
+                    break;
+                case "3":
+                    this.TabTrangChinh.setEnabledAt(2, true);
+                    break;
+                case "4":
+                    this.TabTrangChinh.setEnabledAt(3, true);
+                    break;
+            }
+            
+            this.btnDoiMatKhau.setEnabled(true);
+            if ("1".equals(value)) // quản lý chỉ cần kiểm tra 1 lần
+            {
+                return;
+            }
+        }
     }
 
     /**

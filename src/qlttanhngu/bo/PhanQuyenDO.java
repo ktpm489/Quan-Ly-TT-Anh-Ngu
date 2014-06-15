@@ -5,8 +5,11 @@
  */
 package qlttanhngu.bo;
 
+import java.util.List;
 import java.util.Vector;
 import qlttanhngu.dao.PhanQuyenDAO;
+import qlttanhngu.dto.HocVienDTO;
+import qlttanhngu.dto.NhanVienDTO;
 import qlttanhngu.dto.PhanQuyenDTO;
 
 /**
@@ -43,7 +46,7 @@ public class PhanQuyenDO {
         return null;
     }
 
-    public  boolean InsertAuthorization(String maquyen,String manhanvien) throws Exception {
+    public boolean InsertAuthorization(String maquyen, String manhanvien) throws Exception {
         try {
             return phanQuyenDAO.InsertAuthorization(maquyen, manhanvien);
         } catch (Exception e) {
@@ -53,15 +56,27 @@ public class PhanQuyenDO {
         }
         return false;
     }
-    
-    public boolean DeleteAuthorization(String maquyen, String mahocvien) throws Exception{
-         try {
-            return phanQuyenDAO.DeleteAuthorization(mahocvien,maquyen);
+
+    public boolean DeleteAuthorization(String maquyen, String mahocvien) throws Exception {
+        try {
+            return phanQuyenDAO.DeleteAuthorization(mahocvien, maquyen);
         } catch (Exception e) {
 
         } finally {
             phanQuyenDAO.closeConnection();
         }
         return false;
+    }
+
+    public List<NhanVienDTO> loadListAccount() throws Exception {
+        try {
+            return phanQuyenDAO.loadListAccount();
+        } catch (Exception e) {
+
+        } finally {
+            phanQuyenDAO.closeConnection();
+        }
+
+        return null;
     }
 }

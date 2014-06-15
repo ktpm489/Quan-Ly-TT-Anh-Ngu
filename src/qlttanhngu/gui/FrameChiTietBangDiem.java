@@ -332,7 +332,7 @@ public class FrameChiTietBangDiem extends javax.swing.JInternalFrame {
                         //
                         this.refreshTable();
                     } catch (Exception ex) {
-                        Logger.getLogger(MessageBoxHocVien.class.getName()).log(Level.SEVERE, null, ex);
+                        
                     }
                 }else{
                     JOptionPane.showMessageDialog(this, "Lớp học chưa kết thúc, Không thể cập nhật điểm!","Thông báo",JOptionPane.ERROR_MESSAGE);

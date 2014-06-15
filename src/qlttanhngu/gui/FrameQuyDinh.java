@@ -4,6 +4,13 @@
  */
 package qlttanhngu.gui;
 
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import qlttanhngu.controller.QuyDinhController;
+import qlttanhngu.dto.QuyDinhDTO;
+
 /**
  *
  * @author XUANVINHTD
@@ -27,8 +34,33 @@ public class FrameQuyDinh extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         btnDong = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblTienNo = new javax.swing.JLabel();
+        txtTienNo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        lblNgayThoiThieu = new javax.swing.JLabel();
+        txtNgayToiThieu = new javax.swing.JTextField();
+        lblngay = new javax.swing.JLabel();
+        btnThayDoi = new javax.swing.JButton();
 
         setTitle("Quy Định");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Đóng");
@@ -38,20 +70,83 @@ public class FrameQuyDinh extends javax.swing.JInternalFrame {
             }
         });
 
+        lblTienNo.setText("Số tiền học phí cho phép nợ :");
+
+        txtTienNo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTienNoKeyTyped(evt);
+            }
+        });
+
+        jLabel3.setText("%");
+
+        lblNgayThoiThieu.setText("Thời gian tối thiểu để hoàn thành xong học phí :");
+
+        txtNgayToiThieu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNgayToiThieuKeyTyped(evt);
+            }
+        });
+
+        lblngay.setText("Ngày");
+
+        btnThayDoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Accept1.png"))); // NOI18N
+        btnThayDoi.setText("Thay đổi");
+        btnThayDoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThayDoiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(589, Short.MAX_VALUE)
-                .addComponent(btnDong)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTienNo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addComponent(lblNgayThoiThieu))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTienNo, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(txtNgayToiThieu))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnThayDoi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(lblngay))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(459, Short.MAX_VALUE)
-                .addComponent(btnDong)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblTienNo)
+                        .addComponent(txtTienNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNgayThoiThieu)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNgayToiThieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblngay)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDong)
+                    .addComponent(btnThayDoi))
                 .addContainerGap())
         );
 
@@ -59,10 +154,86 @@ public class FrameQuyDinh extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
+
+    private void btnThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThayDoiActionPerformed
+        Boolean result = false;
+        try {
+
+            //cập nhật quy đinh.
+            QuyDinhDTO quyDinhDTO = new QuyDinhDTO();
+
+            quyDinhDTO.setTenthamso("Số tiền cho phép nợ");
+            quyDinhDTO.setGiatri(Double.parseDouble(txtTienNo.getText()));
+            //cập nhật
+            result = (new QuyDinhController().UpdateQuyDinh(quyDinhDTO));
+
+            QuyDinhDTO quyDinhDTO1 = new QuyDinhDTO();
+
+            quyDinhDTO1.setTenthamso("Số ngày hoàn thành học phi");
+            quyDinhDTO1.setGiatri(Double.parseDouble(txtNgayToiThieu.getText()));
+
+            result = (new QuyDinhController().UpdateQuyDinh(quyDinhDTO1));
+        } catch (Exception ex) {
+            Logger.getLogger(FrameQuyDinh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (result) {
+            JOptionPane.showMessageDialog(this, "Thay đổi thành công! ");
+        } else {
+            JOptionPane.showMessageDialog(this, "Thay đổi lỗi! ");
+        }
+    }//GEN-LAST:event_btnThayDoiActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        try {
+            //lấy dữ liệu đỗ vào textfield
+            QuyDinhDTO quyDinhDTO = (new QuyDinhController().GetQuyDinh("Số ngày hoàn thành học phi")); 
+            txtNgayToiThieu.setText(quyDinhDTO.getGiatri().toString());
+            
+            QuyDinhDTO quyDinhDTO1 = (new QuyDinhController().GetQuyDinh("Số tiền cho phép nợ")); 
+            txtTienNo.setText(quyDinhDTO1.getGiatri().toString());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameQuyDinh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void txtTienNoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienNoKeyTyped
+       char vChar = evt.getKeyChar();
+        int len = txtTienNo.getText().length();
+
+        if (!(Character.isDigit(vChar))
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE)
+                || (vChar == KeyEvent.VK_ENTER)
+                || (vChar == KeyEvent.VK_TAB) || (len > 3)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTienNoKeyTyped
+
+    private void txtNgayToiThieuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNgayToiThieuKeyTyped
+       char vChar = evt.getKeyChar();
+        int len = txtNgayToiThieu.getText().length();
+
+        if (!(Character.isDigit(vChar))
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE)
+                || (vChar == KeyEvent.VK_ENTER)
+                || (vChar == KeyEvent.VK_TAB) || (len > 3)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNgayToiThieuKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
+    private javax.swing.JButton btnThayDoi;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblNgayThoiThieu;
+    private javax.swing.JLabel lblTienNo;
+    private javax.swing.JLabel lblngay;
+    private javax.swing.JTextField txtNgayToiThieu;
+    private javax.swing.JTextField txtTienNo;
     // End of variables declaration//GEN-END:variables
 }

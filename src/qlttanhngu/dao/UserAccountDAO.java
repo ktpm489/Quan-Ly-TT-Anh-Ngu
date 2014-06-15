@@ -5,12 +5,16 @@
 package qlttanhngu.dao;
 
 import Assest.StoreSave;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.codec.digest.DigestUtils;
 import qlttanhngu.connection.DataBase;
+;
 
 /**
  *
@@ -28,14 +32,14 @@ public class UserAccountDAO extends DataBase{
             CallableStatement callableStatement = null;
         try {
             callableStatement = this.getConnection().prepareCall("{call KiemTraTaiKhoan(?, ?)}");              
-            callableStatement.setString(1, username);
-            callableStatement.setString(2, password);
-            c = this.executeQuery(this.getConnection(), callableStatement);
+            callableStatement.setString(1, username);           
+            callableStatement.setString(2, DigestUtils.md5Hex(password));
+            c = this.executeQuery(this.getConnection(), callableStatement);            
             
             if(c != null && c.next()){
              StoreSave.accountNameSave = c.getString(1);
              StoreSave.userNamSave = c.getString(2);
-             StoreSave.mahocvien = c.getString(3);
+             StoreSave.manhanvien = c.getString(3);
              StoreSave.machucvu = c.getString(4);
              return true;
             }

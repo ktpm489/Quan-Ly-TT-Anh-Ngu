@@ -5,11 +5,13 @@
  */
 package qlttanhngu.controller;
 
+import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import qlttanhngu.bo.PhanQuyenDO;
+import qlttanhngu.dto.NhanVienDTO;
 import qlttanhngu.dto.PhanQuyenDTO;
 
 /**
@@ -78,4 +80,24 @@ public class PhanQuyenController {
         }
          return false;
      }
+     
+     public DefaultTableModel LoadListHocVien() throws Exception {
+        DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
+    new String [] {
+        "Mã nhân viên", "Họ tên", "Mã chức vụ", "Tên tài khoản"
+    });       
+        List<NhanVienDTO> tempNhanVien = phanQuyenDO.loadListAccount();
+        Vector<Object> rowData ;
+        
+        for(int i = 0; i < tempNhanVien.size(); i++){
+            rowData = new Vector<>();
+            rowData.add(tempNhanVien.get(i).getMaNhanVien());
+            rowData.add(tempNhanVien.get(i).getHoTen());
+            rowData.add(tempNhanVien.get(i).getMaChucVu());
+            rowData.add(tempNhanVien.get(i).getTaiKhoan());
+                     
+            tableDefault.addRow(rowData);
+        }      
+        return tableDefault;     
+    }
 }

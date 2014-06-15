@@ -344,7 +344,7 @@ public class FrameCapNhatHocVien extends javax.swing.JInternalFrame {
                 try {
                     new HocVienController().UpdateHocVien(StoreSave.hocvien);
                 } catch (Exception ex) {
-                    Logger.getLogger(MessageBoxHocVien.class.getName()).log(Level.SEVERE, null, ex);
+                   
                 }
             }
             //refresh lại table ds hoc vien
