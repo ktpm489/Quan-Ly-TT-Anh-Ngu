@@ -399,7 +399,7 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
 
     private void btnDiemThiXepLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiemThiXepLopActionPerformed
         
-        FrameKetQuaThiThu frameKetQuaThiThu = new FrameKetQuaThiThu();
+        FrameKetQuaXepLop frameKetQuaThiThu = new FrameKetQuaXepLop();
 
         if (StoreSave.isExsting(frameKetQuaThiThu)) {
             StoreSave.desktop.add(frameKetQuaThiThu);

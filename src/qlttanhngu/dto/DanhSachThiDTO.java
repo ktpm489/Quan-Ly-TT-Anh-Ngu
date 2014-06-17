@@ -13,9 +13,18 @@ package qlttanhngu.dto;
 public class DanhSachThiDTO {
     
     private String mahocvien;
+    private String tenhocvien;  
     private String makythi;
     private Double ketquathixeplop;
 
+    public String getTenhocvien() {
+        return tenhocvien;
+    }
+
+    public void setTenhocvien(String tenhocvien) {
+        this.tenhocvien = tenhocvien;
+    }
+    
     public String getMahocvien() {
         return mahocvien;
     }

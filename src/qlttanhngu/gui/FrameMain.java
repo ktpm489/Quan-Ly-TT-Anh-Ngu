@@ -731,7 +731,7 @@ public class FrameMain extends javax.swing.JFrame {
     public void KiemTraPhanQuyen() {
         
         return;
-//        //kiểm tra phần quyền
+        //kiểm tra phần quyền
 //        if (StoreSave.manhanvien == null) {
 //            this.TabTrangChinh.setEnabledAt(1, false);
 //            this.TabTrangChinh.setEnabledAt(2, false);
@@ -741,7 +741,7 @@ public class FrameMain extends javax.swing.JFrame {
 //             this.btnDoiMatKhau.setEnabled(false);
 //            return;
 //        }
-
+//
 //        //lấy danh sách các quyền
 //        Vector<PhanQuyenDTO> dsphanquyen = new Vector<PhanQuyenDTO>();
 //        try {

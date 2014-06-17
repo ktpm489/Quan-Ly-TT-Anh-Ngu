@@ -10,12 +10,12 @@ package qlttanhngu.gui;
  *
  * @author XuanVinh
  */
-public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
+public class FrameKetQuaXepLop extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrameKetQuaThiThu
      */
-    public FrameKetQuaThiThu() {
+    public FrameKetQuaXepLop() {
         initComponents();
     }
 
@@ -38,11 +38,6 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
         txtDiemThiCuoiKhoa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        panelTraCuu = new javax.swing.JPanel();
-        lblTraCuuTheo = new javax.swing.JLabel();
-        comboBoxTraCuuTheo = new javax.swing.JComboBox();
-        txtTraCuu = new javax.swing.JTextField();
-        btnTraCuu = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnLuu = new javax.swing.JButton();
         btnDOng = new javax.swing.JButton();
@@ -106,8 +101,8 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
                             .addComponent(lblTenPhongThi)
                             .addComponent(comboBoxTenPhongThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(panelKetQuaThiThu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBoLoc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelKetQuaThiThu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBoLoc1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(comboBoxTenDeThi))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelKetQuaThiThu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -128,49 +123,6 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        panelTraCuu.setBorder(javax.swing.BorderFactory.createTitledBorder("Tra Cứu"));
-
-        lblTraCuuTheo.setText("Tra Cứu Theo");
-
-        comboBoxTraCuuTheo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mã Học Viên", "Tên Học Viên" }));
-
-        btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Timkiem.png"))); // NOI18N
-        btnTraCuu.setText("Tra Cứu");
-        btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraCuuActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelTraCuuLayout = new javax.swing.GroupLayout(panelTraCuu);
-        panelTraCuu.setLayout(panelTraCuuLayout);
-        panelTraCuuLayout.setHorizontalGroup(
-            panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTraCuuLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(lblTraCuuTheo)
-                .addGap(18, 18, 18)
-                .addComponent(comboBoxTraCuuTheo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTraCuuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTraCuu)
-                .addGap(29, 29, 29))
-        );
-        panelTraCuuLayout.setVerticalGroup(
-            panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTraCuuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTraCuuTheo)
-                    .addComponent(comboBoxTraCuuTheo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
@@ -199,7 +151,7 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(btnDOng, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,24 +174,22 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelKetQuaThiThu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(panelTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelKetQuaThiThu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(panelKetQuaThiThu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -253,11 +203,6 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
     private void btnLoc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoc1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoc1ActionPerformed
-
-    private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
-
-    
-    }//GEN-LAST:event_btnTraCuuActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
       
@@ -273,20 +218,15 @@ public class FrameKetQuaThiThu extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDOng;
     private javax.swing.JButton btnLoc1;
     private javax.swing.JButton btnLuu;
-    private javax.swing.JButton btnTraCuu;
     private javax.swing.JComboBox comboBoxTenDeThi;
     private javax.swing.JComboBox comboBoxTenPhongThi;
-    private javax.swing.JComboBox comboBoxTraCuuTheo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBoLoc1;
     private javax.swing.JLabel lblTenPhongThi;
-    private javax.swing.JLabel lblTraCuuTheo;
     private javax.swing.JPanel panelKetQuaThiThu1;
-    private javax.swing.JPanel panelTraCuu;
     private javax.swing.JTextField txtDiemThiCuoiKhoa;
-    private javax.swing.JTextField txtTraCuu;
     // End of variables declaration//GEN-END:variables
 }
