@@ -45,8 +45,8 @@ public class DanhSachThiDTO {
         return ketquathixeplop;
     }
 
-    public void setKetquathixeplop(Double ketquathixeplop) {
-        this.ketquathixeplop = ketquathixeplop;
+    public void setKetquathixeplop(Double ketquathixeplopx) {
+        this.ketquathixeplop = ketquathixeplopx;
     }
     
 }

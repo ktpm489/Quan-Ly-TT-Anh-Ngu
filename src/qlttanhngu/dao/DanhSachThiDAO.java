@@ -28,39 +28,46 @@ public class DanhSachThiDAO extends DataBase {
     }
      //lấy danh sách phòng học và mã co trong ky thi roi
    
-      //lấy danh sách điểm học viên load lên bảng
-    public List<DanhSachThiDTO> GetListDiemThiXepLop() {
+      //lấy danh sách điểm học viên theo ma phong thi
+    public List<DanhSachThiDTO> GetListHocVieninPhongThi(String maphong, String makythi) {
         List<DanhSachThiDTO> lstthi = new ArrayList<DanhSachThiDTO>();
+        CallableStatement callableStatement = null;
+
         DanhSachThiDTO thi = null;
         ResultSet result = null;
 
         //lấy danh sách học viên 
-        result = this.executeQuery("{call .....()}");
         try {
+            callableStatement = getConnection().prepareCall("{call LayDanhSachHocvienTrongPhong(?,?)}");
+            callableStatement.setString(1, maphong);
+            callableStatement.setString(2, makythi);
+
+            result = this.executeQuery(getConnection(), callableStatement);
             while (result.next()) {
                 thi = new DanhSachThiDTO();
 
                 thi.setMahocvien(result.getString(1));
                 thi.setTenhocvien(result.getString(2));
-                thi.setKetquathixeplop(result.getDouble(3));
-                
+                 thi.setKetquathixeplop(result.getDouble(3));
+
                 lstthi.add(thi);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BangDiemDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DanhSachThiDTO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return lstthi;
     }
+
     
     //cập nhât điểm thi xếp lớp cho học viên tiềm năng
     public Boolean UpdateDiemThiXepLop(DanhSachThiDTO danhSachThiDTO){
          int resultSet = 0;
         CallableStatement callableStatement = null;
         try {
-            callableStatement = this.getConnection().prepareCall("{call .....(?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call CapNhatDiemThiThu(?,?,?)}");
             callableStatement.setString(1, danhSachThiDTO.getMahocvien());
-            callableStatement.setString(2, danhSachThiDTO.getTenhocvien());
+            callableStatement.setString(2, danhSachThiDTO.getMakythi());
             callableStatement.setDouble(3, danhSachThiDTO.getKetquathixeplop());         
 
             resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
@@ -118,14 +125,14 @@ public class DanhSachThiDAO extends DataBase {
         return lstthi;
     }
     
-    //lấy mã tình độ theo đề thì   
-     public String GetMaTrinhDoByDeThi(String madethi){
+    //lấy mã tình độ theo ma học viên  
+     public String GetMaTrinhDoByHocVien(String mahocvien){
       String temp = "";
       CallableStatement callableStatement = null;
       ResultSet resultSet = null;  
             try {
-                 callableStatement = getConnection().prepareCall("{call .......(?)}");
-                 callableStatement.setString(1, madethi);
+                 callableStatement = getConnection().prepareCall("{call LayTrinhDoMuonHoc(?)}");
+                 callableStatement.setString(1, mahocvien);
                 resultSet = this.executeQuery(this.getConnection(), callableStatement);
                   while(resultSet.next()){
                  temp = resultSet.getString(1);

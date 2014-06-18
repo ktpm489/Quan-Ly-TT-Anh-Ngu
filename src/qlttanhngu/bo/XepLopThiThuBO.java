@@ -5,6 +5,7 @@
  */
 package qlttanhngu.bo;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import qlttanhngu.dao.DanhSachThiDAO;
@@ -34,8 +35,8 @@ public class XepLopThiThuBO {
         }
         return null;
     }
-    
-     public List<DanhSachThiDTO> GetListHocVieninPhongThi(String maphong, String makythi) throws Exception {
+
+    public List<DanhSachThiDTO> GetListHocVieninPhongThi(String maphong, String makythi) throws Exception {
         try {
             return xepLopThiThuDAO.GetListHocVieninPhongThi(maphong, makythi);
         } catch (Exception ex) {
@@ -45,8 +46,8 @@ public class XepLopThiThuBO {
         }
         return null;
     }
-    
-      public boolean InsertHocVien(DanhSachThiDTO danhSachThiDTO) throws Exception {
+
+    public boolean InsertHocVien(DanhSachThiDTO danhSachThiDTO) throws Exception {
         try {
             if (xepLopThiThuDAO.InsertHocVien(danhSachThiDTO)) {
                 return true;
@@ -58,8 +59,21 @@ public class XepLopThiThuBO {
 
         return false;
     }
-      
-       public HashMap<String, String> GetListPhong(String makythi) throws Exception {
+
+    public boolean DeleteHocVien(DanhSachThiDTO danhSachThiDTO) throws Exception {
+        try {
+            if (xepLopThiThuDAO.DeleteHocVien(danhSachThiDTO)) {
+                return true;
+            }
+        } catch (Exception e) {
+        } finally {
+            xepLopThiThuDAO.closeConnection();
+        }
+
+        return false;
+    }
+
+    public HashMap<String, String> GetListPhong(String makythi) throws Exception {
         try {
             return xepLopThiThuDAO.GetListPhong(makythi);
         } catch (Exception e) {
@@ -69,5 +83,29 @@ public class XepLopThiThuBO {
         }
 
         return null;
+    }
+
+    public Integer GetCountSiSo(String maphong) throws Exception {
+        try {
+            return xepLopThiThuDAO.GetCountSiSo(maphong);
+        } catch (Exception e) {
+
+        } finally {
+            xepLopThiThuDAO.closeConnection();
+        }
+        return 0;
+    }
+
+    public Boolean CheckDateOfKythi(String makythi) throws Exception {
+        try {
+            return xepLopThiThuDAO.CheckDateOfKythi(makythi);
+        } catch (Exception e) {
+
+        } finally {
+            xepLopThiThuDAO.closeConnection();
+        }
+
+        return null;
+
     }
 }

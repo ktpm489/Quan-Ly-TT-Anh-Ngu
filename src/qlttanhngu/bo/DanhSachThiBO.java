@@ -24,9 +24,9 @@ public class DanhSachThiBO {
         danhSachThiDAO = new DanhSachThiDAO();
     }
 
-    public List<DanhSachThiDTO> GetListDiemThiXepLop() throws Exception {
+    public List<DanhSachThiDTO> GetListDiemThiXepLop(String maphong, String makythi) throws Exception {
         try {
-            return danhSachThiDAO.GetListDiemThiXepLop();
+            return danhSachThiDAO.GetListHocVieninPhongThi(maphong,makythi);
         } catch (Exception ex) {
 
         } finally {
@@ -71,9 +71,9 @@ public class DanhSachThiBO {
         return null;
     }
 
-    public String GetMaTrinhDoByDeThi(String name) throws Exception {
+    public String GetMaTrinhDoByHocVien(String name) throws Exception {
         try {
-            return danhSachThiDAO.GetMaTrinhDoByDeThi(name);
+            return danhSachThiDAO.GetMaTrinhDoByHocVien(name);
 
         } catch (Exception ex) {
             Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);

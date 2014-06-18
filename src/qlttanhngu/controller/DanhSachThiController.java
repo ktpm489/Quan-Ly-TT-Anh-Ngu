@@ -26,12 +26,12 @@ public class DanhSachThiController {
         danhSachThiBO = new DanhSachThiBO();
     }
 
-    public DefaultTableModel GetListDiemThiXepLop() throws Exception {
+    public DefaultTableModel GetListDiemThiXepLop(String maphong, String makythi) throws Exception {
         DefaultTableModel tableDefault = new DefaultTableModel(new Object[][]{},
                 new String[]{
                     "Mã học viên", "Tên học viên", "điểm thi"
                 });
-        List<DanhSachThiDTO> tempdsthi = danhSachThiBO.GetListDiemThiXepLop();
+        List<DanhSachThiDTO> tempdsthi = danhSachThiBO.GetListDiemThiXepLop(maphong, makythi);
         Vector<Object> rowData;
 
         for (int i = 0; i < tempdsthi.size(); i++) {
@@ -85,9 +85,9 @@ public class DanhSachThiController {
         return null;
     }      
 
-    public String GetMaTrinhDoByDeThi(String name)  {
+    public String GetMaTrinhDoByHocVien(String name)  {
         try {    
-            return danhSachThiBO.GetMaTrinhDoByDeThi(name);
+            return danhSachThiBO.GetMaTrinhDoByHocVien(name);
         } catch (Exception ex) {
             Logger.getLogger(DanhSachThiController.class.getName()).log(Level.SEVERE, null, ex);
         }

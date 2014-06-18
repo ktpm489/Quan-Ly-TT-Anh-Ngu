@@ -13,10 +13,14 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import qlttanhngu.bo.XepLopThiThuBO;
 import qlttanhngu.controller.DanhSachThiController;
 import qlttanhngu.controller.KyThiController;
 import qlttanhngu.controller.XepLopThiThuController;
+import qlttanhngu.dto.DanhSachThiDTO;
 
 /**
  *
@@ -62,9 +66,11 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
         panelXeplop = new javax.swing.JPanel();
         comboBoxTenKyThi = new javax.swing.JComboBox();
         btnThemKyThi = new javax.swing.JButton();
-        ComboBoxTenPhongThi = new javax.swing.JComboBox();
         lblTenKyThi = new javax.swing.JLabel();
         lblTenPhongThi = new javax.swing.JLabel();
+        lblSoLuong = new javax.swing.JLabel();
+        txtSoLuong = new javax.swing.JTextField();
+        txtTenPhong = new javax.swing.JTextField();
 
         setTitle("Xếp lớp thi thử");
         setToolTipText("");
@@ -89,8 +95,7 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
 
         tableDSHocVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
+
             },
             new String [] {
                 "Mã học viên", "Tên học viên"
@@ -277,20 +282,15 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
             }
         });
 
-        ComboBoxTenPhongThi.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ComboBoxTenPhongThiItemStateChanged(evt);
-            }
-        });
-        ComboBoxTenPhongThi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboBoxTenPhongThiActionPerformed(evt);
-            }
-        });
-
         lblTenKyThi.setText("Tên kỳ thi");
 
         lblTenPhongThi.setText("Tên Phòng thi");
+
+        lblSoLuong.setText("Số Lượng");
+
+        txtSoLuong.setEnabled(false);
+
+        txtTenPhong.setEnabled(false);
 
         javax.swing.GroupLayout panelXeplopLayout = new javax.swing.GroupLayout(panelXeplop);
         panelXeplop.setLayout(panelXeplopLayout);
@@ -302,13 +302,19 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
                     .addComponent(lblTenPhongThi)
                     .addComponent(lblTenKyThi))
                 .addGap(18, 18, 18)
+                .addGroup(panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTenPhong)
+                    .addComponent(comboBoxTenKyThi, 0, 205, Short.MAX_VALUE))
                 .addGroup(panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelXeplopLayout.createSequentialGroup()
-                        .addComponent(comboBoxTenKyThi, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnThemKyThi))
-                    .addComponent(ComboBoxTenPhongThi, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelXeplopLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(lblSoLuong)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         panelXeplopLayout.setVerticalGroup(
             panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,10 +325,16 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
                     .addGroup(panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnThemKyThi)
                         .addComponent(lblTenKyThi)))
-                .addGap(22, 22, 22)
-                .addGroup(panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTenPhongThi)
-                    .addComponent(ComboBoxTenPhongThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelXeplopLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(panelXeplopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTenPhongThi)
+                            .addComponent(lblSoLuong)
+                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelXeplopLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTenPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -347,11 +359,11 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                     .addComponent(panelXeplop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,7 +376,7 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(jLabel1)))
-                .addGap(18, 75, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnChonTatCa)
@@ -376,10 +388,10 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
                         .addComponent(btnXoaDon)
                         .addGap(163, 163, 163))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                             .addComponent(panelChucNang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE))
                         .addContainerGap())))
         );
 
@@ -389,6 +401,12 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
     private void btnChonDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonDonActionPerformed
         DefaultTableModel defaultTableModel = (DefaultTableModel) tablePhong.getModel();
 
+        //kiểm tra số lượng trong phòng
+        int soluong = Integer.parseInt(txtSoLuong.getText());
+        if(soluong == tablePhong.getRowCount()){
+            JOptionPane.showMessageDialog(this, "Phòng đã đầy! !");
+            return;
+        }
         //kiểm tra xem đã chọn dòng chưa.
         if (mahocvien == null) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn học viên trước khi thêm !");
@@ -396,6 +414,18 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
         }
         //kiểm tra xem học viên  đã được add chưa
         if (tablePhong.getRowCount() != 0) {
+            try {
+                //kiểm tra xem học viên này , xem trình độ bao nhiêu để xếp vào lớp đó.
+                String tenTrinhdo = (new DanhSachThiController().GetMaTrinhDoByHocVien(tablePhong.getValueAt(0, 0).toString()));
+
+                if (!tenTrinhdo.substring(0, 5).equals(comboBoxDethi.getSelectedItem().toString())) {
+                    JOptionPane.showMessageDialog(this, "Xin lỗi, phòng này chỉ xếp dược cho các học viên thi" + comboBoxDethi.getSelectedItem().toString());
+                    return;
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             for (int i = 0; i < tablePhong.getRowCount(); i++) {
                 if (tablePhong.getValueAt(i, 0).toString().equals(mahocvien)) {
                     JOptionPane.showMessageDialog(this, "Học vên này đã tồn tại !");
@@ -410,17 +440,113 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
         row.add(tenhocvien);
         defaultTableModel.addRow(row);
         //xóa dòng bên danh sách học viên
-        if (tablePhong.getRowCount() >= rowIndexDSHV) {
+        if (tableDSHocVien.getRowCount() >= rowIndexDSHV) {
             ((DefaultTableModel) tableDSHocVien.getModel()).removeRow(rowIndexDSHV);
         }
+        mahocvien = null;
+        tenhocvien = null;
     }//GEN-LAST:event_btnChonDonActionPerformed
 
     private void btnXoaTatCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTatCaActionPerformed
-        // TODO add your handling code here:
+        // lấy tất cả học viên qua danh sách phòng
+        int soluong = Integer.parseInt(txtSoLuong.getText());
+        int soluongphong = tablePhong.getRowCount();
+        //không có dữ liệu thì ko dc add
+        if (tablePhong.getRowCount() == 0) {
+            return;
+        }
+        for (int i = 0; i < (soluong); i++) {
+            if (tablePhong.getRowCount() == 0) {
+                return;
+            }
+            mahocvien = tablePhong.getValueAt(0, 0).toString();
+            tenhocvien = tablePhong.getValueAt(0, 1).toString();
+            rowIndexDSHV = 0;
+            this.btnXoaDonActionPerformed(evt);
+        }
     }//GEN-LAST:event_btnXoaTatCaActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        try {
+            //kiểm tra xem học viên này đã được cập nhât điểm chưa, rồi thì ko dc xóa ra khỏi phòng.
+            if (new XepLopThiThuBO().CheckDateOfKythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()))) {
+                JOptionPane.showMessageDialog(this, "Danh sách phòng này đã thi rồi không thể sửa nửa!");
+                return;
+            }
+            Boolean result = false;
+            if (tablePhong.getRowCount() == 0 && tableOldPhong.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Vui lòng xếp phòng cho học viên trước khi lưu !");
+                return;
+            }
+            int row1 = tablePhong.getRowCount();
+            int row2 = tableOldPhong.getRowCount();
 
+            Vector<String> lstStr = new Vector<>();
+
+            for (int k = 0; k < row2; k++) {
+                lstStr.add(tableOldPhong.getValueAt(k, 0).toString());
+            }
+
+            for (int i = 0; i < row1; i++) {
+                if (!lstStr.contains(tablePhong.getValueAt(i, 0))) {
+                    try {
+                        DanhSachThiDTO danhSachThiDTO = new DanhSachThiDTO();
+                        danhSachThiDTO.setMahocvien(tablePhong.getValueAt(i, 0).toString());
+                        danhSachThiDTO.setMakythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()));
+
+                        //them
+                        result = new XepLopThiThuController().InsertHocVien(danhSachThiDTO);
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+                        return;
+                    }
+                }
+            }
+//        //them
+//        for (int i = 0; i < tablePhong.getRowCount(); i++) {
+//            try {
+//                DanhSachThiDTO danhSachThiDTO = new DanhSachThiDTO();
+//                danhSachThiDTO.setMahocvien(tablePhong.getValueAt(i, 0).toString());
+//                danhSachThiDTO.setMakythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()));
+//
+//                //them
+//                new XepLopThiThuController().InsertHocVien(danhSachThiDTO);
+//            } catch (Exception ex) {
+//                Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+
+            //xoa
+            //xóa quyền
+            Vector<String> lstStr1 = new Vector<>();
+            for (int k = 0; k < row1; k++) {
+                lstStr1.add(tablePhong.getValueAt(k, 0).toString());
+            }
+            if (row1 < row2) {
+                for (int j = 0; j < row2; j++) {
+                    if (!lstStr1.contains(tableOldPhong.getValueAt(j, 0))) {
+                        try {
+                            DanhSachThiDTO danhSachThiDTO = new DanhSachThiDTO();
+                            danhSachThiDTO.setMahocvien(tableOldPhong.getValueAt(j, 0).toString());
+                            danhSachThiDTO.setMakythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()));
+
+                            //them
+                            result = new XepLopThiThuBO().DeleteHocVien(danhSachThiDTO);
+                        } catch (Exception ex) {
+                            Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+                            return;
+                        }
+                    }
+                }
+            }
+            if (result) {
+                JOptionPane.showMessageDialog(this, "Lưu thành công !");
+            }
+            //câp nhật giá trị lại bản cũ
+            txtTenPhongChange();
+        } catch (Exception ex) {
+            Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
@@ -439,7 +565,22 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboBoxTenKyThiActionPerformed
 
     private void btnChonTatCaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonTatCaActionPerformed
-        // TODO add your handling code here:
+        // lấy tất cả học viên qua danh sách phòng
+        int soluong = Integer.parseInt(txtSoLuong.getText());
+        //không có dữ liệu thì ko dc add
+        if (tableDSHocVien.getRowCount() == 0 || soluong == tablePhong.getRowCount()) {
+            return;
+        }
+        for (int i = 0; i < soluong; i++) {
+            if (tableDSHocVien.getRowCount() == 0) {
+                return;
+            }
+            mahocvien = tableDSHocVien.getValueAt(0, 0).toString();
+            tenhocvien = tableDSHocVien.getValueAt(0, 1).toString();
+            rowIndexDSHV = 0;
+            this.btnChonDonActionPerformed(evt);
+        }
+
     }//GEN-LAST:event_btnChonTatCaActionPerformed
 
     private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
@@ -504,6 +645,40 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
 
         //load dữ liệu vào trình độ.
         this.comboBoxDethiItemStateChanged(null);
+
+        //lấy số lượng
+        this.getSoLuong();
+
+        //add event textchange cho txtPhongthi
+        txtTenPhong.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+
+                if (txtTenPhong.getText().length() >= 0) {
+                    try {
+                        // load dữ liệu học viên lên bảng phòng
+
+                        tableOldPhong.setModel(new XepLopThiThuController().GetListHocVieninPhongThi(
+                                getKey(txtTenPhong.getText()),
+                                getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString())));
+
+                        tablePhong.setModel(new XepLopThiThuController().GetListHocVieninPhongThi(
+                                getKey(txtTenPhong.getText()),
+                                getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString())));
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    try {
+                        //load so lượng phòng
+                        txtSoLuong.setText((new XepLopThiThuBO().GetCountSiSo(getKey(txtTenPhong.getText())).toString()));
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void comboBoxDethiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxDethiItemStateChanged
@@ -533,37 +708,13 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
             hashMapPhong = (new XepLopThiThuController().GetListPhong(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString())));
             DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(hashMapPhong.values().toArray());
 
-            ComboBoxTenPhongThi.setModel(defaultComboBoxModel);
+            txtTenPhong.setText(defaultComboBoxModel.getElementAt(0).toString());
         } catch (Exception ex) {
             Logger.getLogger(FrameKyThi.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        this.txtTenPhongChange();
     }//GEN-LAST:event_comboBoxTenKyThiItemStateChanged
-
-    private void ComboBoxTenPhongThiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxTenPhongThiItemStateChanged
-        try {
-            // load dữ liệu học viên lên bảng phòng
-
-            tablePhong.setModel(new XepLopThiThuController().GetListHocVieninPhongThi(
-                    getKey(ComboBoxTenPhongThi.getSelectedItem().toString()),
-                    getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()))
-            );
-        } catch (Exception ex) {
-            Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_ComboBoxTenPhongThiItemStateChanged
-
-    private void ComboBoxTenPhongThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxTenPhongThiActionPerformed
-        try {
-            // load dữ liệu học viên lên bảng phòng
-
-            tablePhong.setModel(new XepLopThiThuController().GetListHocVieninPhongThi(
-                    getKey(ComboBoxTenPhongThi.getSelectedItem().toString()),
-                    getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()))
-            );
-        } catch (Exception ex) {
-            Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_ComboBoxTenPhongThiActionPerformed
 
     private void tableDSHocVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDSHocVienMouseClicked
         JTable jTable = (JTable) evt.getSource();
@@ -596,7 +747,7 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
 
         //kiểm tra xem đã chọn dòng chưa.
         if (mahocvien == null) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn học viên trước khi thêm !");
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn học viên trước khi xóa !");
             return;
         }
         //kiểm tra xem học viên  đã được add chưa
@@ -618,7 +769,18 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
         if (tablePhong.getRowCount() >= rowIndexDSHV) {
             ((DefaultTableModel) tablePhong.getModel()).removeRow(rowIndexDSHV);
         }
+        mahocvien = null;
+        tenhocvien = null;
     }//GEN-LAST:event_btnXoaDonActionPerformed
+
+    private void getSoLuong() {
+        try {
+            //load so lượng phòng
+            txtSoLuong.setText((new XepLopThiThuBO().GetCountSiSo(getKey(txtTenPhong.getText())).toString()));
+        } catch (Exception ex) {
+            Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private String getKeyKythi(String value) {
         for (int i = 0; i < lstkythi.getRowCount(); i++) {
@@ -649,6 +811,26 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
         return null;
     }
 
+    private void txtTenPhongChange() {
+        try {
+            // load dữ liệu học viên lên bảng phòng
+
+            tableOldPhong.setModel(new XepLopThiThuController().GetListHocVieninPhongThi(
+                    getKey(txtTenPhong.getText()),
+                    getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString())));
+
+            tablePhong.setModel(new XepLopThiThuController().GetListHocVieninPhongThi(
+                    getKey(txtTenPhong.getText()),
+                    getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString())));
+        } catch (Exception ex) {
+            Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //load so lượng phòng
+        this.getSoLuong();
+    }
+    private JTable tableOldPhong = new JTable();
+    ;
     //lưu lại dòng đã click bên danh sách học viên
     private int rowIndexDSHV;
     //lưu mahocvien and tenhocvien
@@ -660,7 +842,6 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
     private HashMap<String, String> hashMapPhong;
     private DefaultTableModel lstkythi;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ComboBoxTenPhongThi;
     private javax.swing.JButton btnChonDon;
     private javax.swing.JButton btnChonTatCa;
     private javax.swing.JButton btnDong;
@@ -677,6 +858,7 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDeThi;
+    private javax.swing.JLabel lblSoLuong;
     private javax.swing.JLabel lblTenKyThi;
     private javax.swing.JLabel lblTenPhongThi;
     private javax.swing.JLabel lblTrinhDo;
@@ -685,5 +867,7 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelXeplop;
     private javax.swing.JTable tableDSHocVien;
     private javax.swing.JTable tablePhong;
+    private javax.swing.JTextField txtSoLuong;
+    private javax.swing.JTextField txtTenPhong;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -84,15 +85,33 @@ public class XepLopThiThuDAO extends DataBase {
         return lstthi;
     }
 
-    //cập nhật thông tin kỳ thi
+    //cập nhật thông tin danh sach kỳ thi
     public Boolean InsertHocVien(DanhSachThiDTO danhSachThiDTO) {
         int resultSet = 0;
         CallableStatement callableStatement = null;
         try {
-            callableStatement = this.getConnection().prepareCall("{call CapNhatKyThi(?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call ThemHocVienVaoDanhSachThi(?,?)}");
             callableStatement.setString(1, danhSachThiDTO.getMakythi());
             callableStatement.setString(2, danhSachThiDTO.getMahocvien());
-            callableStatement.setDouble(3, danhSachThiDTO.getKetquathixeplop());
+
+            resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
+            if (resultSet != 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KyThiDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    //delete thông tin danh sach kỳ thi
+    public Boolean DeleteHocVien(DanhSachThiDTO danhSachThiDTO) {
+        int resultSet = 0;
+        CallableStatement callableStatement = null;
+        try {
+            callableStatement = this.getConnection().prepareCall("{call XoaHocVienTrongDanhSachThi(?,?)}");
+            callableStatement.setString(1, danhSachThiDTO.getMahocvien());
+            callableStatement.setString(2, danhSachThiDTO.getMakythi());
 
             resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
             if (resultSet != 0) {
@@ -124,13 +143,17 @@ public class XepLopThiThuDAO extends DataBase {
 
         return hashMapdethi;
     }
-    
-     //lấy số lượng người trong một phòng  
-    public int GetCountMakyThi() {
+
+    //lấy số lượng người trong một phòng  
+    public int GetCountSiSo(String maphong) {
         int temp = 0;
         ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
         try {
-            resultSet = this.executeQuery("{call DemMaKyThi()}");
+            callableStatement = getConnection().prepareCall("{call LaySiSoPhong(?)}");
+            callableStatement.setString(1, maphong);
+            resultSet = this.executeQuery(getConnection(), callableStatement);
+
             while (resultSet.next()) {
                 temp = resultSet.getInt(1);
             };
@@ -139,5 +162,26 @@ public class XepLopThiThuDAO extends DataBase {
         }
         return temp;
     }
-     
+
+    //kiểm tra ngày thi xem có thể xóa học viên trong phòng ko.
+    public Boolean CheckDateOfKythi(String makythi) throws SQLException {
+        Date temp = new Date();
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+        try {
+            callableStatement = getConnection().prepareCall("{call LayCuaKyThi(?)}");
+            callableStatement.setString(1, makythi);
+            resultSet = this.executeQuery(getConnection(), callableStatement);
+
+            while (resultSet.next()) {
+                if (temp.compareTo(resultSet.getDate(1)) > 0) {
+                    return true;
+                };
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }
