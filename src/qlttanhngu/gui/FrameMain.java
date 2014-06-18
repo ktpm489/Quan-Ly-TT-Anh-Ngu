@@ -730,59 +730,59 @@ public class FrameMain extends javax.swing.JFrame {
 
     public void KiemTraPhanQuyen() {
         
-        return;
+      //  return;
         //kiểm tra phần quyền
-//        if (StoreSave.manhanvien == null) {
-//            this.TabTrangChinh.setEnabledAt(1, false);
-//            this.TabTrangChinh.setEnabledAt(2, false);
-//            this.TabTrangChinh.setEnabledAt(3, false);
-//             this.btnQuyDinh.setEnabled(false);
-//             this.btnQuanTri.setEnabled(false);
-//             this.btnDoiMatKhau.setEnabled(false);
-//            return;
-//        }
-//
-//        //lấy danh sách các quyền
-//        Vector<PhanQuyenDTO> dsphanquyen = new Vector<PhanQuyenDTO>();
-//        try {
-//            dsphanquyen = new PhanQuyenController().GetListAuthorization();
-//        } catch (Exception ex) {
-//            Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        String value = "";
-//        for (int i = 0; i < StoreSave.phanquyen.getQuyen().size(); i++) {
-//            //lấy mã quyền
-//            for (int j = 0; j < dsphanquyen.size(); j++) {
-//                if (dsphanquyen.get(j).getTenQuyen().equals(StoreSave.phanquyen.getQuyen().get(i))) {
-//                    value = dsphanquyen.get(j).getMaQuyen();
-//                }
-//            }
-//            switch (value) {
-//                case "1":
-//                    this.TabTrangChinh.setEnabledAt(1, true);
-//                    this.TabTrangChinh.setEnabledAt(2, true);
-//                    this.TabTrangChinh.setEnabledAt(3, true);
-//                    this.btnQuyDinh.setEnabled(true);
-//                    this.btnQuanTri.setEnabled(true);                   
-//                    break;
-//                case "2":
-//                    this.TabTrangChinh.setEnabledAt(1, true);
-//                    break;
-//                case "3":
-//                    this.TabTrangChinh.setEnabledAt(2, true);
-//                    break;
-//                case "4":
-//                    this.TabTrangChinh.setEnabledAt(3, true);
-//                    break;
-//            }
-//            
-//            this.btnDoiMatKhau.setEnabled(true);
-//            if ("1".equals(value)) // quản lý chỉ cần kiểm tra 1 lần
-//            {
-//                return;
-//            }
-//        }
+        if (StoreSave.manhanvien == null) {
+            this.TabTrangChinh.setEnabledAt(1, false);
+            this.TabTrangChinh.setEnabledAt(2, false);
+            this.TabTrangChinh.setEnabledAt(3, false);
+             this.btnQuyDinh.setEnabled(false);
+             this.btnQuanTri.setEnabled(false);
+             this.btnDoiMatKhau.setEnabled(false);
+            return;
+        }
+
+        //lấy danh sách các quyền
+        Vector<PhanQuyenDTO> dsphanquyen = new Vector<PhanQuyenDTO>();
+        try {
+            dsphanquyen = new PhanQuyenController().GetListAuthorization();
+        } catch (Exception ex) {
+            Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String value = "";
+        for (int i = 0; i < StoreSave.phanquyen.getQuyen().size(); i++) {
+            //lấy mã quyền
+            for (int j = 0; j < dsphanquyen.size(); j++) {
+                if (dsphanquyen.get(j).getTenQuyen().equals(StoreSave.phanquyen.getQuyen().get(i))) {
+                    value = dsphanquyen.get(j).getMaQuyen();
+                }
+            }
+            switch (value) {
+                case "1":
+                    this.TabTrangChinh.setEnabledAt(1, true);
+                    this.TabTrangChinh.setEnabledAt(2, true);
+                    this.TabTrangChinh.setEnabledAt(3, true);
+                    this.btnQuyDinh.setEnabled(true);
+                    this.btnQuanTri.setEnabled(true);                   
+                    break;
+                case "2":
+                    this.TabTrangChinh.setEnabledAt(1, true);
+                    break;
+                case "3":
+                    this.TabTrangChinh.setEnabledAt(2, true);
+                    break;
+                case "4":
+                    this.TabTrangChinh.setEnabledAt(3, true);
+                    break;
+            }
+            
+            this.btnDoiMatKhau.setEnabled(true);
+            if ("1".equals(value)) // quản lý chỉ cần kiểm tra 1 lần
+            {
+                return;
+            }
+        }
     }
 
     /**
