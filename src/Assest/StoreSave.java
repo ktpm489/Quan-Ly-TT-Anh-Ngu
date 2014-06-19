@@ -29,6 +29,8 @@ public class StoreSave {
     
     public int number;
     
+    //demo
+    public String thuThayDoi;
     //dùng để hiển thị một frame mới
     public static JDesktopPane desktop;
     
