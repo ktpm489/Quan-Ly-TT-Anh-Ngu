@@ -5,20 +5,12 @@
 package qlttanhngu.gui;
 
 import Assest.StoreSave;
-import java.awt.Desktop;
 import java.awt.Frame;
 import java.awt.Rectangle;
 import java.beans.PropertyVetoException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import qlttanhngu.controller.PhanQuyenController;
-import qlttanhngu.dto.PhanQuyenDTO;
 
 /**
  *
@@ -51,13 +43,12 @@ public class FrameMain extends javax.swing.JFrame {
         btnThongTin = new javax.swing.JButton();
         btnDoiMatKhau = new javax.swing.JButton();
         btnQuyDinh = new javax.swing.JButton();
-        lbluser = new javax.swing.JLabel();
-        btnQuanTri = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnDangKyHoc = new javax.swing.JButton();
-        btnHoaDonHocPhi = new javax.swing.JButton();
+        btnKhoaHoc = new javax.swing.JButton();
         btnLichHoc = new javax.swing.JButton();
-        lblUser4 = new javax.swing.JLabel();
+        btnHoaDonHocPhi1 = new javax.swing.JButton();
+        btnTrinhDo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnDSHocVien = new javax.swing.JButton();
         btnLopHoc = new javax.swing.JButton();
@@ -66,13 +57,10 @@ public class FrameMain extends javax.swing.JFrame {
         btnDSGiangVien = new javax.swing.JButton();
         btnBangDiem = new javax.swing.JButton();
         btnXepLop = new javax.swing.JButton();
-        lbluser1 = new javax.swing.JLabel();
-        btnKyThi = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnBCNo = new javax.swing.JButton();
         btnBCDangKy = new javax.swing.JButton();
         btnBCHocVu = new javax.swing.JButton();
-        lbluser2 = new javax.swing.JLabel();
         desktopPanel = new javax.swing.JDesktopPane();
         lblImageBackground = new javax.swing.JLabel();
 
@@ -83,17 +71,6 @@ public class FrameMain extends javax.swing.JFrame {
         setForeground(new java.awt.Color(102, 204, 255));
         setIconImages(null);
         setName("FrameMain"); // NOI18N
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         TabTrangChinh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
 
@@ -111,11 +88,6 @@ public class FrameMain extends javax.swing.JFrame {
 
         btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logout.png"))); // NOI18N
         btnDangXuat.setText("Đăng Xuất");
-        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangXuatActionPerformed(evt);
-            }
-        });
 
         btnHuongDan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/help.png"))); // NOI18N
         btnHuongDan.setText("Hướng Dẫn");
@@ -131,7 +103,6 @@ public class FrameMain extends javax.swing.JFrame {
 
         btnDoiMatKhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ChangePass.png"))); // NOI18N
         btnDoiMatKhau.setText("Đổi Mật Khẩu");
-        btnDoiMatKhau.setEnabled(false);
         btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoiMatKhauActionPerformed(evt);
@@ -141,23 +112,9 @@ public class FrameMain extends javax.swing.JFrame {
         btnQuyDinh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/rules-icon.png"))); // NOI18N
         btnQuyDinh.setText("Quy Định");
         btnQuyDinh.setToolTipText("Quy Định và Một Số Yêu Cầu Của Trung Tâm Anh Ngữ");
-        btnQuyDinh.setEnabled(false);
         btnQuyDinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuyDinhActionPerformed(evt);
-            }
-        });
-
-        lbluser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbluser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Administrator-3-icon (1).png"))); // NOI18N
-        lbluser.setText("User Guest");
-
-        btnQuanTri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Admin-icon.png"))); // NOI18N
-        btnQuanTri.setText("Quản Trị");
-        btnQuanTri.setEnabled(false);
-        btnQuanTri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanTriActionPerformed(evt);
             }
         });
 
@@ -172,35 +129,25 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDoiMatKhau)
-                .addGap(55, 55, 55)
+                .addGap(94, 94, 94)
                 .addComponent(btnQuyDinh, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnQuanTri, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnHuongDan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-                .addComponent(lbluser)
-                .addGap(21, 21, 21))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnQuyDinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnHuongDan, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                            .addComponent(btnThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                            .addComponent(btnQuanTri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbluser)))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuyDinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHuongDan, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                    .addComponent(btnThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -221,15 +168,15 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
 
-        btnHoaDonHocPhi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bill.png"))); // NOI18N
-        btnHoaDonHocPhi.setText(" Học Phí");
-        btnHoaDonHocPhi.setToolTipText(" Tạo Hóa Đơn Học Phí Cho Mỗi Học Viên");
-        btnHoaDonHocPhi.setMaximumSize(new java.awt.Dimension(143, 57));
-        btnHoaDonHocPhi.setMinimumSize(new java.awt.Dimension(143, 57));
-        btnHoaDonHocPhi.setPreferredSize(new java.awt.Dimension(143, 57));
-        btnHoaDonHocPhi.addActionListener(new java.awt.event.ActionListener() {
+        btnKhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses.png"))); // NOI18N
+        btnKhoaHoc.setText("Khóa học");
+        btnKhoaHoc.setToolTipText(" Tạo Hóa Đơn Học Phí Cho Mỗi Học Viên");
+        btnKhoaHoc.setMaximumSize(new java.awt.Dimension(143, 57));
+        btnKhoaHoc.setMinimumSize(new java.awt.Dimension(143, 57));
+        btnKhoaHoc.setPreferredSize(new java.awt.Dimension(143, 57));
+        btnKhoaHoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHoaDonHocPhiActionPerformed(evt);
+                btnKhoaHocActionPerformed(evt);
             }
         });
 
@@ -240,9 +187,29 @@ public class FrameMain extends javax.swing.JFrame {
         btnLichHoc.setMinimumSize(new java.awt.Dimension(143, 57));
         btnLichHoc.setPreferredSize(new java.awt.Dimension(143, 57));
 
-        lblUser4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblUser4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Administrator-3-icon (1).png"))); // NOI18N
-        lblUser4.setText("User Guest");
+        btnHoaDonHocPhi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/bill.png"))); // NOI18N
+        btnHoaDonHocPhi1.setText(" Học Phí");
+        btnHoaDonHocPhi1.setToolTipText(" Tạo Hóa Đơn Học Phí Cho Mỗi Học Viên");
+        btnHoaDonHocPhi1.setMaximumSize(new java.awt.Dimension(143, 57));
+        btnHoaDonHocPhi1.setMinimumSize(new java.awt.Dimension(143, 57));
+        btnHoaDonHocPhi1.setPreferredSize(new java.awt.Dimension(143, 57));
+        btnHoaDonHocPhi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHoaDonHocPhi1ActionPerformed(evt);
+            }
+        });
+
+        btnTrinhDo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/level.png"))); // NOI18N
+        btnTrinhDo.setText("Trình độ");
+        btnTrinhDo.setToolTipText(" Tạo Hóa Đơn Học Phí Cho Mỗi Học Viên");
+        btnTrinhDo.setMaximumSize(new java.awt.Dimension(143, 57));
+        btnTrinhDo.setMinimumSize(new java.awt.Dimension(143, 57));
+        btnTrinhDo.setPreferredSize(new java.awt.Dimension(143, 57));
+        btnTrinhDo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrinhDoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -253,34 +220,35 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnDangKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnHoaDonHocPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1071, Short.MAX_VALUE)
-                .addComponent(lblUser4)
-                .addGap(21, 21, 21))
+                .addGap(29, 29, 29)
+                .addComponent(btnHoaDonHocPhi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(btnTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(552, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnHoaDonHocPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDangKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblUser4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDangKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHoaDonHocPhi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         btnDangKyHoc.getAccessibleContext().setAccessibleName("");
-        btnHoaDonHocPhi.getAccessibleContext().setAccessibleName("Hóa Đơn\nHọc Phí"); // NOI18N
+        btnKhoaHoc.getAccessibleContext().setAccessibleName("Hóa Đơn\nHọc Phí"); // NOI18N
 
         TabTrangChinh.addTab("Quản Lý Đăng Ký -  Hóa Đơn", jPanel4);
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 255)));
         jPanel2.setForeground(new java.awt.Color(51, 255, 255));
-        jPanel2.setFocusCycleRoot(true);
 
         btnDSHocVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ListStudent.png"))); // NOI18N
         btnDSHocVien.setText("Học Viên");
@@ -324,11 +292,6 @@ public class FrameMain extends javax.swing.JFrame {
         btnLichThi.setMaximumSize(new java.awt.Dimension(143, 57));
         btnLichThi.setMinimumSize(new java.awt.Dimension(143, 57));
         btnLichThi.setPreferredSize(new java.awt.Dimension(143, 57));
-        btnLichThi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLichThiActionPerformed(evt);
-            }
-        });
 
         btnDSGiangVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Teachers-icon.png"))); // NOI18N
         btnDSGiangVien.setText("Nhân Viên");
@@ -355,17 +318,6 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
 
-        lbluser1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbluser1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Administrator-3-icon (1).png"))); // NOI18N
-        lbluser1.setText("User Guest");
-
-        btnKyThi.setText("Kỳ thi");
-        btnKyThi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKyThiActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -385,28 +337,20 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnThoiKhoaBieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLichThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnKyThi, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                .addComponent(lbluser1)
-                .addGap(21, 21, 21))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lbluser1))
-                    .addComponent(btnDSHocVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDSHocVien, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(btnBangDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDSGiangVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLopHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThoiKhoaBieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnXepLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLichThi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKyThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnThoiKhoaBieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLichThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -441,10 +385,6 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
 
-        lbluser2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbluser2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Administrator-3-icon (1).png"))); // NOI18N
-        lbluser2.setText("User Guest");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -456,9 +396,7 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnBCDangKy)
                 .addGap(18, 18, 18)
                 .addComponent(btnBCHocVu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 950, Short.MAX_VALUE)
-                .addComponent(lbluser2)
-                .addGap(20, 20, 20))
+                .addContainerGap(828, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,18 +406,14 @@ public class FrameMain extends javax.swing.JFrame {
                     .addComponent(btnBCNo)
                     .addComponent(btnBCDangKy)
                     .addComponent(btnBCHocVu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbluser2)
-                .addContainerGap())
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         TabTrangChinh.addTab("Quản Lý Báo Cáo", jPanel1);
 
         StoreSave.desktop = desktopPanel; // Lưu lại destopanel để sử dụng toàn cục chương trình.
         desktopPanel.add(lblImageBackground);
-        lblImageBackground.setBounds(-60, -170, 1380, 990);
+        lblImageBackground.setBounds(-70, -130, 1380, 990);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -507,283 +441,118 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuongDanActionPerformed
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
-        if (frameDoiMatKhau == null || frameDoiMatKhau.isClosed()) {
-            FrameDoiMatKhau frameDoiMatKhau = new FrameDoiMatKhau();
-
-            if (StoreSave.isExsting(frameDoiMatKhau)) {
-                StoreSave.desktop.add(frameDoiMatKhau);
-                frameDoiMatKhau.setLocation(600, 200);
+         if(frameDoiMatKhau == null || frameDoiMatKhau.isClosed())
+           {
+                frameDoiMatKhau = new FrameDoiMatKhau();
+                this.desktopPanel.add(frameDoiMatKhau);
                 frameDoiMatKhau.show();
-            }
-        }
+           }
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnDangKyHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyHocActionPerformed
-        if (frDangKy == null || frDangKy.isClosed()) {
-            FrameDangKy frameDangKy = new FrameDangKy();
-
-            if (StoreSave.isExsting(frameDangKy)) {
-                StoreSave.InitFrameInternal(frameDangKy);
-            }
-        }
+         if(frDangKy == null || frDangKy.isClosed())
+         {
+            InitFrameInternal(new FrameDangKy());
+         }
     }//GEN-LAST:event_btnDangKyHocActionPerformed
 
-    private void btnHoaDonHocPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonHocPhiActionPerformed
-        if (frHoaDonHocPhi == null || frHoaDonHocPhi.isClosed()) {
-            FrameHoaDonHocPhi frameHoaDonHocPhi = new FrameHoaDonHocPhi();
-
-            if (StoreSave.isExsting(frameHoaDonHocPhi)) {
-                StoreSave.InitFrameInternal(frameHoaDonHocPhi);
-            }
-        }
-
-    }//GEN-LAST:event_btnHoaDonHocPhiActionPerformed
-
     private void btnThoiKhoaBieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoiKhoaBieuActionPerformed
-
+        
     }//GEN-LAST:event_btnThoiKhoaBieuActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        if ((frDangNhap == null || frDangNhap.isClosed()) && StoreSave.accountNameSave == null) {
-            FrameDangNhap frDangNhap = new FrameDangNhap();
-
-            if (StoreSave.isExsting(frDangNhap)) {
-                StoreSave.desktop.add(frDangNhap);
-                frDangNhap.show();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Đăng xuất trước khi đăng nhập lại!");
-        }
+       if(frDangNhap == null || frDangNhap.isClosed())
+       {
+        frDangNhap = new FrameDangNhap();
+        this.desktopPanel.add(frDangNhap);
+        frDangNhap.show();
+       }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnQuyDinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuyDinhActionPerformed
-        if (frQuyDinh == null || frQuyDinh.isClosed()) {
-            FrameQuyDinh frQuyDinh = new FrameQuyDinh();
-
-           if (StoreSave.isExsting(frQuyDinh)) {
-                StoreSave.desktop.add(frQuyDinh);
-                frQuyDinh.setLocation(600, 200);
-                frQuyDinh.show();
-            }
-        }
+        if(frQuyDinh == null || frQuyDinh.isClosed())
+       {
+        frQuyDinh = new FrameQuyDinh();
+        this.desktopPanel.add(frQuyDinh);
+        frQuyDinh.show();
+       }
     }//GEN-LAST:event_btnQuyDinhActionPerformed
 
     private void btnDSHocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSHocVienActionPerformed
-        if ((frameDSHocVien == null || frameDSHocVien.isClosed())) {
-            FrameDSHocVien temp = new FrameDSHocVien();
-            StoreSave.frameDSHocVien = temp;
-
-            if (StoreSave.isExsting(temp)) {
-                StoreSave.InitFrameInternal(temp);
-            }
-        }
+         if(frameDSHocVien == null || frameDSHocVien.isClosed())
+         {
+            InitFrameInternal(new FrameDSHocVien());
+         } 
     }//GEN-LAST:event_btnDSHocVienActionPerformed
 
     private void btnDSGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSGiangVienActionPerformed
-        if (frameNhanVien == null || frameNhanVien.isClosed()) {
-            FrameNhanVien frameNhanVien = new FrameNhanVien();
-
-            if (StoreSave.isExsting(frameNhanVien)) {
-                StoreSave.InitFrameInternal(frameNhanVien);
-            }
-        }
+         if(frameNhanVien == null || frameNhanVien.isClosed())
+         {
+            InitFrameInternal(new FrameNhanVien());
+         } 
     }//GEN-LAST:event_btnDSGiangVienActionPerformed
 
     private void btnBCNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCNoActionPerformed
-        if (frameBaoCaoNo == null || frameBaoCaoNo.isClosed()) {
-            FrameBaoCaoNo frameBaoCaoNo = new FrameBaoCaoNo();
-
-            if (StoreSave.isExsting(frameBaoCaoNo)) {
-                StoreSave.InitFrameInternal(frameBaoCaoNo);
-            }
-        }
+         if(frameBaoCaoNo == null || frameBaoCaoNo.isClosed())
+         {
+            InitFrameInternal(new FrameBaoCaoNo());
+         } 
     }//GEN-LAST:event_btnBCNoActionPerformed
 
     private void btnBCDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCDangKyActionPerformed
-        if (frameBaoCaoDangKy == null || frameBaoCaoDangKy.isClosed()) {
-            FrameBaoCaoDangKy frameBaoCaoDangKy = new FrameBaoCaoDangKy();
-
-            if (StoreSave.isExsting(frameBaoCaoDangKy)) {
-                StoreSave.InitFrameInternal(frameBaoCaoDangKy);
-            }
-        }
+        if(frameBaoCaoDangKy == null || frameBaoCaoDangKy.isClosed())
+         {
+            InitFrameInternal(new FrameBaoCaoDangKy());
+         } 
     }//GEN-LAST:event_btnBCDangKyActionPerformed
 
     private void btnBCHocVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBCHocVuActionPerformed
-        if (frameBaoCaoHocVu == null || frameBaoCaoHocVu.isClosed()) {
-            FrameBaoCaoHocVu frameBaoCaoHocVu = new FrameBaoCaoHocVu();
-
-            if (StoreSave.isExsting(frameBaoCaoHocVu)) {
-                StoreSave.InitFrameInternal(frameBaoCaoHocVu);
-            }
-        }
+         if(frameBaoCaoHocVu == null || frameBaoCaoHocVu.isClosed())
+         {
+           InitFrameInternal(new FrameBaoCaoHocVu());
+         } 
     }//GEN-LAST:event_btnBCHocVuActionPerformed
 
     private void btnBangDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBangDiemActionPerformed
-        if ((frameBangDiem == null || frameBangDiem.isClosed())) {
-            FrameBangDiem frameBangDiem = new FrameBangDiem();
-
-            if (StoreSave.isExsting(frameBangDiem)) {
-                StoreSave.InitFrameInternal(frameBangDiem);
-            }
-        }
+         if(frameBangDiem == null || frameBangDiem.isClosed())
+         {
+           InitFrameInternal(new FrameBangDiem());
+         } 
     }//GEN-LAST:event_btnBangDiemActionPerformed
 
     private void btnLopHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopHocActionPerformed
-        if (frameLopHoc == null || frameLopHoc.isClosed()) {
-            FrameLopHoc frameLopHoc = new FrameLopHoc();
-
-            if (StoreSave.isExsting(frameLopHoc)) {
-                StoreSave.InitFrameInternal(frameLopHoc);
-            }
-        }
+        if(frameLopHoc == null || frameLopHoc.isClosed())
+         {
+           InitFrameInternal(new FrameLopHoc());
+         } 
     }//GEN-LAST:event_btnLopHocActionPerformed
 
     private void btnXepLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXepLopActionPerformed
-        if (frameXepLop == null || frameXepLop.isClosed()) {
-            FrameXepLop frameXepLop = new FrameXepLop();
-
-            if (StoreSave.isExsting(frameXepLop)) {
-                StoreSave.InitFrameInternal(frameXepLop);
-            }
-        }
+         if(frameXepLop == null || frameXepLop.isClosed())
+         {
+           InitFrameInternal(new FrameXepLop());
+         } 
     }//GEN-LAST:event_btnXepLopActionPerformed
 
-    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-        ChangeNameUser("User Guest");
-        //reset User
-        StoreSave.accountNameSave = null;
-        StoreSave.machucvu = null;
-        StoreSave.manhanvien = null;
-
-        KiemTraPhanQuyen();
-        
-        //đóng tất cr các frame
-        JInternalFrame[] arr = desktopPanel.getAllFrames();
-        
-        for(int i = 0;i < arr.length; i++){
-            arr[i].dispose();
-        }
-       desktopPanel.removeAll();
-    }//GEN-LAST:event_btnDangXuatActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        KiemTraPhanQuyen();
-       // this.btnDangNhapActionPerformed(null);
-    }//GEN-LAST:event_formWindowActivated
-
-    private void btnQuanTriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanTriActionPerformed
-
-        if (frameQuanTri == null || frameQuanTri.isClosed()) {
-            FrameQuanTri frameQuanTri = new FrameQuanTri();
-
-            if (StoreSave.isExsting(frameQuanTri)) {
-                StoreSave.desktop.add(frameQuanTri);
-                frameQuanTri.setLocation(300, 200);
-                frameQuanTri.show();
-            }
-        }
-    }//GEN-LAST:event_btnQuanTriActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.btnDangNhapActionPerformed(null);
-    }//GEN-LAST:event_formWindowOpened
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Frame frame = (Frame)evt.getSource();
-        
-        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn thoát ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
-        if(result == JOptionPane.OK_OPTION){
-            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        }
-        else{
-             this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        }
-        
-        frame.setExtendedState(EXIT_ON_CLOSE);
-    }//GEN-LAST:event_formWindowClosing
-
-    private void btnLichThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichThiActionPerformed
+    private void btnHoaDonHocPhi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonHocPhi1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLichThiActionPerformed
+    }//GEN-LAST:event_btnHoaDonHocPhi1ActionPerformed
 
-    private void btnKyThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKyThiActionPerformed
-     
-        if (frameKyThi == null || frameKyThi.isClosed()) {
-            FrameKyThi frameKyThi = new FrameKyThi();
-
-            if (StoreSave.isExsting(frameKyThi)) {
-                StoreSave.desktop.add(frameKyThi);
-                frameKyThi.setLocation(300, 60);
-                frameKyThi.show();
-            }
-        }      
-    }//GEN-LAST:event_btnKyThiActionPerformed
-
-    //thay đổi tên user
-    public void ChangeNameUser(String name) {
-        this.lbluser.setText(name);
-        this.lbluser1.setText(name);
-        this.lbluser2.setText(name);
-        this.lblUser4.setText(name);
-    }
-
-    public void KiemTraPhanQuyen() {
-        
-      //  return;
-        //kiểm tra phần quyền
-        if (StoreSave.manhanvien == null) {
-            this.TabTrangChinh.setEnabledAt(1, false);
-            this.TabTrangChinh.setEnabledAt(2, false);
-            this.TabTrangChinh.setEnabledAt(3, false);
-             this.btnQuyDinh.setEnabled(false);
-             this.btnQuanTri.setEnabled(false);
-             this.btnDoiMatKhau.setEnabled(false);
-            return;
+    private void btnKhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaHocActionPerformed
+        // TODO add your handling code here:
+        if(frameKhoaHoc == null || frameKhoaHoc.isClosed())
+        {
+            InitFrameInternal(new FrameKhoaHoc());
         }
+    }//GEN-LAST:event_btnKhoaHocActionPerformed
 
-        //lấy danh sách các quyền
-        Vector<PhanQuyenDTO> dsphanquyen = new Vector<PhanQuyenDTO>();
-        try {
-            dsphanquyen = new PhanQuyenController().GetListAuthorization();
-        } catch (Exception ex) {
-            Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+    private void btnTrinhDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrinhDoActionPerformed
+        // TODO add your handling code here:
+        if(frameKhoaHoc == null || frameKhoaHoc.isClosed())
+        {
+            InitFrameInternal(new FrameTrinhDo());
         }
-
-        String value = "";
-        for (int i = 0; i < StoreSave.phanquyen.getQuyen().size(); i++) {
-            //lấy mã quyền
-            for (int j = 0; j < dsphanquyen.size(); j++) {
-                if (dsphanquyen.get(j).getTenQuyen().equals(StoreSave.phanquyen.getQuyen().get(i))) {
-                    value = dsphanquyen.get(j).getMaQuyen();
-                }
-            }
-            switch (value) {
-                case "1":
-                    this.TabTrangChinh.setEnabledAt(1, true);
-                    this.TabTrangChinh.setEnabledAt(2, true);
-                    this.TabTrangChinh.setEnabledAt(3, true);
-                    this.btnQuyDinh.setEnabled(true);
-                    this.btnQuanTri.setEnabled(true);                   
-                    break;
-                case "2":
-                    this.TabTrangChinh.setEnabledAt(1, true);
-                    break;
-                case "3":
-                    this.TabTrangChinh.setEnabledAt(2, true);
-                    break;
-                case "4":
-                    this.TabTrangChinh.setEnabledAt(3, true);
-                    break;
-            }
-            
-            this.btnDoiMatKhau.setEnabled(true);
-            if ("1".equals(value)) // quản lý chỉ cần kiểm tra 1 lần
-            {
-                return;
-            }
-        }
-    }
+    }//GEN-LAST:event_btnTrinhDoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -816,30 +585,41 @@ public class FrameMain extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 FrameMain frMain = new FrameMain();
-                StoreSave.frameMain = frMain;
-
                 frMain.setVisible(true);
                 frMain.setExtendedState(Frame.MAXIMIZED_BOTH);
+               
             }
         });
     }
-
-    private FrameKyThi frameKyThi;
-    private FrameDangNhap frDangNhap;
-    private FrameDoiMatKhau frameDoiMatKhau;
-    private FrameQuyDinh frQuyDinh;
-    private FrameDangKy frDangKy;
-    private FrameHoaDonHocPhi frHoaDonHocPhi;
-    private FrameDSHocVien frameDSHocVien;
-    private FrameNhanVien frameNhanVien;
-    private FrameXepLop frameXepLop;
-    private FrameBaoCaoNo frameBaoCaoNo;
-    private FrameBaoCaoDangKy frameBaoCaoDangKy;
-    private FrameBaoCaoHocVu frameBaoCaoHocVu;
-    private FrameBangDiem frameBangDiem;
-    private FrameLopHoc frameLopHoc;
-    private FrameQuanTri frameQuanTri;
-
+    
+    //Khởi Tạo các frameInternal
+    private void InitFrameInternal(JInternalFrame jInternalFrame)
+    {         
+          this.desktopPanel.add(jInternalFrame);
+              try {
+                     jInternalFrame.setMaximum(true);
+                 } catch (PropertyVetoException ex) {
+                     Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+               jInternalFrame.show();              
+    }
+    
+    
+    private  FrameDangNhap frDangNhap;
+    private  FrameDoiMatKhau frameDoiMatKhau;
+    private  FrameQuyDinh frQuyDinh;
+    private  FrameDangKy frDangKy;
+    private  FrameHoaDonHocPhi frHoaDonHocPhi;
+    private  FrameDSHocVien frameDSHocVien;
+    private  FrameNhanVien frameNhanVien;
+    private  FrameXepLop frameXepLop;
+    private  FrameBaoCaoNo frameBaoCaoNo;
+    private  FrameBaoCaoDangKy frameBaoCaoDangKy;
+    private  FrameBaoCaoHocVu frameBaoCaoHocVu;
+    private  FrameBangDiem frameBangDiem;
+    private  FrameLopHoc  frameLopHoc;
+    private  FrameKhoaHoc frameKhoaHoc;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabTrangChinh;
     private javax.swing.JButton btnBCDangKy;
@@ -852,16 +632,16 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnDoiMatKhau;
-    private javax.swing.JButton btnHoaDonHocPhi;
+    private javax.swing.JButton btnHoaDonHocPhi1;
     private javax.swing.JButton btnHuongDan;
-    private javax.swing.JButton btnKyThi;
+    private javax.swing.JButton btnKhoaHoc;
     private javax.swing.JButton btnLichHoc;
     private javax.swing.JButton btnLichThi;
     private javax.swing.JButton btnLopHoc;
-    private javax.swing.JButton btnQuanTri;
     private javax.swing.JButton btnQuyDinh;
     private javax.swing.JButton btnThoiKhoaBieu;
     private javax.swing.JButton btnThongTin;
+    private javax.swing.JButton btnTrinhDo;
     private javax.swing.JButton btnXepLop;
     private javax.swing.JDesktopPane desktopPanel;
     private javax.swing.JButton jButton1;
@@ -870,9 +650,5 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblImageBackground;
-    private javax.swing.JLabel lblUser4;
-    private javax.swing.JLabel lbluser;
-    private javax.swing.JLabel lbluser1;
-    private javax.swing.JLabel lbluser2;
     // End of variables declaration//GEN-END:variables
 }
