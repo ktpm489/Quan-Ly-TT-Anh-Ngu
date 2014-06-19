@@ -108,7 +108,7 @@
                       <Component id="btnHuongDan" min="-2" pref="152" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnThongTin" min="-2" pref="152" max="-2" attributes="0"/>
-                      <EmptySpace pref="314" max="32767" attributes="0"/>
+                      <EmptySpace pref="316" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -223,21 +223,24 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnDangKyHoc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnLichHoc" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnHoaDonHocPhi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="918" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnChuongTrinhHoc" min="-2" pref="167" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnPhongHoc" min="-2" pref="158" max="-2" attributes="0"/>
+                      <EmptySpace pref="718" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnLichHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnHoaDonHocPhi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDangKyHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnPhongHoc" max="32767" attributes="0"/>
+                          <Component id="btnHoaDonHocPhi" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnDangKyHoc" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnChuongTrinhHoc" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -293,23 +296,27 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHoaDonHocPhiActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnLichHoc">
+            <Component class="javax.swing.JButton" name="btnChuongTrinhHoc">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Resources/table-add-icon.png"/>
+                  <Image iconType="3" name="/Resources/ChiTiet.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="L&#x1ecb;ch H&#x1ecd;c"/>
-                <Property name="toolTipText" type="java.lang.String" value="Danh S&#xe1;ch L&#x1ecb;ch H&#x1ecd;c C&#x1ee7;a C&#xe1;c L&#x1edb;p M&#x1edb;i M&#x1edf;"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[143, 57]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[143, 57]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[143, 57]"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Ch&#x1b0;&#x1a1;ng Tr&#xec;nh H&#x1ecd;c"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChuongTrinhHocActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnPhongHoc">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Resources/Accept1.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Ph&#xf2;ng H&#x1ecd;c"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPhongHocActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -355,7 +362,7 @@
                       <Component id="btnThoiKhoaBieu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnLichThi" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="165" max="32767" attributes="0"/>
+                      <EmptySpace pref="167" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -364,7 +371,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnDSHocVien" pref="62" max="32767" attributes="0"/>
+                          <Component id="btnDSHocVien" pref="59" max="32767" attributes="0"/>
                           <Component id="btnBangDiem" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnDSGiangVien" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnLopHoc" alignment="0" max="32767" attributes="0"/>
@@ -519,7 +526,7 @@
                       <Component id="btnBCDangKy" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnBCHocVu" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="828" max="32767" attributes="0"/>
+                      <EmptySpace pref="834" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -532,7 +539,7 @@
                           <Component id="btnBCDangKy" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnBCHocVu" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -586,11 +593,6 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblImageBackground">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\XUANVINHTD\Desktop\wallpaper.png"/>
-            </Property>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
               <JLayeredPaneConstraints x="0" y="-220" width="1380" height="990" layer="0" position="-1"/>

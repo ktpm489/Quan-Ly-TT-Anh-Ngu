@@ -46,7 +46,8 @@ public class FrameMain extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         btnDangKyHoc = new javax.swing.JButton();
         btnHoaDonHocPhi = new javax.swing.JButton();
-        btnLichHoc = new javax.swing.JButton();
+        btnChuongTrinhHoc = new javax.swing.JButton();
+        btnPhongHoc = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnDSHocVien = new javax.swing.JButton();
         btnLopHoc = new javax.swing.JButton();
@@ -133,7 +134,7 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnHuongDan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,12 +179,21 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
 
-        btnLichHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/table-add-icon.png"))); // NOI18N
-        btnLichHoc.setText("Lịch Học");
-        btnLichHoc.setToolTipText("Danh Sách Lịch Học Của Các Lớp Mới Mở");
-        btnLichHoc.setMaximumSize(new java.awt.Dimension(143, 57));
-        btnLichHoc.setMinimumSize(new java.awt.Dimension(143, 57));
-        btnLichHoc.setPreferredSize(new java.awt.Dimension(143, 57));
+        btnChuongTrinhHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ChiTiet.png"))); // NOI18N
+        btnChuongTrinhHoc.setText("Chương Trình Học");
+        btnChuongTrinhHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChuongTrinhHocActionPerformed(evt);
+            }
+        });
+
+        btnPhongHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Accept1.png"))); // NOI18N
+        btnPhongHoc.setText("Phòng Học");
+        btnPhongHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhongHocActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -193,19 +203,23 @@ public class FrameMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnDangKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnHoaDonHocPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(918, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnChuongTrinhHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPhongHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(718, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLichHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHoaDonHocPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDangKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPhongHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnHoaDonHocPhi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDangKyHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnChuongTrinhHoc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -305,14 +319,14 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnThoiKhoaBieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLichThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDSHocVien, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                    .addComponent(btnDSHocVien, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                     .addComponent(btnBangDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDSGiangVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLopHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -364,7 +378,7 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnBCDangKy)
                 .addGap(18, 18, 18)
                 .addComponent(btnBCHocVu)
-                .addContainerGap(828, Short.MAX_VALUE))
+                .addContainerGap(834, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,14 +388,12 @@ public class FrameMain extends javax.swing.JFrame {
                     .addComponent(btnBCNo)
                     .addComponent(btnBCDangKy)
                     .addComponent(btnBCHocVu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         TabTrangChinh.addTab("Quản Lý Báo Cáo", jPanel1);
 
         StoreSave.desktop = desktopPanel; // Lưu lại destopanel để sử dụng toàn cục chương trình.
-
-        lblImageBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\XUANVINHTD\\Desktop\\wallpaper.png")); // NOI18N
         lblImageBackground.setBounds(0, -220, 1380, 990);
         desktopPanel.add(lblImageBackground, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -512,6 +524,26 @@ public class FrameMain extends javax.swing.JFrame {
          } 
     }//GEN-LAST:event_btnXepLopActionPerformed
 
+    private void btnChuongTrinhHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChuongTrinhHocActionPerformed
+        
+//         if(frameChuongTrinhHoc == null || frameChuongTrinhHoc.isClosed())
+//         {
+//           InitFrameInternal(new FrameChuongTrinhHoc());
+//         } 
+          if(frameCTrinhHoc == null || frameCTrinhHoc.isClosed())
+         {
+           InitFrameInternal(new FrameChuongTrinhHoc());
+         } 
+    }//GEN-LAST:event_btnChuongTrinhHocActionPerformed
+
+    private void btnPhongHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhongHocActionPerformed
+        
+        if(framePHoc == null || framePHoc.isClosed())
+         {
+           InitFrameInternal(new FramePhongHoc());
+         } 
+    }//GEN-LAST:event_btnPhongHocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -564,6 +596,8 @@ public class FrameMain extends javax.swing.JFrame {
     
     
     private  FrameDangNhap frDangNhap;
+    private  FrameChuongTrinhHoc frameCTrinhHoc;
+    private  FramePhongHoc framePHoc;
     private  FrameDoiMatKhau frameDoiMatKhau;
     private  FrameQuyDinh frQuyDinh;
     private  FrameDangKy frDangKy;
@@ -583,6 +617,7 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnBCHocVu;
     private javax.swing.JButton btnBCNo;
     private javax.swing.JButton btnBangDiem;
+    private javax.swing.JButton btnChuongTrinhHoc;
     private javax.swing.JButton btnDSGiangVien;
     private javax.swing.JButton btnDSHocVien;
     private javax.swing.JButton btnDangKyHoc;
@@ -591,9 +626,9 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnDoiMatKhau;
     private javax.swing.JButton btnHoaDonHocPhi;
     private javax.swing.JButton btnHuongDan;
-    private javax.swing.JButton btnLichHoc;
     private javax.swing.JButton btnLichThi;
     private javax.swing.JButton btnLopHoc;
+    private javax.swing.JButton btnPhongHoc;
     private javax.swing.JButton btnQuyDinh;
     private javax.swing.JButton btnThoiKhoaBieu;
     private javax.swing.JButton btnThongTin;
