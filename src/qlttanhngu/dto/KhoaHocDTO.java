@@ -6,40 +6,65 @@
 
 package qlttanhngu.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import qlttanhngu.connection.DataBase;
 
 /**
  *
- * @author XuanVinh
+ * @author EvilZ
  */
 public class KhoaHocDTO {
-    private String makhoahoc;
-    private String tenkhoahoc;
-    private Date ngaykhaigiang;
-    
-    public String getMaKhoaHoc(){
-        return this.makhoahoc;
+    private String maKhoaHoc;
+    private String tenKhoaHoc;
+    private Date ngayKhaiGiang;
+
+    /**
+     * @return the maKhoaHoc
+     */
+    public String getMaKhoaHoc() {
+        return maKhoaHoc;
+    }
+
+    /**
+     * @param maKhoaHoc the maKhoaHoc to set
+     */
+    public void setMaKhoaHoc(String maKhoaHoc) {
+        this.maKhoaHoc = maKhoaHoc;
+    }
+
+    /**
+     * @return the tenKhoaHoc
+     */
+    public String getTenKhoaHoc() {
+        return tenKhoaHoc;
+    }
+
+    /**
+     * @param tenKhoaHoc the tenKhoaHoc to set
+     */
+    public void setTenKhoaHoc(String tenKhoaHoc) {
+        this.tenKhoaHoc = tenKhoaHoc;
+    }
+
+    /**
+     * @return the ngayKhaiGiang
+     */
+    public String getNgayKhaiGiang1() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        return sdf.format(this.ngayKhaiGiang);
     }
     
-    public String getTenLop(){
-        return this.tenkhoahoc;
+    public java.sql.Date getNgayKhaiGiang(){
+        java.sql.Date sqlDate = new java.sql.Date(this.ngayKhaiGiang.getTime());
+        return sqlDate;
+    }
+
+    /**
+     * @param ngayKhaiGiang the ngayKhaiGiang to set
+     */
+    public void setNgayKhaiGiang(Date ngayKhaiGiang) {
+        this.ngayKhaiGiang = ngayKhaiGiang;
     }
     
-    public Date getNgayKhaiGiang(){
-        return this.ngaykhaigiang;
-    }
-    
-    public void setMaKhoaHoc(String makhoahoc){
-        this.makhoahoc = makhoahoc;
-    }
-    
-    public void setTenKhoaHoc(String tenKhoaHoc){
-        this.tenkhoahoc = tenKhoaHoc;
-    }
-    
-    public void setNgayKhaiGian(Date ngay){
-        this.ngaykhaigiang = ngay;
-    }
     
 }
