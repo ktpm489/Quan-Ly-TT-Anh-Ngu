@@ -759,20 +759,20 @@ public class FrameMain extends javax.swing.JFrame {
                 }
             }
             switch (value) {
-                case "1":
+                case "CV00000001":
                     this.TabTrangChinh.setEnabledAt(1, true);
                     this.TabTrangChinh.setEnabledAt(2, true);
                     this.TabTrangChinh.setEnabledAt(3, true);
                     this.btnQuyDinh.setEnabled(true);
                     this.btnQuanTri.setEnabled(true);                   
                     break;
-                case "2":
+                case "CV00000002":
                     this.TabTrangChinh.setEnabledAt(1, true);
                     break;
-                case "3":
+                case "CV00000003":
                     this.TabTrangChinh.setEnabledAt(2, true);
                     break;
-                case "4":
+                case "CV00000004":
                     this.TabTrangChinh.setEnabledAt(3, true);
                     break;
             }

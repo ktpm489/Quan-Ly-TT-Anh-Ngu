@@ -254,7 +254,14 @@ public class FrameKyThi extends javax.swing.JInternalFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
          Boolean result = false;
-        
+        //kiểm tra ngày thi
+         Date date = new Date();
+         if(date.compareTo(chooerDateNgayThi.getDate()) > 0){
+             JOptionPane.showMessageDialog(this, "Ngày không hợp lệ.Vui lòng chọn lại ngày ?");
+            return;
+         }
+         
+         
         if ("".equals(txtTenKyThi.getText()) || chooerDateNgayThi.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Thêm lỗi, hãy kiểm tra lại giá trị nhập vào!");
             return;
@@ -297,7 +304,12 @@ public class FrameKyThi extends javax.swing.JInternalFrame {
 
     private void btnCapnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhatActionPerformed
         Boolean result = false;
-        
+        //kiểm tra ngày thi
+        Date date = new Date();
+        if(date.compareTo(datex) > 0){
+             JOptionPane.showMessageDialog(this, "Lỗi, ky thi này đã được thi rồi không được sửa duoc!!");
+            return;
+        }
         if ("".equals(txtTenKyThi.getText()) || chooerDateNgayThi.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Cập nhật lỗi, hãy kiểm tra lại giá trị nhập vào!");
             return;
@@ -358,7 +370,7 @@ public class FrameKyThi extends javax.swing.JInternalFrame {
         txtMaKyThi.setText(jtable.getValueAt(row, 0).toString());
         txtTenKyThi.setText(jtable.getValueAt(row, 1).toString());
         comboBoxTenPhong.setSelectedItem(jtable.getValueAt(row, 2));
-
+        
         //chuyển đổi kiểu String thành kiểu Date
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
         String dateString = jtable.getValueAt(row, 3).toString();
@@ -370,6 +382,7 @@ public class FrameKyThi extends javax.swing.JInternalFrame {
 
         }
         chooerDateNgayThi.setDate(date);
+        datex = date;
     }//GEN-LAST:event_tableKyThiMouseClicked
     //tạo mã tự động 
     public static String CreateMa() throws Exception {
@@ -403,6 +416,9 @@ public class FrameKyThi extends javax.swing.JInternalFrame {
         }
         return null;
     }
+    
+    //lưu lại ngày để kiểm tra
+    private Date datex = new Date();
     private HashMap<String, String> hashMapPhong;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapnhat;

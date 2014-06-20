@@ -96,7 +96,7 @@ public class BangDiemDAO extends DataBase {
         ResultSet result = null;
 
         try {
-            callableStatement = getConnection().prepareCall("{LayDanhSachTenLopHoc(?)}");
+            callableStatement = getConnection().prepareCall("{call LayDanhSachTenLopHoc(?)}");
             callableStatement.setString(1, makhoa);
             result = this.executeQuery(getConnection(), callableStatement);
 

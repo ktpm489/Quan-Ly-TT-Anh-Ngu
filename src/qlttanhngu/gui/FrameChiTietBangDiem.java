@@ -306,6 +306,9 @@ public class FrameChiTietBangDiem extends javax.swing.JInternalFrame {
             JTable table = (JTable) evt.getSource();
             int row = table.getSelectedRow();
 
+            //kiem tra du lieu bang co chua
+            if(table ==null)
+                return;
             comboBoxTenLopHoc.setSelectedItem(table.getValueAt(row, 0));
             txtDiem.setText(table.getValueAt(row, 1).toString());
 

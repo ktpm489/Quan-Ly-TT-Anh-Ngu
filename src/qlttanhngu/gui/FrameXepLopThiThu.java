@@ -419,7 +419,7 @@ public class FrameXepLopThiThu extends javax.swing.JInternalFrame {
                 String tenTrinhdo = (new DanhSachThiController().GetMaTrinhDoByHocVien(tablePhong.getValueAt(0, 0).toString()));
 
                 if (!tenTrinhdo.substring(0, 5).equals(comboBoxDethi.getSelectedItem().toString())) {
-                    JOptionPane.showMessageDialog(this, "Xin lỗi, phòng này chỉ xếp dược cho các học viên thi" + comboBoxDethi.getSelectedItem().toString());
+                    JOptionPane.showMessageDialog(this, "Xin lỗi, phòng này chỉ xếp dược cho các học viên thi " + tenTrinhdo);
                     return;
                 }
             } catch (Exception ex) {

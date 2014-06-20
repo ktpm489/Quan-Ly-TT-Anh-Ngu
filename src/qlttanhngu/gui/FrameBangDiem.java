@@ -391,7 +391,7 @@ public class FrameBangDiem extends javax.swing.JInternalFrame {
         String maKhoaHoc = getKey(comboBoxKhoaHoc.getSelectedItem().toString());
 
         try {
-            comboBoxLop.setModel(new BangDiemController().GetListLopOfHocVien(maKhoaHoc));
+            comboBoxLop.setModel(new BangDiemController().GetListTenLopHocHocVien(maKhoaHoc));
         } catch (Exception ex) {
             Logger.getLogger(FrameBangDiem.class.getName()).log(Level.SEVERE, null, ex);
         }
