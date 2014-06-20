@@ -10,6 +10,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import qlttanhngu.dao.HocVienDAO;
+import qlttanhngu.dto.DanhSachThiDTO;
 import qlttanhngu.dto.HocVienDTO;
 
 /**
@@ -34,7 +35,18 @@ public class HocVienBO {
         }
         return null;
     }
-
+    
+    public List<DanhSachThiDTO> GetListHocVienTheoDiemYeuCau(Double ketQuaThi) throws Exception {
+        try {
+            return hocviendao.GetListHocVienTheoDiemYeuCau(ketQuaThi);
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            hocviendao.closeConnection();
+        }
+        return null;
+    }
+    
     public boolean UpdateHocVien(HocVienDTO hocviendto) throws Exception {
         try {
             if (hocviendao.UpdateHocVien(hocviendto)) {

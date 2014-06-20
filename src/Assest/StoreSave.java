@@ -10,10 +10,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import qlttanhngu.dto.DanhSachThiDTO;
 import qlttanhngu.dto.HocVienDTO;
+import qlttanhngu.dto.LopHocDTO;
+import qlttanhngu.dto.NhanVienDTO;
 import qlttanhngu.dto.PhanQuyenDTO;
+import qlttanhngu.gui.FrameCaVaNgay;
 import qlttanhngu.gui.FrameDSHocVien;
+import qlttanhngu.gui.FrameLopHoc;
 import qlttanhngu.gui.FrameMain;
+import qlttanhngu.gui.FrameNhanVien;
+import qlttanhngu.gui.FrameXepLop;
 
 /**
  *
@@ -26,6 +33,7 @@ public class StoreSave {
     public static String manhanvien;
     public static String machucvu;
     public static PhanQuyenDTO phanquyen;
+    
     
     public int number;
     
@@ -43,9 +51,21 @@ public class StoreSave {
     //Lưu lại một số giá trị của học viên để frame khác sử dụng
     public static HocVienDTO hocvien;
     
+    public static LopHocDTO lophoc;
+    
+    public static DanhSachThiDTO danhsachthi;
+    
+    public static FrameXepLop frameXepLop;
+    
+    public static NhanVienDTO nhanvien;
     //sử dụng để update lại frame danh sách học viên
     public static FrameDSHocVien frameDSHocVien;
     
+    public static FrameLopHoc frameLopHoc;
+    
+    public static FrameCaVaNgay frameCaVaNgay;
+    
+    public static FrameNhanVien frameNhanVien;
     //sử dụng để update frame main
     public static FrameMain frameMain;
     

@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import qlttanhngu.bo.HocVienBO;
+import qlttanhngu.dto.DanhSachThiDTO;
 import qlttanhngu.dto.HocVienDTO;
 
 /**
@@ -50,6 +51,25 @@ public class HocVienController {
             rowData.add(tempHocVien.get(i).getEmail());
             rowData.add(tempHocVien.get(i).getSoLuongLienLac());
             rowData.add(tempHocVien.get(i).getTinhTrangHoc());
+            
+            tableDefault.addRow(rowData);
+        }      
+        return tableDefault;     
+    }
+    
+    public DefaultTableModel GetListListHocVienTheoDiemYeuCau(Double ketQuaThi) throws Exception {
+        DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
+    new String [] {
+        "Mã học viên", "Họ tên", "Kết quả thi"
+    });       
+        List<DanhSachThiDTO> tempHocVien = hocvienbo.GetListHocVienTheoDiemYeuCau(ketQuaThi);
+        Vector<Object> rowData ;
+        
+        for(int i = 0; i < tempHocVien.size(); i++){
+            rowData = new Vector<>();
+            rowData.add(tempHocVien.get(i).getMahocvien());
+            rowData.add(tempHocVien.get(i).getTenhocvien());
+            rowData.add(tempHocVien.get(i).getKetquathixeplop());
             
             tableDefault.addRow(rowData);
         }      

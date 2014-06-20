@@ -49,7 +49,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
         btnCapNhat = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnLamMoi = new javax.swing.JButton();
 
         setTitle("Danh Sách Học Viên");
         setName("DSHV"); // NOI18N
@@ -142,11 +142,11 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Button-Refresh-icon.png"))); // NOI18N
-        jButton1.setText("Làm mới");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Button-Refresh-icon.png"))); // NOI18N
+        btnLamMoi.setText("Làm mới");
+        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLamMoiActionPerformed(evt);
             }
         });
 
@@ -158,7 +158,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(btnCapNhat)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnLamMoi)
                 .addGap(18, 18, 18)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -173,7 +173,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
                     .addComponent(btnCapNhat)
                     .addComponent(btnDong)
                     .addComponent(btnXoa)
-                    .addComponent(jButton1))
+                    .addComponent(btnLamMoi))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -198,7 +198,7 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
                     .addComponent(panelTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelChuCNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -285,12 +285,12 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnTraCuuActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         this.refreshTable();
         // làm mới 
         StoreSave.hocvien = null;
         txtTuKhoa.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         //kiểm tra xem thử có chọn học vien muốn xóa chưa.
@@ -333,10 +333,10 @@ public class FrameDSHocVien extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnDong;
+    private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnTraCuu;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox comboxTraCuuTheo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTraCuuTheo;
     private javax.swing.JPanel panelChuCNang;
