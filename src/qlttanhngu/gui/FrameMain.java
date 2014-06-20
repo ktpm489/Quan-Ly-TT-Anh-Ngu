@@ -49,6 +49,8 @@ public class FrameMain extends javax.swing.JFrame {
         btnLichHoc = new javax.swing.JButton();
         btnHoaDonHocPhi1 = new javax.swing.JButton();
         btnTrinhDo = new javax.swing.JButton();
+        btnDeThi = new javax.swing.JButton();
+        btnLoaiDeThi = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnDSHocVien = new javax.swing.JButton();
         btnLopHoc = new javax.swing.JButton();
@@ -170,7 +172,7 @@ public class FrameMain extends javax.swing.JFrame {
 
         btnKhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/courses.png"))); // NOI18N
         btnKhoaHoc.setText("Khóa học");
-        btnKhoaHoc.setToolTipText(" Tạo Hóa Đơn Học Phí Cho Mỗi Học Viên");
+        btnKhoaHoc.setToolTipText("Tạo khóa học mới");
         btnKhoaHoc.setMaximumSize(new java.awt.Dimension(143, 57));
         btnKhoaHoc.setMinimumSize(new java.awt.Dimension(143, 57));
         btnKhoaHoc.setPreferredSize(new java.awt.Dimension(143, 57));
@@ -201,13 +203,37 @@ public class FrameMain extends javax.swing.JFrame {
 
         btnTrinhDo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/level.png"))); // NOI18N
         btnTrinhDo.setText("Trình độ");
-        btnTrinhDo.setToolTipText(" Tạo Hóa Đơn Học Phí Cho Mỗi Học Viên");
+        btnTrinhDo.setToolTipText("Tạo và quản lý trình độ");
         btnTrinhDo.setMaximumSize(new java.awt.Dimension(143, 57));
         btnTrinhDo.setMinimumSize(new java.awt.Dimension(143, 57));
         btnTrinhDo.setPreferredSize(new java.awt.Dimension(143, 57));
         btnTrinhDo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTrinhDoActionPerformed(evt);
+            }
+        });
+
+        btnDeThi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/list.png"))); // NOI18N
+        btnDeThi.setText("Đề thi");
+        btnDeThi.setToolTipText("Tạo đề thi");
+        btnDeThi.setMaximumSize(new java.awt.Dimension(143, 57));
+        btnDeThi.setMinimumSize(new java.awt.Dimension(143, 57));
+        btnDeThi.setPreferredSize(new java.awt.Dimension(143, 57));
+        btnDeThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeThiActionPerformed(evt);
+            }
+        });
+
+        btnLoaiDeThi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/category.png"))); // NOI18N
+        btnLoaiDeThi.setText("Loại đề thi");
+        btnLoaiDeThi.setToolTipText("Tạo loại đề thi");
+        btnLoaiDeThi.setMaximumSize(new java.awt.Dimension(143, 57));
+        btnLoaiDeThi.setMinimumSize(new java.awt.Dimension(143, 57));
+        btnLoaiDeThi.setPreferredSize(new java.awt.Dimension(143, 57));
+        btnLoaiDeThi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoaiDeThiActionPerformed(evt);
             }
         });
 
@@ -226,7 +252,11 @@ public class FrameMain extends javax.swing.JFrame {
                 .addComponent(btnKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(btnTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addGap(67, 67, 67)
+                .addComponent(btnLoaiDeThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btnDeThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +267,9 @@ public class FrameMain extends javax.swing.JFrame {
                     .addComponent(btnKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDangKyHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHoaDonHocPhi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoaiDeThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -554,6 +586,22 @@ public class FrameMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTrinhDoActionPerformed
 
+    private void btnDeThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeThiActionPerformed
+        // TODO add your handling code here:
+        if(frameDeThi == null || frameDeThi.isClosed())
+        {
+            InitFrameInternal(new FrameDeThi());
+        }
+    }//GEN-LAST:event_btnDeThiActionPerformed
+
+    private void btnLoaiDeThiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoaiDeThiActionPerformed
+        // TODO add your handling code here:
+        if(frameLoaiDeThi == null || frameLoaiDeThi.isClosed())
+        {
+            InitFrameInternal(new FrameLoaiDeThi());
+        }
+    }//GEN-LAST:event_btnLoaiDeThiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -619,6 +667,8 @@ public class FrameMain extends javax.swing.JFrame {
     private  FrameBangDiem frameBangDiem;
     private  FrameLopHoc  frameLopHoc;
     private  FrameKhoaHoc frameKhoaHoc;
+    private  FrameDeThi frameDeThi;
+    private  FrameLoaiDeThi frameLoaiDeThi;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabTrangChinh;
@@ -631,12 +681,14 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton btnDangKyHoc;
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnDangXuat;
+    private javax.swing.JButton btnDeThi;
     private javax.swing.JButton btnDoiMatKhau;
     private javax.swing.JButton btnHoaDonHocPhi1;
     private javax.swing.JButton btnHuongDan;
     private javax.swing.JButton btnKhoaHoc;
     private javax.swing.JButton btnLichHoc;
     private javax.swing.JButton btnLichThi;
+    private javax.swing.JButton btnLoaiDeThi;
     private javax.swing.JButton btnLopHoc;
     private javax.swing.JButton btnQuyDinh;
     private javax.swing.JButton btnThoiKhoaBieu;
