@@ -15,6 +15,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import qlttanhngu.connection.DataBase;
+import qlttanhngu.dto.DanhSachThiDTO;
 import qlttanhngu.dto.HocVienDTO;
 
 /**
@@ -163,6 +164,33 @@ public class HocVienDAO extends DataBase{
                 hv.setTinhTrangHoc(resultSet.getBoolean(11));
                 
                 lstHV.add(hv);
+                i++;
+            }    
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            this.closeConnection();
+        }
+        return lstHV;
+    }
+    
+    public List<DanhSachThiDTO> GetListHocVienTheoDiemYeuCau(Double ketQuaThi) throws Exception {
+        List<DanhSachThiDTO> lstHV = new ArrayList<DanhSachThiDTO>();
+        CallableStatement callableStatement = null;
+        //HocVienDTO hv = null;
+        DanhSachThiDTO dst = null;
+        ResultSet resultSet = null;
+        int i = 0;
+        callableStatement = getConnection().prepareCall("{call GetListHocVienTheoDiemYeuCau(?)}");
+        callableStatement.setDouble(1, ketQuaThi);
+        resultSet = this.executeQuery(getConnection(), callableStatement);
+        try {
+            while(resultSet.next()){
+                dst = new DanhSachThiDTO();
+                dst.setMahocvien(resultSet.getString(1));
+                dst.setTenhocvien(resultSet.getString(2));
+                dst.setKetquathixeplop(Double.parseDouble(resultSet.getString(3)));
+                lstHV.add(dst);
                 i++;
             }    
         } catch (SQLException ex) {

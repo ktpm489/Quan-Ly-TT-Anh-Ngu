@@ -25,6 +25,7 @@ import qlttanhngu.dto.PhanQuyenDTO;
  * @author XUANVINHTD
  */
 public class FrameMain extends javax.swing.JFrame {
+    private Object frameCaVaNgay;
 
     /**
      * Creates new form FrameMain
@@ -516,6 +517,7 @@ public class FrameMain extends javax.swing.JFrame {
                 frameDoiMatKhau.show();
             }
         }
+        
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnDangKyHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyHocActionPerformed
@@ -569,12 +571,21 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuyDinhActionPerformed
 
     private void btnDSHocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSHocVienActionPerformed
-        if ((frameDSHocVien == null || frameDSHocVien.isClosed())) {
-            FrameDSHocVien temp = new FrameDSHocVien();
-            StoreSave.frameDSHocVien = temp;
+//        if ((frameDSHocVien == null || frameDSHocVien.isClosed())) {
+//            FrameDSHocVien temp = new FrameDSHocVien();
+//            StoreSave.frameDSHocVien = temp;
+//
+//            if (StoreSave.isExsting(temp)) {
+//                StoreSave.InitFrameInternal(temp);
+//            }
+//        }
+        if (frameCaVaNgay == null) {
+            FrameCaVaNgay frameCaVaNgay = new FrameCaVaNgay();
 
-            if (StoreSave.isExsting(temp)) {
-                StoreSave.InitFrameInternal(temp);
+            if (StoreSave.isExsting(frameCaVaNgay)) {
+                StoreSave.desktop.add(frameCaVaNgay);
+                frameCaVaNgay.setLocation(300, 200);
+                frameCaVaNgay.show();
             }
         }
     }//GEN-LAST:event_btnDSHocVienActionPerformed
@@ -582,7 +593,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void btnDSGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSGiangVienActionPerformed
         if (frameNhanVien == null || frameNhanVien.isClosed()) {
             FrameNhanVien frameNhanVien = new FrameNhanVien();
-
+            StoreSave.frameNhanVien = frameNhanVien;
             if (StoreSave.isExsting(frameNhanVien)) {
                 StoreSave.InitFrameInternal(frameNhanVien);
             }
@@ -632,7 +643,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void btnLopHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLopHocActionPerformed
         if (frameLopHoc == null || frameLopHoc.isClosed()) {
             FrameLopHoc frameLopHoc = new FrameLopHoc();
-
+            StoreSave.frameLopHoc = frameLopHoc;
             if (StoreSave.isExsting(frameLopHoc)) {
                 StoreSave.InitFrameInternal(frameLopHoc);
             }
@@ -642,7 +653,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void btnXepLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXepLopActionPerformed
         if (frameXepLop == null || frameXepLop.isClosed()) {
             FrameXepLop frameXepLop = new FrameXepLop();
-
+            StoreSave.frameXepLop = frameXepLop;
             if (StoreSave.isExsting(frameXepLop)) {
                 StoreSave.InitFrameInternal(frameXepLop);
             }
@@ -683,6 +694,7 @@ public class FrameMain extends javax.swing.JFrame {
                 frameQuanTri.show();
             }
         }
+        
     }//GEN-LAST:event_btnQuanTriActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
