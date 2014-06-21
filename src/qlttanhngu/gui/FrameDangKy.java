@@ -18,7 +18,6 @@ import qlttanhngu.controller.DangKiController;
 import qlttanhngu.controller.PhongHocController;
 import qlttanhngu.dto.DangKiDTO;
 
-
 /**
  *
  * @author XUANVINHTD
@@ -542,7 +541,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         dangki.setTenHocVien(this.txtHoTen.getText());
 
                         //thong tin cho bang dangkithongtin
-
                         dangki.setTenTinhTrangHoc(this.comboxTinhTrangHoc.getSelectedItem().toString());
                         dangki.setTinhTrangHoc();
                         dangki.setTenTrangThai(this.ComBoxTrangThai.getSelectedItem().toString());
@@ -559,10 +557,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
                             //them hoc vien
                             if (dangkicontrol.AddHocVien(dangki)) {
-                                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Đăng kí thành công!");
-                                StoreSave.desktop.add(messageBoxHocVien);
-                                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                                messageBoxHocVien.show();
+                                JOptionPane.showMessageDialog(this, " Đăng ký thành công !");
 
                                 if (new DangKiController().AddThongTinDangKi(dangki)) {
                                     /*
@@ -578,53 +573,31 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                                     }
                                 } else//dang ki that bai
                                 {
-                                    MessageBoxCustom messageBoxHocViens = new MessageBoxCustom("Thêm thông tin đăng kí thất bại!");
-                                    StoreSave.desktop.add(messageBoxHocViens);
-                                    messageBoxHocViens.setBounds(400, 100, 511, 189);
-                                    messageBoxHocViens.show();
+                                    JOptionPane.showMessageDialog(this, "Thêm thông tin đăng kí thất bại!");
 
                                 }
                             } else//dang ki that bai
                             {
-                                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Đăng kí thất bại!");
-                                StoreSave.desktop.add(messageBoxHocVien);
-                                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                                messageBoxHocVien.show();
+                                JOptionPane.showMessageDialog(this, "Đăng kí thất bại!");
                             }
                         } catch (Exception ex) {
                             Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
                         //Email khong hop le
-
-                        MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Email không hợp lệ !");
-                        StoreSave.desktop.add(messageBoxHocVien);
-                        messageBoxHocVien.setBounds(400, 100, 511, 189);
-                        messageBoxHocVien.show();
+                        JOptionPane.showMessageDialog(this, "Email không hợp lệ !");
                     }
                 } else//SDT khong hop le
                 {
-
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Số điện thoại không hợp lệ !");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                    JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ !");
                 }
             } else//CMND khong hop le
             {
-
-                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Số CMND không hợp lệ !");
-                StoreSave.desktop.add(messageBoxHocVien);
-                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                messageBoxHocVien.show();
+                JOptionPane.showMessageDialog(this, "Số CMND không hợp lệ !");
             }
         } else {
             //chua nhap du thong tin
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa nhập đủ thông tin !");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
-
+            JOptionPane.showMessageDialog(this, "Chưa nhập đủ thông tin !");
         }
 
 
@@ -678,8 +651,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex1);
         }
 
-
-
         try {
             ComboxMaCa.setModel(new DangKiController().GetListMaCa());
         } catch (Exception ex1) {
@@ -703,27 +674,18 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                 //Check ma
                 if (this.txtTimTheoMaHocVien.getText().length() > 10) {
                     //Qua do dai cho phep
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Mã Học Viên Không Quá 10 Kí tự !");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                    JOptionPane.showMessageDialog(this, "Mã Học Viên Không Quá 10 Kí tự !");
                 } else {
                     //Tim Kiem
                     try {
                         DangKiController dangkicontrol = new DangKiController();
                         DefaultTableModel table = dangkicontrol.TimKiemHocVienTheoMa(this.txtTimTheoMaHocVien.getText());
                         if (table.getRowCount() < 1) {
-                            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Không Có Học Viên Này!");
-                            StoreSave.desktop.add(messageBoxHocVien);
-                            messageBoxHocVien.setBounds(400, 100, 511, 189);
-                            messageBoxHocVien.show();
+                            JOptionPane.showMessageDialog(this, "Không Có Học Viên Này!");
+
                         } else {
                             this.tableDSHocVienDK.setModel(table);
-
-                            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thành Công!");
-                            StoreSave.desktop.add(messageBoxHocVien);
-                            messageBoxHocVien.setBounds(400, 100, 511, 189);
-                            messageBoxHocVien.show();
+                            JOptionPane.showMessageDialog(this, "Thành Công!");
 
                         }
                     } catch (Exception ex) {
@@ -741,27 +703,18 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         DangKiController dangkicontrol = new DangKiController();
                         DefaultTableModel table = dangkicontrol.TimKiemHocVienTheoCMND(this.txtTimTheoCMND.getText());
                         if (table.getRowCount() < 1) {
-                            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Khong Co Hoc Vien Nay!");
-                            StoreSave.desktop.add(messageBoxHocVien);
-                            messageBoxHocVien.setBounds(400, 100, 511, 189);
-                            messageBoxHocVien.show();
+                            JOptionPane.showMessageDialog(this, "Không có học viên này");
                         } else {
 
                             this.tableDSHocVienDK.setModel(table);
-                            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thanh Cong!");
-                            StoreSave.desktop.add(messageBoxHocVien);
-                            messageBoxHocVien.setBounds(400, 100, 511, 189);
-                            messageBoxHocVien.show();
+                            JOptionPane.showMessageDialog(this, "Thành Công!");
                         }
                     } catch (Exception ex) {
                         Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } //Qua do dai cho phep
                 else {
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Số CMND tối đa 9 chữ số !");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                    JOptionPane.showMessageDialog(this,"Số CMND tối đa 9 chữ số !");                   
                 }
 
             }
@@ -769,10 +722,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
             if ((this.txtTimTheoMaHocVien.getText().contentEquals("") == false) && (this.txtTimTheoCMND.getText().contentEquals("") == false)) {
                 if (this.txtTimTheoMaHocVien.getText().length() > 10) {
                     //Qua do dai cho phep
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Mã Học Viên Không Quá 10 Kí tự !");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                     JOptionPane.showMessageDialog(this,"Mã Học Viên Không Quá 10 Kí tự !");                
                 } else {
 
                     if (checkCMND(this.txtTimTheoCMND.getText())) {
@@ -780,19 +730,11 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                             DangKiController dangkicontrol = new DangKiController();
                             DefaultTableModel table = dangkicontrol.TimKiemHocVien(this.txtTimTheoMaHocVien.getText(), this.txtTimTheoCMND.getText());
                             if (table.getRowCount() < 1) {
-                                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Khong Co Hoc Vien Nay!");
-                                StoreSave.desktop.add(messageBoxHocVien);
-                                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                                messageBoxHocVien.show();
+                                  JOptionPane.showMessageDialog(this,"Không có học viên này!");                               
                             } else {
                                 this.tableDSHocVienDK.setModel(table);
-
-                                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thanh Cong!");
-                                StoreSave.desktop.add(messageBoxHocVien);
-                                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                                messageBoxHocVien.show();
+                                JOptionPane.showMessageDialog(this, "Thành Công!");
                             }
-
 
                         } catch (Exception ex) {
                             Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
@@ -800,22 +742,14 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
                     } //Qua do dai cho phep
                     else {
-                        MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Số CMND tối đa 9 chữ số !");
-                        StoreSave.desktop.add(messageBoxHocVien);
-                        messageBoxHocVien.setBounds(400, 100, 511, 189);
-                        messageBoxHocVien.show();
+                        JOptionPane.showMessageDialog(this,"Số CMND tối đa 9 chữ số !"); 
                     }
                 }
             }
 
-
         } else {
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa Nhập Thông Tin Tìm Kiếm !");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
+             JOptionPane.showMessageDialog(this,"Chưa Nhập Thông Tin Tìm Kiếm !");           
         }
-
 
 
     }//GEN-LAST:event_btnTimHocVienActionPerformed
@@ -839,7 +773,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
             dangki.setTenHocVien(this.txtHoTen.getText());
 
             //thong tin cho bang dangkithongtin
-
             dangki.setTenTinhTrangHoc(this.comboxTinhTrangHoc.getSelectedItem().toString());
             dangki.setTinhTrangHoc();
             dangki.setTenTrangThai(this.ComBoxTrangThai.getSelectedItem().toString());
@@ -856,10 +789,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
                 //them hoc vien
                 if (dangkicontrol.UpdateHocVien(dangki, maHov.toString())) {
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Cập Nhật thành công!");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                     JOptionPane.showMessageDialog(this,"Cập Nhật thành công!");                                     
 
                     if (new DangKiController().UpdateThongTinDangKi(dangki, maHov.toString())) {
                         /*
@@ -875,28 +805,19 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         }
                     } else//dang ki that bai
                     {
-                        MessageBoxCustom messageBoxHocViens = new MessageBoxCustom("Cập Nhật thông tin đăng kí thất bại!");
-                        StoreSave.desktop.add(messageBoxHocViens);
-                        messageBoxHocViens.setBounds(400, 100, 511, 189);
-                        messageBoxHocViens.show();
+                         JOptionPane.showMessageDialog(this,"Cập Nhật thông tin đăng kí thất bại!");                     
 
                     }
                 } else//dang ki that bai
                 {
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Cập Nhật thất bại!");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                    JOptionPane.showMessageDialog(this,"Cập Nhật thất bại!");                    
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa Chọn Học Viên !");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
+             JOptionPane.showMessageDialog(this,"Chưa Chọn Học Viên !");           
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
@@ -945,8 +866,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
         //ngay thang
         this.DateChooseNgayDK.setDate(java.sql.Date.valueOf(ndk.toString()));
-        this.DateChooserNgaySinh.setDate(java.sql.Date.valueOf( namsinh.toString()));
-            
+        this.DateChooserNgaySinh.setDate(java.sql.Date.valueOf(namsinh.toString()));
 
         this.btnCapNhat.setEnabled(true);
     }//GEN-LAST:event_tableDSHocVienDKMousePressed

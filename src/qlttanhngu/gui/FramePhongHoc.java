@@ -7,6 +7,7 @@ package qlttanhngu.gui;
 import Assest.StoreSave;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import qlttanhngu.controller.ChuongTrinhHocController;
 import qlttanhngu.controller.PhongHocController;
 import qlttanhngu.dto.PhongHocDTO;
@@ -49,21 +50,23 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablePhongHoc = new javax.swing.JTable();
 
+        setTitle("Danh sách phòng");
+        setToolTipText("");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -107,7 +110,7 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
                 .addGroup(PanelThongTinPhongHocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDiaChi))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         PanelTinhNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Tính Năng"));
@@ -141,22 +144,22 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
         PanelTinhNangLayout.setHorizontalGroup(
             PanelTinhNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTinhNangLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(btnThemPhongHoc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnSua)
                 .addGap(43, 43, 43)
+                .addComponent(btnThemPhongHoc)
+                .addGap(18, 18, 18)
+                .addComponent(btnSua)
+                .addGap(18, 18, 18)
                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         PanelTinhNangLayout.setVerticalGroup(
             PanelTinhNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelTinhNangLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(13, 13, 13)
                 .addGroup(PanelTinhNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThemPhongHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSua))
+                    .addComponent(btnSua)
+                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,12 +221,12 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanelThongTinPhongHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelTinhNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PanelThongTinPhongHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelTinhNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,10 +243,7 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
         PhongHocController control = null;
         int numSelect = this.TablePhongHoc.getSelectedRowCount();
         if (numSelect < 1) {
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa Chọn Phòng Học!");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
+            JOptionPane.showMessageDialog(this,"Chưa Chọn Phòng Học!");            
         } else {
             int select = this.TablePhongHoc.getSelectedRow();
             Object maPhong = this.TablePhongHoc.getValueAt(select, 0);
@@ -259,10 +259,7 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
             
             //update
              if (control.UpdatePhongHoc(maPhong.toString(), tenPhong, soluong,diaChi )) {
-                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Update Thành Công!");
-                StoreSave.desktop.add(messageBoxHocVien);
-                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                messageBoxHocVien.show();
+                JOptionPane.showMessageDialog(this,"Cập nhật Thành Công!");           
                 //show bang
                   try {
                     
@@ -272,10 +269,7 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
                 }
                 
             } else {
-                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Update Thất Bại!");
-                StoreSave.desktop.add(messageBoxHocVien);
-                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                messageBoxHocVien.show();
+               JOptionPane.showMessageDialog(this,"Cập nhật Thất Bại!");            
             }
 
         }
@@ -304,10 +298,7 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
             //them phong hoc
              if (control.AddPhongHoc(phdto)) {
                 //them thanh cong
-                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thêm Thành Công!");
-                StoreSave.desktop.add(messageBoxHocVien);
-                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                messageBoxHocVien.show();
+                  JOptionPane.showMessageDialog(this,"Thêm Thành Công!");            
                 
                 //show danh sach phong
                 try {
@@ -319,20 +310,14 @@ public class FramePhongHoc extends javax.swing.JInternalFrame {
 
             } else {
                 //khong them dc
-                MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thêm Thất Bại!");
-                StoreSave.desktop.add(messageBoxHocVien);
-                messageBoxHocVien.setBounds(400, 100, 511, 189);
-                messageBoxHocVien.show();
+                  JOptionPane.showMessageDialog(this,"Thêm Thất Bại!");              
             }
             
 
 
 
         } else {
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa Nhập Đủ Thông Tin!");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
+            JOptionPane.showMessageDialog(this,"Chưa Nhập Đủ Thông Tin!");           
         }
 
     }//GEN-LAST:event_btnThemPhongHocActionPerformed

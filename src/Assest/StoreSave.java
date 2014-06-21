@@ -39,6 +39,7 @@ public class StoreSave {
     
     public int vinh;
     
+    
     //demo
     public String thuThayDoi;
     //dùng để hiển thị một frame mới

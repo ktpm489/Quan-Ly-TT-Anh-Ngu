@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import java.awt.print.PageFormat;
 import java.awt.Graphics;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import qlttanhngu.controller.BienLaiHocPhiController;
 import qlttanhngu.controller.HocVienController;
@@ -339,25 +340,19 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
                         Double hocPhi1 = controls.GetHocPhiTheoLop(this.cbomalop.getSelectedItem().toString());
 
                         //lay thong tin hoc phi
-
                         DefaultTableModel table = controls.GetThongTinHocPhi(this.txtMaHocVien.getText());
                         int row = table.getRowCount();
                         //Hoc Vien chua dong hoc phi lan nao
                         if (row < 1) {
                             this.txtSoTongTien.setText(hocPhi1.toString());
                             this.txtSoTienConLai.setText(hocPhi1.toString());
-                            
-                            MessageBoxCustom messageBoxBL = new MessageBoxCustom("Học Viên Chưa Đóng Học Phí!");
-                            StoreSave.desktop.add(messageBoxBL);
-                            messageBoxBL.setBounds(400, 100, 511, 189);
-                            messageBoxBL.show();
-                        } 
-                        //Hoc Vien Da dong hoc phi it nhat 1 lan
+                            JOptionPane.showMessageDialog(this, "Học Viên Chưa Đóng Học Phí!");
+
+                        } //Hoc Vien Da dong hoc phi it nhat 1 lan
                         else {
                             Object hocPhiConLai = table.getValueAt(row, 2);
 
                             //load du lieu len form
-
                             this.txtSoTongTien.setText(hocPhi1.toString());
                             this.txtSoTienConLai.setText(hocPhiConLai.toString());
 
@@ -365,27 +360,17 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
                             this.btnDongTien.setEnabled(true);
                             this.btnInHoaDon.setEnabled(true);
                             //-------------------------------//
-                        
-                            MessageBoxCustom messageBoxBL = new MessageBoxCustom("Thành Công!");
-                            StoreSave.desktop.add(messageBoxBL);
-                            messageBoxBL.setBounds(400, 100, 511, 189);
-                            messageBoxBL.show();
+                            JOptionPane.showMessageDialog(this, "Thành Công!");
                         }
 
                     } else {
                         //hoc vien khong thuoc lop do
-                        MessageBoxCustom messageBoxBL = new MessageBoxCustom("Học Viên Không Thuộc Lớp Đã Chọn!");
-                        StoreSave.desktop.add(messageBoxBL);
-                        messageBoxBL.setBounds(400, 100, 511, 189);
-                        messageBoxBL.show();
+                        JOptionPane.showMessageDialog(this, "Học Viên Không Thuộc Lớp Đã Chọn!");                     
                     }
 
                 } else {
                     //hoc vien khong ton tai
-                    MessageBoxCustom messageBoxBL = new MessageBoxCustom("Không Có Học Viên Này!");
-                    StoreSave.desktop.add(messageBoxBL);
-                    messageBoxBL.setBounds(400, 100, 511, 189);
-                    messageBoxBL.show();
+                    JOptionPane.showMessageDialog(this, "Không Có Học Viên Này!");                  
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FrameHoaDonHocPhi.class.getName()).log(Level.SEVERE, null, ex);
@@ -393,10 +378,7 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
 
         } else {
             //Chua nhap ma hoc vien
-            MessageBoxCustom messageBoxBL = new MessageBoxCustom(" Chưa Nhập Mã Học Viên!");
-            StoreSave.desktop.add(messageBoxBL);
-            messageBoxBL.setBounds(400, 100, 511, 189);
-            messageBoxBL.show();
+             JOptionPane.showMessageDialog(this, "Chưa Nhập Mã Học Viên!");           
         }
 
     }//GEN-LAST:event_btnCheckActionPerformed
@@ -407,10 +389,7 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
         BienLaiHocPhiController controls = null;
         if (this.txtSoTienDong.getText().contentEquals("") == false) {
             if (Double.parseDouble(this.txtSoTienDong.getText()) > Double.parseDouble(this.txtSoTienConLai.getText())) {
-                MessageBoxCustom messageBoxBL = new MessageBoxCustom("Đóng Quá Số Tiền Nợ!");
-                StoreSave.desktop.add(messageBoxBL);
-                messageBoxBL.setBounds(400, 100, 511, 189);
-                messageBoxBL.show();
+                 JOptionPane.showMessageDialog(this, "Đóng Quá Số Tiền Nợ!");                            
             } else {
                 //cap nhat--luu du lieu moi trong Bang Biên lai
                 Double tienTong = Double.parseDouble(this.txtSoTongTien.getText());
@@ -426,7 +405,6 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
                 bldto.setMaNhanVien(this.cboMaNhanVien.getSelectedItem().toString());
                 bldto.setNgayLapBienLai(this.DateChooserNgayLap.getDate());
 
-                
                 try {
                     controls = new BienLaiHocPhiController();
                 } catch (Exception ex) {
@@ -435,24 +413,15 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
 
                 //them bien lai
                 if (controls.AddBienLaiHocPhi(bldto)) {
-                    MessageBoxCustom messageBoxBL = new MessageBoxCustom("Đóng Tiền Thành Công!");
-                    StoreSave.desktop.add(messageBoxBL);
-                    messageBoxBL.setBounds(400, 100, 511, 189);
-                    messageBoxBL.show();
-                    
+                     JOptionPane.showMessageDialog(this, "Đóng Tiền Thành Công!");                                        
                     //Neu da dong du tien
-                    if(tienDaDong == tienTong)
-                    {
+                    if (tienDaDong == tienTong) {
                         try {
                             //cap nhat thong tin chi tiet hoc vien
-                            if(new BienLaiHocPhiController().UpdateTinhTrangHocPhi(this.txtMaHocVien.getText()))
-                            {
+                            if (new BienLaiHocPhiController().UpdateTinhTrangHocPhi(this.txtMaHocVien.getText())) {
                                 //cap nhat tinh trang hoc phi thanh cong
-                            }else{
-                                MessageBoxCustom messageBoxBLs = new MessageBoxCustom("Không Cập Nhật Được Tình Trạng Học Phí!");
-                                StoreSave.desktop.add(messageBoxBLs);
-                                messageBoxBLs.setBounds(400, 100, 511, 189);
-                                messageBoxBLs.show();
+                            } else {
+                                JOptionPane.showMessageDialog(this,"Không Cập Nhật Được Tình Trạng Học Phí!");                               
                             }
                         } catch (Exception ex) {
                             Logger.getLogger(FrameHoaDonHocPhi.class.getName()).log(Level.SEVERE, null, ex);
@@ -460,19 +429,14 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
                     }
 
                 } else {
-                    MessageBoxCustom messageBoxBL = new MessageBoxCustom("Đóng Tiền Thất Bại!");
-                    StoreSave.desktop.add(messageBoxBL);
-                    messageBoxBL.setBounds(400, 100, 511, 189);
-                    messageBoxBL.show();
+                    JOptionPane.showMessageDialog(this,"Đóng Tiền Thất Bại!");                     
+                   
                 }
 
             }
         } else {
             //Chua nhap so tien dong
-            MessageBoxCustom messageBoxBL = new MessageBoxCustom("Chưa Nhập Số Tiền Đóng!");
-            StoreSave.desktop.add(messageBoxBL);
-            messageBoxBL.setBounds(400, 100, 511, 189);
-            messageBoxBL.show();
+             JOptionPane.showMessageDialog(this,"Chưa Nhập Số Tiền Đóng!");          
         }
 
     }//GEN-LAST:event_btnDongTienActionPerformed
@@ -491,6 +455,7 @@ public class FrameHoaDonHocPhi extends javax.swing.JInternalFrame {
         public int print(Graphics g, PageFormat pf, int page) throws PrinterException {
 
             if (page > 0) { /* We have only one page, and 'page' is zero-based */
+
                 return NO_SUCH_PAGE;
             }
 

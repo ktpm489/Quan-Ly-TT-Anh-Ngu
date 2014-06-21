@@ -7,6 +7,7 @@ package qlttanhngu.gui;
 import Assest.StoreSave;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import qlttanhngu.controller.ChuongTrinhHocController;
 import qlttanhngu.controller.PhongHocController;
 import qlttanhngu.dto.ChuongTrinhHocDTO;
@@ -50,21 +51,22 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
         btnSuaChuongTrinh = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
 
+        setTitle("Chương trinh học");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -191,13 +193,13 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnThemChuongTrinhHoc, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                .addGap(52, 52, 52)
-                .addComponent(btnSuaChuongTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                .addGap(57, 57, 57)
-                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addComponent(btnThemChuongTrinhHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSuaChuongTrinh)
+                .addGap(18, 18, 18)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,8 +221,8 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
                 .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(PanelThongTinChuongTrinhHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(19, 19, 19))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,8 +231,8 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelThongTinChuongTrinhHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -251,10 +253,7 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
         ChuongTrinhHocController control = null;
         int numSelect = this.tableChuongTrinhHoc.getSelectedRowCount();
         if (numSelect < 1) {
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa Chọn Chương Trình Học!");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
+            JOptionPane.showMessageDialog(this,"Chưa Chọn Chương Trình Học!");            
         } else {
             int select = this.tableChuongTrinhHoc.getSelectedRow();
             Object macth = this.tableChuongTrinhHoc.getValueAt(select, 0);
@@ -277,21 +276,14 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
             try {
                 //Ham Update
                 if (new ChuongTrinhHocController().UpdateChuongTrinhHoc(macth.toString(), matdo, hocPhi)) {
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Update Thành Công!");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
-                    
+                  JOptionPane.showMessageDialog(this,"Update Thành Công!");                                    
                      try {      
                        this.tableChuongTrinhHoc.setModel(new ChuongTrinhHocController().GetChuongTrinhHoc());
                     } catch (Exception ex) {
                         Logger.getLogger(FrameChuongTrinhHoc.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Update Thất Bại!");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                   JOptionPane.showMessageDialog(this,"Update Thành Công!");
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FrameChuongTrinhHoc.class.getName()).log(Level.SEVERE, null, ex);
@@ -325,11 +317,7 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
                 //Them chyuong trinh moi
                 if (new ChuongTrinhHocController().AddChuongTrinhHoc(ctdto)) {
                     //them thanh cong
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thêm Thành Công!");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
-                    
+                    JOptionPane.showMessageDialog(this,"Thêm Thành Công!");                  
                      try {      
                        this.tableChuongTrinhHoc.setModel(new ChuongTrinhHocController().GetChuongTrinhHoc());
                     } catch (Exception ex) {
@@ -338,10 +326,7 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
 
                 } else {
                     //khong them dc
-                    MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Thêm Thất Bại!");
-                    StoreSave.desktop.add(messageBoxHocVien);
-                    messageBoxHocVien.setBounds(400, 100, 511, 189);
-                    messageBoxHocVien.show();
+                    JOptionPane.showMessageDialog(this,"Thêm Thất Bại!");                  
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FrameChuongTrinhHoc.class.getName()).log(Level.SEVERE, null, ex);
@@ -350,10 +335,7 @@ public class FrameChuongTrinhHoc extends javax.swing.JInternalFrame {
 
 
         } else {
-            MessageBoxCustom messageBoxHocVien = new MessageBoxCustom("Chưa Nhập Học Phí!");
-            StoreSave.desktop.add(messageBoxHocVien);
-            messageBoxHocVien.setBounds(400, 100, 511, 189);
-            messageBoxHocVien.show();
+             JOptionPane.showMessageDialog(this,"Chưa Nhập Học Phí!");          
         }
     }//GEN-LAST:event_btnThemChuongTrinhHocActionPerformed
 

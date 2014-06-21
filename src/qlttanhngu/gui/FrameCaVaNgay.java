@@ -38,15 +38,8 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         lblBuoi = new javax.swing.JLabel();
         comboBoxBuoi = new javax.swing.JComboBox();
-        lblNgay = new javax.swing.JLabel();
         lblCaHoc = new javax.swing.JLabel();
         comboBoxCa = new javax.swing.JComboBox();
-        checkBoxThu2 = new javax.swing.JCheckBox();
-        checkBoxThu3 = new javax.swing.JCheckBox();
-        checkBoxThu4 = new javax.swing.JCheckBox();
-        checkBoxThu5 = new javax.swing.JCheckBox();
-        checkBoxThu6 = new javax.swing.JCheckBox();
-        checkBoxThu7 = new javax.swing.JCheckBox();
         panelChucNang = new javax.swing.JPanel();
         btnDong = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
@@ -54,11 +47,19 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
         lblCaHoc2 = new javax.swing.JLabel();
         txtGioBatDau = new javax.swing.JTextField();
         txtGioKetThuc = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        checkBoxThu2 = new javax.swing.JCheckBox();
+        checkBoxThu3 = new javax.swing.JCheckBox();
+        checkBoxThu4 = new javax.swing.JCheckBox();
+        checkBoxThu5 = new javax.swing.JCheckBox();
+        checkBoxThu7 = new javax.swing.JCheckBox();
+        checkBoxThu6 = new javax.swing.JCheckBox();
         DanhSachCaVaNgay = new javax.swing.JScrollPane();
         tableDSCa = new javax.swing.JTable();
         DanhSachCaVaNgay1 = new javax.swing.JScrollPane();
         tableDSNgay = new javax.swing.JTable();
 
+        setTitle("Ca và ngày học");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
@@ -88,8 +89,6 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
             }
         });
 
-        lblNgay.setText("Ngày");
-
         lblCaHoc.setText("Ca học");
 
         comboBoxCa.addItemListener(new java.awt.event.ItemListener() {
@@ -97,18 +96,6 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
                 comboBoxCaItemStateChanged(evt);
             }
         });
-
-        checkBoxThu2.setText("Thứ 2");
-
-        checkBoxThu3.setText("Thứ 3");
-
-        checkBoxThu4.setText("Thứ 4");
-
-        checkBoxThu5.setText("Thứ 5");
-
-        checkBoxThu6.setText("Thứ 7");
-
-        checkBoxThu7.setText("Thứ 6");
 
         panelChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
@@ -133,20 +120,20 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
         panelChucNangLayout.setHorizontalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChucNangLayout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGap(29, 29, 29)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelChucNangLayout.setVerticalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChucNangLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDong)
-                    .addComponent(btnThem))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(btnThem)
+                    .addComponent(btnDong))
+                .addContainerGap())
         );
 
         lblCaHoc1.setText("Giờ bắt đầu");
@@ -157,29 +144,63 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
 
         txtGioKetThuc.setEnabled(false);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Ngày"));
+
+        checkBoxThu2.setText("Thứ 2");
+
+        checkBoxThu3.setText("Thứ 3");
+
+        checkBoxThu4.setText("Thứ 4");
+
+        checkBoxThu5.setText("Thứ 5");
+
+        checkBoxThu7.setText("Thứ 6");
+
+        checkBoxThu6.setText("Thứ 7");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkBoxThu2)
+                .addGap(18, 18, 18)
+                .addComponent(checkBoxThu3)
+                .addGap(18, 18, 18)
+                .addComponent(checkBoxThu4)
+                .addGap(18, 18, 18)
+                .addComponent(checkBoxThu5)
+                .addGap(18, 18, 18)
+                .addComponent(checkBoxThu7)
+                .addGap(18, 18, 18)
+                .addComponent(checkBoxThu6)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkBoxThu2)
+                    .addComponent(checkBoxThu3)
+                    .addComponent(checkBoxThu4)
+                    .addComponent(checkBoxThu5)
+                    .addComponent(checkBoxThu7)
+                    .addComponent(checkBoxThu6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblNgay)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(checkBoxThu2)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkBoxThu3)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkBoxThu4)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkBoxThu5)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkBoxThu7)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkBoxThu6))
-                    .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblCaHoc)
                     .addComponent(lblBuoi)
@@ -187,45 +208,37 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
                     .addComponent(lblCaHoc2))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboBoxBuoi, 0, 140, Short.MAX_VALUE)
+                    .addComponent(comboBoxBuoi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxCa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtGioBatDau)
-                    .addComponent(txtGioKetThuc))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtGioKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(190, 190, 190))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNgay)
                     .addComponent(comboBoxBuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkBoxThu2)
-                    .addComponent(checkBoxThu3)
-                    .addComponent(checkBoxThu4)
-                    .addComponent(checkBoxThu5)
-                    .addComponent(checkBoxThu7)
-                    .addComponent(checkBoxThu6)
                     .addComponent(lblBuoi))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboBoxCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCaHoc))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCaHoc1)
-                            .addComponent(txtGioBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCaHoc2)
-                            .addComponent(txtGioKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCaHoc))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCaHoc1)
+                    .addComponent(txtGioBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCaHoc2)
+                    .addComponent(txtGioKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         tableDSCa.setModel(new javax.swing.table.DefaultTableModel(
@@ -269,27 +282,24 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DanhSachCaVaNgay1)
+                        .addGap(18, 18, 18)
+                        .addComponent(DanhSachCaVaNgay)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 51, Short.MAX_VALUE)
-                .addComponent(DanhSachCaVaNgay1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(DanhSachCaVaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DanhSachCaVaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DanhSachCaVaNgay1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 19, Short.MAX_VALUE))
+                    .addComponent(DanhSachCaVaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(DanhSachCaVaNgay1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
-
-        jPanel4.getAccessibleContext().setAccessibleName("Thông tin");
 
         getAccessibleContext().setAccessibleName("CaVaNgay");
 
@@ -435,8 +445,6 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane DanhSachCaVaNgay;
     private javax.swing.JScrollPane DanhSachCaVaNgay1;
     private javax.swing.JButton btnDong;
-    private javax.swing.JButton btnDong1;
-    private javax.swing.JButton btnDong2;
     private javax.swing.JButton btnThem;
     private javax.swing.JCheckBox checkBoxThu2;
     private javax.swing.JCheckBox checkBoxThu3;
@@ -446,14 +454,12 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox checkBoxThu7;
     private javax.swing.JComboBox comboBoxBuoi;
     private javax.swing.JComboBox comboBoxCa;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblBuoi;
     private javax.swing.JLabel lblCaHoc;
     private javax.swing.JLabel lblCaHoc1;
     private javax.swing.JLabel lblCaHoc2;
-    private javax.swing.JLabel lblNgay;
     private javax.swing.JPanel panelChucNang;
     private javax.swing.JTable tableDSCa;
     private javax.swing.JTable tableDSNgay;
