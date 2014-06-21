@@ -6,6 +6,15 @@
 
 package qlttanhngu.gui;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import qlttanhngu.bo.DeThiBO;
+import qlttanhngu.bo.LoaiDeThiBO;
+import qlttanhngu.bo.TrinhDoBO;
+import qlttanhngu.dto.DeThiDTO;
+
 /**
  *
  * @author EvilZ
@@ -39,8 +48,28 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDeThi = new javax.swing.JTable();
         cbbLoaiDeThi = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        cbbTrinhDo = new javax.swing.JComboBox();
+        lblError = new javax.swing.JLabel();
 
         setTitle("Đề thi");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel1.setText("Loại đề thi");
 
@@ -87,7 +116,7 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -125,6 +154,14 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblDeThi);
 
+        jLabel3.setText("Trình độ");
+
+        cbbTrinhDo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbbTrinhDoItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,11 +169,18 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateNgayCap, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
-                    .addComponent(cbbLoaiDeThi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbbTrinhDo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateNgayCap, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                            .addComponent(cbbLoaiDeThi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -145,19 +189,25 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cbbTrinhDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(cbbLoaiDeThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(dateNgayCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dateNgayCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,11 +215,35 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            if(null==cbbLoaiDeThi.getSelectedItem()){
+                JOptionPane.showMessageDialog(this, "Vui lòng tạo loại đề thi trước khi tạo đề thi");
+            }
+            else{
+                DeThiBO dethibo = new DeThiBO();
+                DeThiDTO dethidto = new DeThiDTO();
+                dethidto.setLoaiDeThi(cbbLoaiDeThi.getSelectedItem().toString());
+                dethidto.setTrinhDo(cbbTrinhDo.getSelectedItem().toString());
+                dethidto.setNgayCap(dateNgayCap.getDate());
+                dethibo.addDeThi(dethidto);
+                tblDeThi.setModel((new DeThiController()).LoadListDeThi());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        
+        try {
+            DeThiBO dethibo = new DeThiBO();
+            DeThiDTO dethidto = new DeThiDTO();
+            dethidto.setMaDeThi(tblDeThi.getValueAt(tblDeThi.getSelectedRow(), 0).toString());
+            
+            tblDeThi.setModel((new DeThiController()).LoadListDeThi());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
@@ -177,8 +251,53 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDongActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        
+        try {
+            tblDeThi.setModel((new DeThiController()).LoadListDeThi());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+         try {
+            // TODO add your handling code here:
+            cbbTrinhDo.removeAllItems();
+            TrinhDoBO trinhdobo = new TrinhDoBO();
+            List<String> tentrinhdo = trinhdobo.layTenTrinhDo();
+            for(String ten:tentrinhdo){
+                cbbTrinhDo.addItem(ten);
+            }
+            cbbLoaiDeThi.removeAllItems();
+                if(!"".equals(cbbTrinhDo.getSelectedItem().toString())){
+                LoaiDeThiBO loaidethibo = new LoaiDeThiBO();
+                List<String> tenloaidethi = loaidethibo.layLoaiDeThi(cbbTrinhDo.getSelectedItem().toString());
+                for(String ten:tenloaidethi){
+                    cbbLoaiDeThi.addItem(ten);
+                }
+            }
+                
+            tblDeThi.setModel((new DeThiController()).LoadListDeThi());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formInternalFrameActivated
+
+    private void cbbTrinhDoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTrinhDoItemStateChanged
+        // TODO add your handling code here:
+         cbbLoaiDeThi.removeAllItems();
+                if(!"".equals(cbbTrinhDo.getSelectedItem().toString())){
+             try {
+                 LoaiDeThiBO loaidethibo = new LoaiDeThiBO();
+                 List<String> tenloaidethi = loaidethibo.layLoaiDeThi(cbbTrinhDo.getSelectedItem().toString());
+                 for(String ten:tenloaidethi){
+                     cbbLoaiDeThi.addItem(ten);
+                 }
+             } catch (Exception ex) {
+                 Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            }
+    }//GEN-LAST:event_cbbTrinhDoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -187,11 +306,14 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox cbbLoaiDeThi;
+    private javax.swing.JComboBox cbbTrinhDo;
     private com.toedter.calendar.JDateChooser dateNgayCap;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblError;
     private javax.swing.JTable tblDeThi;
     // End of variables declaration//GEN-END:variables
 }

@@ -88,4 +88,19 @@ public class LoaiDeThiDAO extends DataBase{
         }
         return false;
     }
+
+    public List<String> layLoaiDeThi(String tenTrinhDo) throws SQLException{
+        List<String> lstLDT = new ArrayList<String>();
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+        int i = 0;
+        callableStatement = getConnection().prepareCall("{call LayTenLoaiDe(?)}");
+        callableStatement.setString(1, tenTrinhDo);
+        resultSet = this.executeQuery(this.getConnection(), callableStatement);
+        while(resultSet.next()){
+            String temp = resultSet.getString(1);
+            lstLDT.add(temp);
+        };
+        return lstLDT;
+    }
 }

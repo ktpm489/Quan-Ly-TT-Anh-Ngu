@@ -64,4 +64,15 @@ public class LoaiDeThiBO {
         }
         return false;
     }
+    
+    public List<String> layLoaiDeThi(String tenTrinhDo) throws SQLException, Exception{
+        try {
+            return loaidtdao.layLoaiDeThi(tenTrinhDo);
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            loaidtdao.closeConnection();
+        }
+        return null;  
+    }
 }

@@ -6,6 +6,7 @@
 
 package qlttanhngu.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -101,9 +102,21 @@ public class FrameLoaiDeThi extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Thời lượng thi(phút)");
 
+        txtThoiLuongThi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtThoiLuongThiKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Trình độ");
 
         jLabel1.setText("Loại đề thi");
+
+        txtLoaiDeThi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoaiDeThiKeyTyped(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
@@ -146,7 +159,7 @@ public class FrameLoaiDeThi extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -287,6 +300,25 @@ public class FrameLoaiDeThi extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameLoaiDeThi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void txtLoaiDeThiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoaiDeThiKeyTyped
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        int len = txtLoaiDeThi.getText().length();
+        if (!(len < 50)) {
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_txtLoaiDeThiKeyTyped
+
+    private void txtThoiLuongThiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtThoiLuongThiKeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        int len = txtThoiLuongThi.getText().length();
+        if (!(Character.isDigit(vChar)) || (vChar == KeyEvent.VK_BACK_SPACE) || (vChar == KeyEvent.VK_DELETE) || (vChar == KeyEvent.VK_ENTER) || (vChar == KeyEvent.VK_TAB) || (len > 11)) {
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_txtThoiLuongThiKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

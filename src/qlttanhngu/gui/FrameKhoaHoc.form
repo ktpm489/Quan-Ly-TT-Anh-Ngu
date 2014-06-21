@@ -85,6 +85,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTenKhoaHoc">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTenKhoaHocKeyTyped"/>
+      </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dateKhaiGiang">
     </Component>

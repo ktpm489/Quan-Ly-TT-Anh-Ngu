@@ -6,10 +6,12 @@
 
 package qlttanhngu.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import qlttanhngu.bo.TrinhDoBO;
 import qlttanhngu.controller.TrinhDoController;
 import qlttanhngu.dto.TrinhDoDTO;
@@ -76,6 +78,12 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Điểm số");
 
+        txtDiemSo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiemSoKeyTyped(evt);
+            }
+        });
+
         cbbLoaiChuongTrinh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TOIEC", "TOEFL iBT", "IELTS" }));
 
         tblTrinhDo.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,7 +140,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -170,7 +178,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbbLoaiChuongTrinh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbbLoaiChuongTrinh, 0, 440, Short.MAX_VALUE)
                             .addComponent(txtDiemSo)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -178,9 +186,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbbTrinhDoTienQuyet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 280, Short.MAX_VALUE)))))
+                            .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
@@ -208,10 +214,10 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(cbbTrinhDoTienQuyet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblError)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(19, 19, 19)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -219,110 +225,122 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-        switch(cbbLoaiChuongTrinh.getSelectedItem().toString()){
-            case "TOIEC":{
-                try{
-                int diem = Integer.parseInt(txtDiemSo.getText());
-                    if(diem > 990 || diem < 0){
-                        txtDiemSo.setText("");
-                        txtDiemSo.grabFocus();
-                        lblError.setText("Điểm của chương trình TOIEC từ 0 đến 990");
-                    }
-                    else{
-                         try {
-                            String trinhdo = cbbLoaiChuongTrinh.getSelectedItem().toString() +" "+ txtDiemSo.getText();
-                            TrinhDoBO trinhdobo = new TrinhDoBO();
-                            TrinhDoDTO trinhdodto = new TrinhDoDTO();
-                            trinhdodto.setTenTrinhDo(trinhdo);
-                            trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
-                            trinhdobo.themTrinhDo(trinhdodto);
-                            tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
-                            List<String> trinhdolst = trinhdobo.layTenTrinhDo();
-                            cbbTrinhDoTienQuyet.removeAllItems();
-                            for(String trinhdo1:trinhdolst){
-                                cbbTrinhDoTienQuyet.addItem(trinhdo);
+        try {
+            // TODO add your handling code here:
+            switch(cbbLoaiChuongTrinh.getSelectedItem().toString()){
+                case "TOIEC":{
+                    try{
+                        int diem = Integer.parseInt(txtDiemSo.getText());
+                        if(diem > 990 || diem < 0){
+                            txtDiemSo.setText("");
+                            txtDiemSo.grabFocus();
+                            JOptionPane.showMessageDialog(this, "Điểm của chương trình TOIEC phải từ 0 đến 990");
+                        }
+                        else{
+                            try {
+                                String trinhdo = cbbLoaiChuongTrinh.getSelectedItem().toString() +" "+ txtDiemSo.getText();
+                                TrinhDoBO trinhdobo = new TrinhDoBO();
+                                TrinhDoDTO trinhdodto = new TrinhDoDTO();
+                                trinhdodto.setTenTrinhDo(trinhdo);
+                                trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
+                                trinhdobo.themTrinhDo(trinhdodto);
+                                tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
+                                List<String> trinhdolst = trinhdobo.layTenTrinhDo();
+                                cbbTrinhDoTienQuyet.removeAllItems();
+                                for(String trinhdo1:trinhdolst){
+                                    cbbTrinhDoTienQuyet.addItem(trinhdo);
+                                }
+                                cbbTrinhDoTienQuyet.addItem("");
                             }
-                            cbbTrinhDoTienQuyet.addItem("");
-                            } 
-                        catch (Exception ex) {
-                            Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                            catch (Exception ex) {
+                                Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
-                }
-                catch(NumberFormatException ex){
-                    Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            }
-            case "TOEFL iBT":{
-                try{
-                    int diem = Integer.parseInt(txtDiemSo.getText());
-                    if(diem > 120 || diem < 0){
-                        txtDiemSo.setText("");
-                        txtDiemSo.grabFocus();
-                        lblError.setText("Điểm của chương trình TOEFL iBT từ 0 đến 120");
+                    catch(NumberFormatException ex){
+                        Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    else{
-                        try {
-                            String trinhdo = cbbLoaiChuongTrinh.getSelectedItem().toString() +" "+ txtDiemSo.getText();
-                            TrinhDoBO trinhdobo = new TrinhDoBO();
-                            TrinhDoDTO trinhdodto = new TrinhDoDTO();
-                            trinhdodto.setTenTrinhDo(trinhdo);
-                            trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
-                            trinhdobo.themTrinhDo(trinhdodto);
-                            tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
-                            List<String> trinhdolst = trinhdobo.layTenTrinhDo();
-                            cbbTrinhDoTienQuyet.removeAllItems();
-                            for(String trinhdo1:trinhdolst){
-                                cbbTrinhDoTienQuyet.addItem(trinhdo);
+                    break;
+                }
+                case "TOEFL iBT":{
+                    try{
+                        int diem = Integer.parseInt(txtDiemSo.getText());
+                        if(diem > 120 || diem < 0){
+                            txtDiemSo.setText("");
+                            txtDiemSo.grabFocus();
+                            JOptionPane.showMessageDialog(this, "Điểm của chương trình TOEFL iBT phải từ 0 đến 120");
+                        }
+                        else{
+                            try {
+                                String trinhdo = cbbLoaiChuongTrinh.getSelectedItem().toString() +" "+ txtDiemSo.getText();
+                                TrinhDoBO trinhdobo = new TrinhDoBO();
+                                TrinhDoDTO trinhdodto = new TrinhDoDTO();
+                                trinhdodto.setTenTrinhDo(trinhdo);
+                                trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
+                                trinhdobo.themTrinhDo(trinhdodto);
+                                tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
+                                List<String> trinhdolst = trinhdobo.layTenTrinhDo();
+                                cbbTrinhDoTienQuyet.removeAllItems();
+                                for(String trinhdo1:trinhdolst){
+                                    cbbTrinhDoTienQuyet.addItem(trinhdo);
+                                }
+                                cbbTrinhDoTienQuyet.addItem("");
                             }
-                            cbbTrinhDoTienQuyet.addItem("");
-                            } 
-                        catch (Exception ex) {
-                            Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                            catch (Exception ex) {
+                                Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
-                }
-                catch(NumberFormatException ex){
-                    Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
-            }
-            case "IELTS":{
-                try{
-                float diem = Float.parseFloat(txtDiemSo.getText());
-                    if(diem > 9 || diem < 1){
-                        txtDiemSo.setText("");
-                        txtDiemSo.grabFocus();
-                        lblError.setText("Điểm của chương trình IELTS từ 1 đến 9");
+                    catch(NumberFormatException ex){
+                        Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    else{
-                        try {
-                            String trinhdo = cbbLoaiChuongTrinh.getSelectedItem().toString() +" "+ txtDiemSo.getText();
-                            TrinhDoBO trinhdobo = new TrinhDoBO();
-                            TrinhDoDTO trinhdodto = new TrinhDoDTO();
-                            trinhdodto.setTenTrinhDo(trinhdo);
-                            trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
-                            trinhdobo.themTrinhDo(trinhdodto);
-                            tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
-                            List<String> trinhdolst = trinhdobo.layTenTrinhDo();
-                            cbbTrinhDoTienQuyet.removeAllItems();
-                            for(String trinhdo1:trinhdolst){
-                                cbbTrinhDoTienQuyet.addItem(trinhdo);
+                    break;
+                }
+                case "IELTS":{
+                    try{
+                        float diem = Float.parseFloat(txtDiemSo.getText());
+                        if(diem > 9 || diem < 1){
+                            txtDiemSo.setText("");
+                            txtDiemSo.grabFocus();
+                            JOptionPane.showMessageDialog(this, "Điểm của chương trình IELTS phải từ 1 đến 9");
+                        }
+                        else{
+                            try {
+                                String trinhdo = cbbLoaiChuongTrinh.getSelectedItem().toString() +" "+ txtDiemSo.getText();
+                                TrinhDoBO trinhdobo = new TrinhDoBO();
+                                TrinhDoDTO trinhdodto = new TrinhDoDTO();
+                                trinhdodto.setTenTrinhDo(trinhdo);
+                                trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
+                                trinhdobo.themTrinhDo(trinhdodto);
+                                tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
+                                List<String> trinhdolst = trinhdobo.layTenTrinhDo();
+                                cbbTrinhDoTienQuyet.removeAllItems();
+                                for(String trinhdo1:trinhdolst){
+                                    cbbTrinhDoTienQuyet.addItem(trinhdo);
+                                }
+                                cbbTrinhDoTienQuyet.addItem("");
                             }
-                            cbbTrinhDoTienQuyet.addItem("");
-                        } 
-                        catch (Exception ex) {
-                            Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                            catch (Exception ex) {
+                                Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
+                    catch(NumberFormatException ex){
+                        Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
                 }
-                catch(NumberFormatException ex){
-                    Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
             }
+            TrinhDoBO trinhdobo = new TrinhDoBO();
+            List<String> trinhdolst = trinhdobo.layTenTrinhDo();
+            cbbTrinhDoTienQuyet.removeAllItems();
+            for(String trinhdo:trinhdolst){
+                cbbTrinhDoTienQuyet.addItem(trinhdo);
+            }
+            cbbTrinhDoTienQuyet.addItem("");
+            tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
+        } catch (Exception ex) {
+            Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -339,6 +357,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
                 cbbTrinhDoTienQuyet.addItem(trinhdo);
             }
             cbbTrinhDoTienQuyet.addItem("");
+            tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
                     } catch (Exception ex) {
             Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -370,6 +389,15 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void txtDiemSoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiemSoKeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        int len = txtDiemSo.getText().length();
+        if (!(Character.isDigit(vChar)) || (vChar == KeyEvent.VK_BACK_SPACE) || (vChar == KeyEvent.VK_DELETE) || (vChar == KeyEvent.VK_ENTER) || (vChar == KeyEvent.VK_TAB) || (len > 11)) {
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_txtDiemSoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

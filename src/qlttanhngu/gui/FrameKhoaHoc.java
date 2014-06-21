@@ -6,6 +6,7 @@
 
 package qlttanhngu.gui;
 
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -73,6 +74,12 @@ public class FrameKhoaHoc extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Ngày khai giảng");
 
+        txtTenKhoaHoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTenKhoaHocKeyTyped(evt);
+            }
+        });
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Buttonadd.png"))); // NOI18N
@@ -114,7 +121,7 @@ public class FrameKhoaHoc extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -257,6 +264,15 @@ public class FrameKhoaHoc extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameKhoaHoc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void txtTenKhoaHocKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenKhoaHocKeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        int len = txtTenKhoaHoc.getText().length();
+        if (!(len <50)) {
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_txtTenKhoaHocKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
