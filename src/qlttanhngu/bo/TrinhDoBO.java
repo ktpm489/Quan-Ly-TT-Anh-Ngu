@@ -75,4 +75,15 @@ public class TrinhDoBO {
         }
         return false;
     }
+    
+    public List<String> layTenTrinhDoTienQuyet() throws Exception {
+        try {
+            return trinhdodao.layTenTrinhDoTienQuyet();
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            trinhdodao.closeConnection();
+        }
+        return null; 
+    }
 }

@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import qlttanhngu.bo.LoaiDeThiBO;
 import qlttanhngu.bo.TrinhDoBO;
 import qlttanhngu.controller.LoaiDeThiController;
@@ -244,20 +245,39 @@ public class FrameLoaiDeThi extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-        if(!txtLoaiDeThi.getText().equals("") && !txtThoiLuongThi.getText().equals("")){
-            try {
-                LoaiDeThiBO loaidtbo = new LoaiDeThiBO();
-                LoaiDeThiDTO loaidtdto = new LoaiDeThiDTO();
-                loaidtdto.setTenLoaiDeThi(txtLoaiDeThi.getText());
-                loaidtdto.setThoiLuongthi(Integer.parseInt(txtThoiLuongThi.getText()));
-                loaidtdto.setTenTrinhDo(cbbTrinhDo.getSelectedItem().toString());
-                loaidtbo.addLoaiDeThi(loaidtdto);
-                
-                tblLoaiDeThi.setModel((new LoaiDeThiController()).LoadListKhoaHoc());
-                        } catch (Exception ex) {
-                Logger.getLogger(FrameLoaiDeThi.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            // TODO add your handling code here:
+            LoaiDeThiBO loaidethibo1 = new LoaiDeThiBO();
+            List<String> tenloaidethi = loaidethibo1.layLoaiDeThi(cbbTrinhDo.getSelectedItem().toString());
+            boolean check = false;
+            for(String ten:tenloaidethi){
+                if(txtLoaiDeThi.getText().equals(ten)){
+                    check = true;
+                    break;
+                }
             }
+            if(!check){
+            if(!txtLoaiDeThi.getText().equals("") && !txtThoiLuongThi.getText().equals("")){
+                try {
+                    LoaiDeThiBO loaidtbo = new LoaiDeThiBO();
+                    LoaiDeThiDTO loaidtdto = new LoaiDeThiDTO();
+                    loaidtdto.setTenLoaiDeThi(txtLoaiDeThi.getText());
+                    loaidtdto.setThoiLuongthi(Integer.parseInt(txtThoiLuongThi.getText()));
+                    loaidtdto.setTenTrinhDo(cbbTrinhDo.getSelectedItem().toString());
+                    loaidtbo.addLoaiDeThi(loaidtdto);
+                    
+                    tblLoaiDeThi.setModel((new LoaiDeThiController()).LoadListKhoaHoc());
+                } catch (Exception ex) {
+                    Logger.getLogger(FrameLoaiDeThi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            }
+            else{
+                txtLoaiDeThi.setText("");
+                JOptionPane.showMessageDialog(this, "Loại đề thi đã tồn tại");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrameLoaiDeThi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

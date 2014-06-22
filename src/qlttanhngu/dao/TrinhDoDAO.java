@@ -97,4 +97,18 @@ public class TrinhDoDAO extends DataBase{
         }
        return false;
     }
+    
+    public List<String> layTenTrinhDoTienQuyet() throws Exception {
+        List<String> lstTD = new ArrayList<String>();
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+        int i = 0;
+        callableStatement = getConnection().prepareCall("{call LayTenTrinhDoTienQuyet()}");
+        resultSet = this.executeQuery(this.getConnection(), callableStatement);
+        while(resultSet.next()){
+            String temp = resultSet.getString(1);
+            lstTD.add(temp);
+        };
+        return lstTD;
+    }
 }

@@ -286,7 +286,7 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
     private void cbbTrinhDoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbbTrinhDoItemStateChanged
         // TODO add your handling code here:
          cbbLoaiDeThi.removeAllItems();
-                if(!"".equals(cbbTrinhDo.getSelectedItem().toString())){
+            if(!"".equals(cbbTrinhDo.getSelectedItem().toString())){
              try {
                  LoaiDeThiBO loaidethibo = new LoaiDeThiBO();
                  List<String> tenloaidethi = loaidethibo.layLoaiDeThi(cbbTrinhDo.getSelectedItem().toString());

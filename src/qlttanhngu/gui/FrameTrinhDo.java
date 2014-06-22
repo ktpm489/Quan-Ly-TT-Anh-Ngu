@@ -225,6 +225,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        
         try {
             // TODO add your handling code here:
             TrinhDoBO trinhdobo1 = new TrinhDoBO();
@@ -236,7 +237,18 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
                     break;
                 }
             }
+            TrinhDoBO trinhdobo2 = new TrinhDoBO();
+            List<String> tentrinhdo2 = trinhdobo2.layTenTrinhDoTienQuyet();
+            boolean check1 =false;
+            for(String ten:tentrinhdo2){
+                if(ten.equals(cbbTrinhDoTienQuyet.getSelectedItem().toString())){
+                    check1 =true;
+                    break;
+                }
+            }
+            
             if(!check){
+                if(!check1){
             switch(cbbLoaiChuongTrinh.getSelectedItem().toString()){
                 case "TOIEC":{
                     try{
@@ -349,11 +361,16 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
             }
             cbbTrinhDoTienQuyet.addItem("");
             tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Trình độ tiên quyết đã tồn tại");
+                }
             }
             else{
                 txtDiemSo.setText("");
                 JOptionPane.showMessageDialog(this, "Trình độ đã tồn tại");
             }
+            
         } catch (Exception ex) {
             Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
         }
