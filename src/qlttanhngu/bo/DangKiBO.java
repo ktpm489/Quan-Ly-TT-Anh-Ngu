@@ -103,9 +103,9 @@ public class DangKiBO {
     }
     
      // trả về danh sách ca hoc
-    public Vector<String> GetListMaCa() throws Exception{
+    public Vector<String> GetListCaHoc() throws Exception{
         try {
-            return dangkidao.GetListMaCa();
+            return dangkidao.GetListCaHoc();
         } catch (Exception ex) {
             Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -116,9 +116,9 @@ public class DangKiBO {
     }
     
        // trả về danh sách ca hoc
-    public Vector<String> GetListMaNgay() throws Exception{
+    public Vector<String> GetListNgayHoc() throws Exception{
         try {
-            return dangkidao.GetListMaNgay();
+            return dangkidao.GetListNgayHoc();
         } catch (Exception ex) {
             Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -164,29 +164,55 @@ public class DangKiBO {
         return null;
             
     }
+     
+      public String GetMaCaHocTheoTen(String name) throws Exception{
+        try {
+            return dangkidao.GetMaCaHocTheoTen(name);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            dangkidao.closeConnection();
+        }
+       return "";
+   }
+      
+       public String GetMaNgayHocTheoTen(String name) throws Exception{
+        try {
+            return dangkidao.GetMaNgayHocTheoTen(name);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            dangkidao.closeConnection();
+        }
+       return "";
+   }
+       
+  public String GetNgayHocTheoMa(String ma) throws Exception{
+        try {
+            return dangkidao.GetNgayHocTheoMa(ma);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            dangkidao.closeConnection();
+        }
+       return "";
+   }
+  
+   public String GetCaHocTheoMa(String ma) throws Exception{
+        try {
+            return dangkidao.GetCaHocTheoMa(ma);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            dangkidao.closeConnection();
+        }
+       return "";
+   }
     
-//   public String GetMaChungChiTheoTen(String name) throws Exception{
-//        try {
-//            return dangkidao.GetMaChungChiTheoTen(name);
-//            
-//        } catch (Exception ex) {
-//            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
-//        }finally{
-//            dangkidao.closeConnection();
-//        }
-//       return "";
-//   }
-//   
-//   public String GetTenChungChiTheoMa(String ma) throws Exception{
-//        try {
-//            return dangkidao.GetTenChungChiTheoMa(ma);
-//            
-//        } catch (Exception ex) {
-//            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
-//        }finally{
-//            dangkidao.closeConnection();
-//        }
-//       return "";
-//   }
+
     
 }

@@ -33,7 +33,7 @@ public class DangKiController {
                 new String[]{
             "Mã học viên", "Họ tên", "CMND", "Năm sinh", "Giới tính",
             "Nghề nghiệp", "Số điện thoại", "Địa chỉ", "Email",
-            "Ngày Đăng Kí","Mã Ngày","Mã Ca","Trạng Thái","Tình Trạng",
+            "Ngày Đăng Kí","Ngày Học","Ca Học","Trạng Thái","Tình Trạng",
                 "TĐ Tối Thiểu","TĐ Muốn Học","TĐ Được Học"});
         DefaultTableModel tableDefault1 = dangkibo.LoadListHocVien();
         // DangKiDTO
@@ -64,8 +64,10 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 8));
             //--------------
             rowData.add(tableDefault1.getValueAt(i, 9));
-            rowData.add(tableDefault1.getValueAt(i, 10));
-            rowData.add(tableDefault1.getValueAt(i, 11));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);
@@ -151,12 +153,12 @@ public class DangKiController {
     }
 
     public DefaultComboBoxModel GetListMaCa() throws Exception {
-        DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(dangkibo.GetListMaCa());
+        DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(dangkibo.GetListCaHoc());
         return defaultComboBox;
     }
 
     public DefaultComboBoxModel GetListMaNgay() throws Exception {
-        DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(dangkibo.GetListMaNgay());
+        DefaultComboBoxModel defaultComboBox = new DefaultComboBoxModel(dangkibo.GetListNgayHoc());
         return defaultComboBox;
     }
 
@@ -167,7 +169,7 @@ public class DangKiController {
                 new String[]{
             "Mã học viên", "Họ tên", "CMND", "Năm sinh", "Giới tính",
             "Nghề nghiệp", "Số điện thoại", "Địa chỉ", "Email",
-            "Ngày Đăng Kí","Mã Ngày","Mã Ca","Trạng Thái","Tình Trạng",
+            "Ngày Đăng Kí","Ngày Học","Ca Học","Trạng Thái","Tình Trạng",
                 "TĐ Tối Thiểu","TĐ Muốn Học","TĐ Được Học"});
         DefaultTableModel tableDefault1 = dangkibo.TimKiemHocVien(ma, cmnd);
         // DangKiDTO
@@ -197,8 +199,13 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 8));
             //--------------
             rowData.add(tableDefault1.getValueAt(i, 9));
-            rowData.add(tableDefault1.getValueAt(i, 10));
-            rowData.add(tableDefault1.getValueAt(i, 11));
+            
+          //  ==============
+             dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
+             dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
+          //  =================
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);
@@ -238,7 +245,7 @@ public class DangKiController {
                 new String[]{
             "Mã học viên", "Họ tên", "CMND", "Năm sinh", "Giới tính",
             "Nghề nghiệp", "Số điện thoại", "Địa chỉ", "Email",
-            "Ngày Đăng Kí","Mã Ngày","Mã Ca","Trạng Thái","Tình Trạng",
+            "Ngày Đăng Kí","Ngày Học","Ca Học","Trạng Thái","Tình Trạng",
                 "TĐ Tối Thiểu","TĐ Muốn Học","TĐ Được Học"});
          DefaultTableModel tableDefault1 = dangkibo.TimKiemHocVienTheoMa(ma);
         // DangKiDTO
@@ -268,8 +275,10 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 8));
             //--------------
             rowData.add(tableDefault1.getValueAt(i, 9));
-            rowData.add(tableDefault1.getValueAt(i, 10));
-            rowData.add(tableDefault1.getValueAt(i, 11));
+             dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
+             dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);
@@ -310,7 +319,7 @@ public class DangKiController {
                 new String[]{
             "Mã học viên", "Họ tên", "CMND", "Năm sinh", "Giới tính",
             "Nghề nghiệp", "Số điện thoại", "Địa chỉ", "Email",
-            "Ngày Đăng Kí","Mã Ngày","Mã Ca","Trạng Thái","Tình Trạng",
+            "Ngày Đăng Kí","Ngày Học","Ca Học","Trạng Thái","Tình Trạng",
                 "TĐ Tối Thiểu","TĐ Muốn Học","TĐ Được Học"});
        DefaultTableModel tableDefault1 = dangkibo.TimKiemHocVienTheoCMND(cmnd);
         // DangKiDTO
@@ -340,8 +349,10 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 8));
             //--------------
             rowData.add(tableDefault1.getValueAt(i, 9));
-            rowData.add(tableDefault1.getValueAt(i, 10));
-            rowData.add(tableDefault1.getValueAt(i, 11));
+             dangkibo = new DangKiBO();
+           rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);
@@ -373,5 +384,11 @@ public class DangKiController {
             tableDefault.addRow(rowData);
         }
         return tableDefault;
+    }
+     public String GetMaCaTheoTen(String ten) throws Exception{
+        return dangkibo.GetMaCaHocTheoTen(ten);
+    }
+      public String GetMaNgayTheoTen(String ten) throws Exception{
+        return dangkibo.GetMaNgayHocTheoTen(ten);
     }
 }

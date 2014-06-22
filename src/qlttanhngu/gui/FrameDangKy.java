@@ -61,8 +61,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
         lblEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         txtDiaChi = new javax.swing.JTextField();
-        lblChuongTrinhHoc = new javax.swing.JLabel();
-        ComBoxTrangThai = new javax.swing.JComboBox();
         DateChooseNgayDK = new com.toedter.calendar.JDateChooser();
         comboxTinhTrangHoc = new javax.swing.JComboBox();
         comboxGioiTinh = new javax.swing.JComboBox();
@@ -93,20 +91,20 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
         setTitle("Đăng Ký Học");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -142,10 +140,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
         lblEmail.setText("Email");
 
-        lblChuongTrinhHoc.setText("Trang Thai");
-
-        ComBoxTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TOIEC", "IELTS", "TEOFL" }));
-
         DateChooseNgayDK.setDateFormatString("dd/MM/YYY");
         DateChooseNgayDK.setEnabled(false);
         DateChooseNgayDK.setDate(new Date());
@@ -158,21 +152,26 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
         comboxTrinhDoMuonHoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        lbltttoithieu.setText("Trinh Do Toi Thieu ");
+        lbltttoithieu.setText("Trình Độ Tối Thiểu");
 
-        jLabel2.setText("Trinh Do Muon Hoc");
+        jLabel2.setText("Trình Độ Muốn Học");
 
         comboxTrinhDoDuocHoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel3.setText("TrinhDo Duoc Hoc");
+        jLabel3.setText("Trình Độ Được Học");
 
         ComboxMaNgay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboxMaNgay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboxMaNgayActionPerformed(evt);
+            }
+        });
 
         ComboxMaCa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        lblMaNgay.setText("Ma Ngay");
+        lblMaNgay.setText("Ngày Học");
 
-        lblMaCa.setText("Ma Ca");
+        lblMaCa.setText("Ca Học");
 
         javax.swing.GroupLayout panelThongTinLayout = new javax.swing.GroupLayout(panelThongTin);
         panelThongTin.setLayout(panelThongTinLayout);
@@ -192,63 +191,56 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                 .addGap(45, 45, 45)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelThongTinLayout.createSequentialGroup()
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNgheNghiep, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelThongTinLayout.createSequentialGroup()
-                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNgheNghiep, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
-                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelThongTinLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblGioiTinh)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(comboxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelThongTinLayout.createSequentialGroup()
-                                        .addGap(182, 182, 182)
-                                        .addComponent(ComboxMaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(2, 2, 2))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
-                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelThongTinLayout.createSequentialGroup()
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbltttoithieu))
-                                    .addGroup(panelThongTinLayout.createSequentialGroup()
-                                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(DateChooserNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                                                    .addComponent(txtCMND, javax.swing.GroupLayout.Alignment.LEADING))
-                                                .addGroup(panelThongTinLayout.createSequentialGroup()
-                                                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(62, 62, 62)))
-                                            .addComponent(DateChooseNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblTinhTrangHoc)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(lblMaNgay)
-                                                        .addComponent(lblChuongTrinhHoc)
-                                                        .addComponent(lblMaCa)))
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                .addComponent(lblGioiTinh)
                                 .addGap(18, 18, 18)
-                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelThongTinLayout.createSequentialGroup()
-                                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ComBoxTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(comboxTinhTrangHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(2, 2, 2))
-                                    .addComponent(ComboxMaCa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboxTrinhDoMuonHoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboxTrinhDoDuocHoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboxTrinhdoToiThieu, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap())
+                                .addComponent(comboxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
+                                .addComponent(lblMaCa)
+                                .addGap(18, 18, 18)
+                                .addComponent(ComboxMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelThongTinLayout.createSequentialGroup()
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2))
+                            .addGroup(panelThongTinLayout.createSequentialGroup()
+                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(DateChooserNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                                            .addComponent(txtCMND, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGroup(panelThongTinLayout.createSequentialGroup()
+                                            .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(62, 62, 62)))
+                                    .addComponent(DateChooseNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTinhTrangHoc, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMaNgay, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboxTrinhDoMuonHoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboxTrinhDoDuocHoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelThongTinLayout.createSequentialGroup()
+                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboxTinhTrangHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ComboxMaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 2, 2))))
                     .addGroup(panelThongTinLayout.createSequentialGroup()
                         .addComponent(txtSODT, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbltttoithieu)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboxTrinhdoToiThieu, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         panelThongTinLayout.setVerticalGroup(
             panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,56 +253,50 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCMND, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCMND)))
-                    .addGroup(panelThongTinLayout.createSequentialGroup()
-                        .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblTinhTrangHoc)
-                                .addComponent(comboxTinhTrangHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelThongTinLayout.createSequentialGroup()
-                                .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblHoTen)
-                                    .addComponent(comboxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblGioiTinh))
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNamSinh)
-                                .addGap(6, 6, 6)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCMND)
+                            .addComponent(lblMaNgay)
+                            .addComponent(ComboxMaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChuongTrinhHoc)
-                            .addComponent(ComBoxTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblTinhTrangHoc)
+                            .addComponent(comboxTinhTrangHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelThongTinLayout.createSequentialGroup()
+                            .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblHoTen)
+                                .addComponent(comboxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblGioiTinh))
+                            .addGap(18, 18, 18)
+                            .addComponent(lblNamSinh)
+                            .addGap(6, 6, 6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNgheNghiep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNgheNgiep)
-                    .addComponent(ComboxMaNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaNgay))
+                    .addComponent(ComboxMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaCa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSODT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSoDT)
-                    .addComponent(ComboxMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaCa))
+                    .addComponent(comboxTrinhdoToiThieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbltttoithieu))
                 .addGap(18, 18, 18)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail)
-                    .addComponent(comboxTrinhdoToiThieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbltttoithieu))
+                    .addComponent(comboxTrinhDoMuonHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(16, 16, 16)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDiaChi)
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboxTrinhDoMuonHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(comboxTrinhDoDuocHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNgayDK)
-                    .addComponent(DateChooseNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(comboxTrinhDoDuocHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                    .addComponent(DateChooseNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -485,7 +471,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                             .addComponent(PanelCapNhat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelChucNang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelTimHocVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                        .addGap(0, 5, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,7 +486,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -543,11 +529,20 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         //thong tin cho bang dangkithongtin
                         dangki.setTenTinhTrangHoc(this.comboxTinhTrangHoc.getSelectedItem().toString());
                         dangki.setTinhTrangHoc();
-                        dangki.setTenTrangThai(this.ComBoxTrangThai.getSelectedItem().toString());
-                        dangki.setTrangThai();
+
                         dangki.setNgayDangKi(this.DateChooseNgayDK.getDate());
-                        dangki.setMaNgay(this.ComboxMaNgay.getSelectedItem().toString());
-                        dangki.setMaCa(this.ComboxMaCa.getSelectedItem().toString());
+                        try {
+                            dangki.setMaNgay(new DangKiController().GetMaNgayTheoTen(this.ComboxMaNgay.getSelectedItem().toString()));
+                        } catch (Exception ex) {
+                            Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try {
+                            dangki.setMaCa(new DangKiController().GetMaCaTheoTen(this.ComboxMaCa.getSelectedItem().toString()));
+                        } catch (Exception ex) {
+                            Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+
                         dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
                         dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
                         dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
@@ -625,7 +620,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
         txtTimTheoCMND.setDocument(new DigitsDocument());
 
         comboxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Nam", "Nữ"}));
-        ComBoxTrangThai.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Đang Học", "Không Học"}));
 
         try {
             comboxTrinhdoToiThieu.setModel(new DangKiController().GetListTrinhDo());
@@ -714,7 +708,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                     }
                 } //Qua do dai cho phep
                 else {
-                    JOptionPane.showMessageDialog(this,"Số CMND tối đa 9 chữ số !");                   
+                    JOptionPane.showMessageDialog(this, "Số CMND tối đa 9 chữ số !");
                 }
 
             }
@@ -722,7 +716,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
             if ((this.txtTimTheoMaHocVien.getText().contentEquals("") == false) && (this.txtTimTheoCMND.getText().contentEquals("") == false)) {
                 if (this.txtTimTheoMaHocVien.getText().length() > 10) {
                     //Qua do dai cho phep
-                     JOptionPane.showMessageDialog(this,"Mã Học Viên Không Quá 10 Kí tự !");                
+                    JOptionPane.showMessageDialog(this, "Mã Học Viên Không Quá 10 Kí tự !");
                 } else {
 
                     if (checkCMND(this.txtTimTheoCMND.getText())) {
@@ -730,7 +724,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                             DangKiController dangkicontrol = new DangKiController();
                             DefaultTableModel table = dangkicontrol.TimKiemHocVien(this.txtTimTheoMaHocVien.getText(), this.txtTimTheoCMND.getText());
                             if (table.getRowCount() < 1) {
-                                  JOptionPane.showMessageDialog(this,"Không có học viên này!");                               
+                                JOptionPane.showMessageDialog(this, "Không có học viên này!");
                             } else {
                                 this.tableDSHocVienDK.setModel(table);
                                 JOptionPane.showMessageDialog(this, "Thành Công!");
@@ -742,13 +736,13 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
                     } //Qua do dai cho phep
                     else {
-                        JOptionPane.showMessageDialog(this,"Số CMND tối đa 9 chữ số !"); 
+                        JOptionPane.showMessageDialog(this, "Số CMND tối đa 9 chữ số !");
                     }
                 }
             }
 
         } else {
-             JOptionPane.showMessageDialog(this,"Chưa Nhập Thông Tin Tìm Kiếm !");           
+            JOptionPane.showMessageDialog(this, "Chưa Nhập Thông Tin Tìm Kiếm !");
         }
 
 
@@ -775,11 +769,18 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
             //thong tin cho bang dangkithongtin
             dangki.setTenTinhTrangHoc(this.comboxTinhTrangHoc.getSelectedItem().toString());
             dangki.setTinhTrangHoc();
-            dangki.setTenTrangThai(this.ComBoxTrangThai.getSelectedItem().toString());
-            dangki.setTrangThai();
+
             dangki.setNgayDangKi(this.DateChooseNgayDK.getDate());
-            dangki.setMaNgay(this.ComboxMaNgay.getSelectedItem().toString());
-            dangki.setMaCa(this.ComboxMaCa.getSelectedItem().toString());
+            try {
+                dangki.setMaNgay(new DangKiController().GetMaNgayTheoTen(this.ComboxMaNgay.getSelectedItem().toString()));
+            } catch (Exception ex) {
+                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                dangki.setMaCa(new DangKiController().GetMaCaTheoTen(this.ComboxMaCa.getSelectedItem().toString()));
+            } catch (Exception ex) {
+                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
             dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
             dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
@@ -789,7 +790,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
                 //them hoc vien
                 if (dangkicontrol.UpdateHocVien(dangki, maHov.toString())) {
-                     JOptionPane.showMessageDialog(this,"Cập Nhật thành công!");                                     
+                    JOptionPane.showMessageDialog(this, "Cập Nhật thành công!");
 
                     if (new DangKiController().UpdateThongTinDangKi(dangki, maHov.toString())) {
                         /*
@@ -805,19 +806,19 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         }
                     } else//dang ki that bai
                     {
-                         JOptionPane.showMessageDialog(this,"Cập Nhật thông tin đăng kí thất bại!");                     
+                        JOptionPane.showMessageDialog(this, "Cập Nhật thông tin đăng kí thất bại!");
 
                     }
                 } else//dang ki that bai
                 {
-                    JOptionPane.showMessageDialog(this,"Cập Nhật thất bại!");                    
+                    JOptionPane.showMessageDialog(this, "Cập Nhật thất bại!");
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-             JOptionPane.showMessageDialog(this,"Chưa Chọn Học Viên !");           
+            JOptionPane.showMessageDialog(this, "Chưa Chọn Học Viên !");
         }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
@@ -855,7 +856,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
         this.txtCMND.setText(cmnd.toString());
         //combobox
 
-        this.ComBoxTrangThai.setSelectedItem(tt.toString());
         this.ComboxMaCa.setSelectedItem(maca.toString());
         this.ComboxMaNgay.setSelectedItem(mangay.toString());
         this.comboxGioiTinh.setSelectedItem(gt.toString());
@@ -870,6 +870,10 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
 
         this.btnCapNhat.setEnabled(true);
     }//GEN-LAST:event_tableDSHocVienDKMousePressed
+
+    private void ComboxMaNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboxMaNgayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboxMaNgayActionPerformed
 
     private boolean checkFillTimKiem() {
         if ((this.txtTimTheoMaHocVien.getText().contentEquals("") == false) || (this.txtTimTheoCMND.getText().contentEquals("") == false)) {
@@ -919,7 +923,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
         return ck;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ComBoxTrangThai;
     private javax.swing.JComboBox ComboxMaCa;
     private javax.swing.JComboBox ComboxMaNgay;
     private com.toedter.calendar.JDateChooser DateChooseNgayDK;
@@ -942,7 +945,6 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
     private javax.swing.JLabel labelTimTheoCMND;
     private javax.swing.JLabel labelTimTheoMaHocVien;
     private javax.swing.JLabel lblCMND;
-    private javax.swing.JLabel lblChuongTrinhHoc;
     private javax.swing.JLabel lblDiaChi;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblGioiTinh;

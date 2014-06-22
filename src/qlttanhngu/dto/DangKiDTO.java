@@ -194,13 +194,6 @@ public class DangKiDTO {
         this.tenTrangThai = str;
     }
 
-    public void setTrangThai() {
-        if (getTenTrangThai().equals("Đang Học")) {
-            this.trangThai = true;
-        } else if (getTenTrangThai().equals("Không Học")){
-            this.trangThai = false;
-        }
-    }
 
     public void setSoDienThoai(int soDienThoai) {
         this.soDienThoai = soDienThoai;

@@ -43,41 +43,6 @@ public class DangKiDAO extends DataBase{
         
     }
     
-//    public List<DangKiDTO> loadListHocVien() throws Exception {
-//        List<DangKiDTO> lstHV = new ArrayList<DangKiDTO>();
-//        DangKiDTO hv = null;
-//        ResultSet resultSet = null;
-//        int i = 0;
-//        CallableStatement callableStatement = null;
-//        
-//        resultSet = this.executeQuery("{call LayDanhSachHocVien2()}");
-//        try {
-//            while(resultSet.next()){
-//                hv = new DangKiDTO();
-//                
-//                hv.setMaHocVien(resultSet.getString(1));
-//                hv.setTenHocVien(resultSet.getString(2));
-//                hv.setCmnd(resultSet.getString(3));
-//                hv.setNamSinh(resultSet.getDate(4));
-//                hv.setGioiTinh2(resultSet.getBoolean(5));
-//              
-//                hv.setNgheNghiep(resultSet.getString(6));
-//                hv.setSoDienThoai(resultSet.getInt(7));
-//                hv.setDiaChi(resultSet.getString(8));
-//                hv.setEmail(resultSet.getString(9));
-//                
-//                lstHV.add(hv);
-//                i++;
-//            }    
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }finally{
-//            this.closeConnection();
-//        }
-//        return lstHV;
-//    }
-//    
-    
     //Cac Ham Lay Thong Tin
   
    public Vector<String> GetListTrinhDo(){
@@ -96,13 +61,13 @@ public class DangKiDAO extends DataBase{
        return dataTenChungChi;
    }
    
-    public Vector<String> GetListMaCa(){
+    public Vector<String> GetListCaHoc(){
        Vector<String> dataTenChungChi = new Vector<String>();
        ResultSet resultSet = null;
        
        
         try {
-            resultSet = this.executeQuery("{call LayDanhSachMaCa()}");
+            resultSet = this.executeQuery("{call LayDanhSachCaHoc()}");
             while(resultSet.next()){
                 dataTenChungChi.add(resultSet.getString(1));
             }
@@ -112,13 +77,13 @@ public class DangKiDAO extends DataBase{
        return dataTenChungChi;
    }
     
-      public Vector<String> GetListMaNgay(){
+      public Vector<String> GetListNgayHoc(){
        Vector<String> dataTenChungChi = new Vector<String>();
        ResultSet resultSet = null;
        
        
         try {
-            resultSet = this.executeQuery("{call LayDanhSachMaNgay()}");
+            resultSet = this.executeQuery("{call LayDanhSachNgayHoc()}");
             while(resultSet.next()){
                 dataTenChungChi.add(resultSet.getString(1));
             }
@@ -190,7 +155,7 @@ public class DangKiDAO extends DataBase{
             callableStatement.setString(2, dkdto.getMaNgay());
             callableStatement.setString(3, dkdto.getMaCa());
             callableStatement.setString(4,"HV"+ count);
-            callableStatement.setBoolean(5, dkdto.getTrangThai());
+            callableStatement.setBoolean(5, false);
             callableStatement.setBoolean(6, dkdto.getTinhTrangHoc());
             
             callableStatement.setString(7, dkdto.getTrinhDoToiThieu());
@@ -306,7 +271,7 @@ public class DangKiDAO extends DataBase{
             callableStatement.setString(2, dkdto.getMaNgay());
             callableStatement.setString(3, dkdto.getMaCa());
             callableStatement.setString(4,mahv);
-            callableStatement.setBoolean(5, dkdto.getTrangThai());
+            callableStatement.setBoolean(5, false);
             callableStatement.setBoolean(6, dkdto.getTinhTrangHoc());
             
             callableStatement.setString(7, dkdto.getTrinhDoToiThieu());
@@ -320,6 +285,73 @@ public class DangKiDAO extends DataBase{
             Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
        return false;
+   }
+     
+      public String GetMaCaHocTheoTen(String ma){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayMaCaHocTuTenCa(?)}");
+                 callableStatement.setString(1, ma);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
+   }
+        public String GetMaNgayHocTheoTen(String ma){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayMaNgayHocTuTenNgay(?)}");
+                 callableStatement.setString(1, ma);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
+   }
+        
+   public String GetNgayHocTheoMa(String ma){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayTenNgayHocTheoMa(?)}");
+                 callableStatement.setString(1, ma);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
+   }
+   
+   public String GetCaHocTheoMa(String ma){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayTenCaHocTheoMa(?)}");
+                 callableStatement.setString(1, ma);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
    }
 }
 

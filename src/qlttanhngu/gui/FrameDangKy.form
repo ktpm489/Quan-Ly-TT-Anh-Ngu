@@ -56,7 +56,7 @@
                               <Component id="panelChucNang" alignment="0" max="32767" attributes="0"/>
                               <Component id="panelTimHocVien" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -77,7 +77,7 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="132" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="140" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -110,88 +110,76 @@
                       </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtNgheNghiep" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtHoTen" alignment="0" pref="361" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtNgheNghiep" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtHoTen" alignment="0" pref="361" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="lblGioiTinh" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="comboxGioiTinh" min="-2" pref="106" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                                              <Component id="ComboxMaNgay" min="-2" pref="106" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblGioiTinh" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="comboxGioiTinh" min="-2" pref="106" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtEmail" min="-2" pref="354" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="lbltttoithieu" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                          <Component id="DateChooserNgaySinh" alignment="0" pref="264" max="32767" attributes="0"/>
-                                                          <Component id="txtCMND" alignment="0" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="txtDiaChi" min="-2" pref="354" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Component id="DateChooseNgayDK" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace pref="19" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                          <Component id="lblTinhTrangHoc" min="-2" max="-2" attributes="0"/>
-                                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                              <Component id="lblMaNgay" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="lblChuongTrinhHoc" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="lblMaCa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                      </Group>
+                                      <Component id="lblMaCa" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="ComBoxTrangThai" min="-2" pref="106" max="-2" attributes="0"/>
-                                                  <Component id="comboxTinhTrangHoc" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <Component id="ComboxMaCa" min="-2" pref="108" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtEmail" min="-2" pref="354" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="DateChooserNgaySinh" alignment="0" pref="264" max="32767" attributes="0"/>
+                                                  <Component id="txtCMND" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="txtDiaChi" min="-2" pref="354" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Component id="ComboxMaCa" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="comboxTrinhDoMuonHoc" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="comboxTrinhDoDuocHoc" max="32767" attributes="0"/>
-                                          <Component id="comboxTrinhdoToiThieu" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="DateChooseNgayDK" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblTinhTrangHoc" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblMaNgay" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="comboxTrinhDoMuonHoc" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="comboxTrinhDoDuocHoc" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="comboxTinhTrangHoc" min="-2" pref="106" max="-2" attributes="0"/>
+                                          <Component id="ComboxMaNgay" min="-2" pref="106" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="txtSODT" min="-2" pref="257" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lbltttoithieu" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="comboxTrinhdoToiThieu" min="-2" pref="108" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -207,30 +195,25 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtCMND" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblCMND" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaNgay" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ComboxMaNgay" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblTinhTrangHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="comboxTinhTrangHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="comboxGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblNamSinh" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblChuongTrinhHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ComBoxTrangThai" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTinhTrangHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboxTinhTrangHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboxGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="lblNamSinh" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -238,38 +221,34 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtNgheNghiep" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNgheNgiep" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ComboxMaNgay" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaNgay" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ComboxMaCa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMaCa" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="22" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtSODT" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblSoDT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ComboxMaCa" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaCa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboxTrinhdoToiThieu" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbltttoithieu" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboxTrinhdoToiThieu" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbltttoithieu" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboxTrinhDoMuonHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtDiaChi" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboxTrinhDoMuonHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboxTrinhDoDuocHoc" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNgayDK" min="-2" max="-2" attributes="0"/>
                           <Component id="DateChooseNgayDK" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="comboxTrinhDoDuocHoc" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -348,22 +327,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtDiaChi">
             </Component>
-            <Component class="javax.swing.JLabel" name="lblChuongTrinhHoc">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Trang Thai"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="ComBoxTrangThai">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="TOIEC"/>
-                    <StringItem index="1" value="IELTS"/>
-                    <StringItem index="2" value="TEOFL"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="DateChooseNgayDK">
               <Properties>
                 <Property name="dateFormatString" type="java.lang.String" value="dd/MM/YYY"/>
@@ -420,12 +383,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lbltttoithieu">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Trinh Do Toi Thieu "/>
+                <Property name="text" type="java.lang.String" value="Tr&#xec;nh &#x110;&#x1ed9; T&#x1ed1;i Thi&#x1ec3;u"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Trinh Do Muon Hoc"/>
+                <Property name="text" type="java.lang.String" value="Tr&#xec;nh &#x110;&#x1ed9; Mu&#x1ed1;n H&#x1ecd;c"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboxTrinhDoDuocHoc">
@@ -442,7 +405,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="TrinhDo Duoc Hoc"/>
+                <Property name="text" type="java.lang.String" value="Tr&#xec;nh &#x110;&#x1ed9; &#x110;&#x1b0;&#x1ee3;c H&#x1ecd;c"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="ComboxMaNgay">
@@ -456,6 +419,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboxMaNgayActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="ComboxMaCa">
               <Properties>
@@ -471,12 +437,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaNgay">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ma Ngay"/>
+                <Property name="text" type="java.lang.String" value="Ng&#xe0;y H&#x1ecd;c"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMaCa">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ma Ca"/>
+                <Property name="text" type="java.lang.String" value="Ca H&#x1ecd;c"/>
               </Properties>
             </Component>
           </SubComponents>
