@@ -5,6 +5,7 @@
 package qlttanhngu.gui;
 
 import Assest.StoreSave;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +62,6 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
         btnThem = new javax.swing.JButton();
         btnChTiet = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
-        btnLuu = new javax.swing.JButton();
         comboBoxMaLop = new javax.swing.JComboBox();
         txtTenLop = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
@@ -116,6 +116,12 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
 
         txtKhoaHoc.setEnabled(false);
 
+        txtDiemDauVao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiemDauVaoKeyTyped(evt);
+            }
+        });
+
         txtPhong.setEnabled(false);
 
         panelChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
@@ -139,12 +145,9 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
 
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Dóng");
-
-        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/save.png"))); // NOI18N
-        btnLuu.setText("Lưu");
-        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+        btnDong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLuuActionPerformed(evt);
+                btnDongActionPerformed(evt);
             }
         });
 
@@ -153,15 +156,13 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
         panelChucNangLayout.setHorizontalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChucNangLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(63, 63, 63)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(59, 59, 59)
                 .addComponent(btnChTiet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
+                .addGap(47, 47, 47)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(39, 39, 39))
         );
         panelChucNangLayout.setVerticalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +171,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
                 .addGroup(panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
                     .addComponent(btnChTiet)
-                    .addComponent(btnDong)
-                    .addComponent(btnLuu))
+                    .addComponent(btnDong))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -186,6 +186,11 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
         txtSoLuong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSoLuongActionPerformed(evt);
+            }
+        });
+        txtSoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSoLuongKeyTyped(evt);
             }
         });
 
@@ -339,7 +344,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
                 .addComponent(panelXepLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnChonTatCa)
@@ -504,6 +509,21 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnXoaDonActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if("".equals(txtTenLop.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn lớp trước khi thêm! ");
+            return;
+        }
+        if("".equals(txtDiemDauVao.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Điểm đầu vào trước khi thêm! ");
+            return;
+        }
+        if("".equals(txtSoLuong.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Số lượng trước khi thêm! ");
+            return;
+        }
         try {
             tableDanhSachHocVien.setModel(new HocVienController().GetListListHocVienTheoDiemYeuCau(Double.parseDouble(txtDiemDauVao.getText())));
         } catch (Exception ex) {
@@ -543,87 +563,40 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
         ketQuaThi = Double.parseDouble(tableHVDaCHon.getValueAt(rowIndexDSHV, 2).toString());
     }//GEN-LAST:event_tableDanhSachHocVienDaChonMouseClicked
 
-    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-//        try {
-            
-//            Boolean result = false;
-//            
-//            int row1 = tablePhong.getRowCount();
-//            int row2 = tableOldPhong.getRowCount();
-//
-//            Vector<String> lstStr = new Vector<>();
-//
-//            for (int k = 0; k < row2; k++) {
-//                lstStr.add(tableOldPhong.getValueAt(k, 0).toString());
-//            }
-//
-//            for (int i = 0; i < row1; i++) {
-//                if (!lstStr.contains(tablePhong.getValueAt(i, 0))) {
-//                    try {
-//                        DanhSachThiDTO danhSachThiDTO = new DanhSachThiDTO();
-//                        danhSachThiDTO.setMahocvien(tablePhong.getValueAt(i, 0).toString());
-//                        danhSachThiDTO.setMakythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()));
-//
-//                        //them
-//                        result = new XepLopThiThuController().InsertHocVien(danhSachThiDTO);
-//                    } catch (Exception ex) {
-//                        Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
-//                        return;
-//                    }
-//                }
-//            }
-//            //        //them
-//            //        for (int i = 0; i < tablePhong.getRowCount(); i++) {
-//                //            try {
-//                    //                DanhSachThiDTO danhSachThiDTO = new DanhSachThiDTO();
-//                    //                danhSachThiDTO.setMahocvien(tablePhong.getValueAt(i, 0).toString());
-//                    //                danhSachThiDTO.setMakythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()));
-//                    //
-//                    //                //them
-//                    //                new XepLopThiThuController().InsertHocVien(danhSachThiDTO);
-//                    //            } catch (Exception ex) {
-//                    //                Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
-//                    //            }
-//                //        }
-//
-//            //xoa
-//            //xóa quyền
-//            Vector<String> lstStr1 = new Vector<>();
-//            for (int k = 0; k < row1; k++) {
-//                lstStr1.add(tablePhong.getValueAt(k, 0).toString());
-//            }
-//            if (row1 < row2) {
-//                for (int j = 0; j < row2; j++) {
-//                    if (!lstStr1.contains(tableOldPhong.getValueAt(j, 0))) {
-//                        try {
-//                            DanhSachThiDTO danhSachThiDTO = new DanhSachThiDTO();
-//                            danhSachThiDTO.setMahocvien(tableOldPhong.getValueAt(j, 0).toString());
-//                            danhSachThiDTO.setMakythi(getKeyKythi(comboBoxTenKyThi.getSelectedItem().toString()));
-//
-//                            //them
-//                            result = new XepLopThiThuBO().DeleteHocVien(danhSachThiDTO);
-//                        } catch (Exception ex) {
-//                            Logger.getLogger(FrameQuanTri.class.getName()).log(Level.SEVERE, null, ex);
-//                            return;
-//                        }
-//                    }
-//                }
-//            }
-//            if (result) {
-//                JOptionPane.showMessageDialog(this, "Lưu thành công !");
-//            }
-//            //câp nhật giá trị lại bản cũ
-//            txtTenPhongChange();
-//        } catch (Exception ex) {
-//            Logger.getLogger(FrameXepLopThiThu.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_btnLuuActionPerformed
+    private void txtDiemDauVaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiemDauVaoKeyTyped
+        char vChar = evt.getKeyChar();
+        int len = txtDiemDauVao.getText().length();
+
+        if (!(Character.isDigit(vChar))
+            || (vChar == KeyEvent.VK_BACK_SPACE)
+            || (vChar == KeyEvent.VK_DELETE)
+            || (vChar == KeyEvent.VK_ENTER)
+            || (vChar == KeyEvent.VK_TAB) || (len > 2)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDiemDauVaoKeyTyped
+
+    private void txtSoLuongKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongKeyTyped
+        char vChar = evt.getKeyChar();
+        int len = txtSoLuong.getText().length();
+
+        if (!(Character.isDigit(vChar))
+            || (vChar == KeyEvent.VK_BACK_SPACE)
+            || (vChar == KeyEvent.VK_DELETE)
+            || (vChar == KeyEvent.VK_ENTER)
+            || (vChar == KeyEvent.VK_TAB) || (len > 1)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSoLuongKeyTyped
+
+    private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnDongActionPerformed
 
      //Khởi Tạo các frameInternal
     private void InitFrameInternal(JInternalFrame jInternalFrame)
     {         
            StoreSave.desktop.add(jInternalFrame);
-
               try {
                      jInternalFrame.setMaximum(true);
                  } catch (PropertyVetoException ex) {
@@ -664,7 +637,6 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnChonDon;
     private javax.swing.JButton btnChonTatCa;
     private javax.swing.JButton btnDong;
-    private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoaDon;
     private javax.swing.JButton btnXoaTatCa;

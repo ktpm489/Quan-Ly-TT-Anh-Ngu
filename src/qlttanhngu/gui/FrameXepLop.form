@@ -207,6 +207,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDiemDauVao">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDiemDauVaoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPhong">
           <Properties>
@@ -226,15 +229,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="btnThem" min="-2" pref="106" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="btnLuu" min="-2" pref="97" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="btnChTiet" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="btnDong" min="-2" pref="101" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -246,7 +247,6 @@
                           <Component id="btnThem" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnChTiet" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDong" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLuu" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -284,16 +284,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="D&#xf3;ng"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnLuu">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Resources/save.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
-              </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLuuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDongActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -316,6 +308,7 @@
         <Component class="javax.swing.JTextField" name="txtSoLuong">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSoLuongActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoLuongKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSoLuong">

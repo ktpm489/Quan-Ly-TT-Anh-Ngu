@@ -134,11 +134,6 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
         lblDiaChi.setText("Địa Chỉ");
 
         txtMaNhanVien.setEnabled(false);
-        txtMaNhanVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaNhanVienActionPerformed(evt);
-            }
-        });
 
         txtTaiKhoan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -282,7 +277,7 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMatKhau)
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -301,31 +296,59 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Lỗi .Xin vui lòng kiểm tra lại kiểu dữ liệu đã nhập vào !");
             return;
         }
+        if(StoreSave.nhanvien != null){
+            try {
+                nhanviendto.setMaNhanVien(txtMaNhanVien.getText());
+                nhanviendto.setQuocTich(txtQuocTich.getText());
+                nhanviendto.setDiaChi(txtDiaChi.getText());
+                nhanviendto.setTrinhDo(txtTrinhDo.getText());
+                nhanviendto.setGioiTinh(comboxGioiTinh.getSelectedItem() == "Nam" ? true : false);
+                nhanviendto.setMaChucVu(new NhanVienController().GetMaChucVuTheoTen(comboxChucVu.getSelectedItem().toString()));
+                nhanviendto.setSoDienThoai(("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
+                nhanviendto.setTaiKhoan(txtTaiKhoan.getText());
+                nhanviendto.setHoTen(txtHoTen.getText());
 
-        try {
-            nhanviendto.setMaNhanVien(txtMaNhanVien.getText());
-            nhanviendto.setQuocTich(txtQuocTich.getText());
-            nhanviendto.setDiaChi(txtDiaChi.getText());
-            nhanviendto.setTrinhDo(txtTrinhDo.getText());
-            nhanviendto.setGioiTinh(comboxGioiTinh.getSelectedItem() == "Nam" ? true : false);
-            nhanviendto.setMaChucVu(new NhanVienController().GetMaChucVuTheoTen(comboxChucVu.getSelectedItem().toString()));
-            nhanviendto.setSoDienThoai(("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
-            nhanviendto.setTaiKhoan(txtTaiKhoan.getText());
-            nhanviendto.setHoTen(txtHoTen.getText());
-            
-            //Kiểm tra xem có chắc chắn cập nhât không?
-            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
-            if (x == 0) {
-                try {
-                    new NhanVienController().UpdateNhanVien(nhanviendto);//ien(StoreSave.hocvien);
-                } catch (Exception ex) {
-                    Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                //Kiểm tra xem có chắc chắn cập nhât không?
+                int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
+                if (x == 0) {
+                    try {
+                        new NhanVienController().UpdateNhanVien(nhanviendto);//ien(StoreSave.hocvien);
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                //refresh lại table ds hoc vien
+                StoreSave.frameNhanVien.refreshTable();
+            } catch (Exception ex) {
+                Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //refresh lại table ds hoc vien
-            StoreSave.frameNhanVien.refreshTable();
-        } catch (Exception ex) {
-            Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        else{
+            try {
+                nhanviendto.setMaNhanVien(txtMaNhanVien.getText());
+                nhanviendto.setQuocTich(txtQuocTich.getText());
+                nhanviendto.setDiaChi(txtDiaChi.getText());
+                nhanviendto.setTrinhDo(txtTrinhDo.getText());
+                nhanviendto.setGioiTinh(comboxGioiTinh.getSelectedItem() == "Nam" ? true : false);
+                nhanviendto.setMaChucVu(new NhanVienController().GetMaChucVuTheoTen(comboxChucVu.getSelectedItem().toString()));
+                nhanviendto.setSoDienThoai(("".equals(txtSoDT.getText()) ? "0" : txtSoDT.getText()));
+                nhanviendto.setTaiKhoan(txtTaiKhoan.getText());
+                nhanviendto.setHoTen(txtHoTen.getText());
+
+                //Kiểm tra xem có chắc chắn thêm không?
+                int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn thêm học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
+                if (x == 0) {
+                    try {
+                        new NhanVienController().ThemNhanVien(nhanviendto);//ien(StoreSave.hocvien);
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                //refresh lại table ds hoc vien
+                StoreSave.frameNhanVien.refreshTable();
+            } catch (Exception ex) {
+                Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -356,10 +379,6 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSoDTKeyTyped
 
-    private void txtMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNhanVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaNhanVienActionPerformed
-
     private void txtTaiKhoanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTaiKhoanKeyTyped
         int len = txtTaiKhoan.getText().length();
 
@@ -369,7 +388,11 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTaiKhoanKeyTyped
 
     private void txtMatKhauKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyTyped
-        // TODO add your handling code here:
+        int len = txtMatKhau.getText().length();
+
+        if (len > 30) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtMatKhauKeyTyped
 
     private void txtDiaChiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiaChiKeyTyped
@@ -441,7 +464,12 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboxChucVuActionPerformed
 
     private void txtTrinhDoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTrinhDoKeyTyped
-        // TODO add your handling code here:
+
+        int len = txtTrinhDo.getText().length();
+
+        if (len > 15) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtTrinhDoKeyTyped
     
     //tạo mã tự động 
@@ -450,7 +478,7 @@ public class FrameThemVaCapNhatNhanVien extends javax.swing.JInternalFrame {
         maNhanVien += 1;
 
         int len = maNhanVien.toString().length();
-        String maMacDinh = "KT00000000";
+        String maMacDinh = "NV00000000";
 
         maMacDinh = maMacDinh.substring(0, maMacDinh.length() - len) + maNhanVien.toString();
 

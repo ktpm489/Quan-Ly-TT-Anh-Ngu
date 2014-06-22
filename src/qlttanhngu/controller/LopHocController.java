@@ -139,6 +139,8 @@ public class LopHocController {
     public HashMap<String, String> GetListLopHoc(){
         return lophocbo.GetListLopHoc();
     }
-
+    public int MaLop(){
+        return lophocbo.MaLop();
+    }
     
 }

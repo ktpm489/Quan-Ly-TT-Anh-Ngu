@@ -114,4 +114,8 @@ public class LopHocBO {
     public HashMap<String, String> GetListLopHoc(){
         return lophocdao.GetListLopHoc();
     }
+    
+    public int MaLop(){
+        return lophocdao.MaLop();
+    }
 }

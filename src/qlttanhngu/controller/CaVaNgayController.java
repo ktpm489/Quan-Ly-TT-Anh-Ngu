@@ -35,7 +35,6 @@ public class CaVaNgayController {
             rowData.add(listCaNgay.get(i).getMaNgay());
             rowData.add(listCaNgay.get(i).getDanhSachNgay());
             
-            
             tableDefault.addRow(rowData);
         }
         return tableDefault;
@@ -43,7 +42,7 @@ public class CaVaNgayController {
     
     public DefaultTableModel LoadListCa() throws Exception{
         DefaultTableModel tableDefault = new DefaultTableModel(new Object [][]{},new String []{
-            "Mã ngày", "Danh sách ngày"
+            "Mã ca", "Buổi", "Giờ bắt đầu", "Giờ kết thúc"
         });
         List<CaVaNgayDTO> listCaNgay = cavangaybo.LoadListCa();
         Vector<Object> rowData;

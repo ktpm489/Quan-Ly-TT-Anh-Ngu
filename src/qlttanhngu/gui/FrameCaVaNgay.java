@@ -357,54 +357,45 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         CaVaNgayDTO cavangaydto = new CaVaNgayDTO();
         //Kiểm tra mã, họ tên không dc null, kiểm tra kiễu dữ số dt, ......
-
+        
+        
+        
         try {
+            String str ="";
+        if(checkBoxThu2.isSelected())
+            str = "- Thứ 2 -";
+        if(checkBoxThu3.isSelected())
+            str += " Thứ 3 -";
+        if(checkBoxThu4.isSelected())
+            str += " Thứ 4 -";
+        if(checkBoxThu5.isSelected())
+            str += " Thứ 5 -";
+        if(checkBoxThu6.isSelected())
+            str += " Thứ 6 -";
+        if(checkBoxThu7.isSelected())
+            str += " Thứ 7 -";
             cavangaydto.setMaNgay(this.CreateMa());
-            cavangaydto.setDanhSachNgay(checkBoxThu2.getSelectedObjects().toString()+checkBoxThu3.getSelectedObjects().toString()+checkBoxThu4.getSelectedObjects().toString()+checkBoxThu5.getSelectedObjects().toString()+checkBoxThu6.getSelectedObjects().toString()+checkBoxThu7.getSelectedObjects().toString());
-            cavangaydto.setMaCa(comboBoxCa.getSelectedItem().toString());
-            cavangaydto.setMaCa(comboBoxBuoi.getSelectedItem().toString());
-            cavangaydto.setGioBatDau(Integer.parseInt(txtGioBatDau.getText().toString()));
-            cavangaydto.setGioKetThuc(Integer.parseInt(txtGioKetThuc.getText().toString()));
-            
+            cavangaydto.setDanhSachNgay(str);
+
             //Kiểm tra xem có chắc chắn cập nhât không?
             int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
             if (x == 0) {
                 try {
                     new CaVaNgayController().ThemNgay(cavangaydto);
-                    new CaVaNgayController().ThemCa(cavangaydto);
+                    //new CaVaNgayController().ThemCa(cavangaydto);
                 } catch (Exception ex) {
                     Logger.getLogger(FrameCaVaNgay.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            //refresh lại table ds hoc vien
-            //StoreSave.frameCaVaNgay.refreshTable();
+            
+            StoreSave.frameCaVaNgay.refreshTable();
         } catch (Exception ex) {
             Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void tableDSCaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDSCaMouseClicked
-//        try{
-//            JTable table = (JTable) evt.getSource();
-//            int row = table.getSelectedRow();
-//
-//            DTO nhanviendto = new NhanVienDTO();
-//
-//            nhanviendto.setMaNhanVien(table.getValueAt(row, 0).toString());
-//            nhanviendto.setMaChucVu(table.getValueAt(row, 1).toString());
-//            nhanviendto.setHoTen(table.getValueAt(row, 2).toString());
-//            nhanviendto.setGioiTinh("Nam".equals(table.getValueAt(row, 3).toString()) ? true : false);
-//            nhanviendto.setQuocTich(table.getValueAt(row, 4).toString());
-//            nhanviendto.setTrinhDo(table.getValueAt(row, 5).toString());
-//            nhanviendto.setSoDienThoai(table.getValueAt(row, 6).toString());
-//            nhanviendto.setDiaChi(table.getValueAt(row, 7).toString());
-//            nhanviendto.setTaiKhoan(table.getValueAt(row, 8).toString());
-//            //nhanviendto.setMatKhau(table.getValueAt(row, 9).toString());
-//
-//            StoreSave.nhanvien = nhanviendto;
-//        }catch(Exception e){
-//            Logger.getLogger(FrameNhanVien.class.getName()).log(Level.SEVERE, null, e);
-//        }
+
     }//GEN-LAST:event_tableDSCaMouseClicked
 
     private void tableDSNgayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDSNgayMouseClicked
@@ -413,8 +404,9 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
 // Hàm load lại toàn bộ table
     public void refreshTable() {
         try {
-            tableDSCa.setModel(new CaVaNgayController().LoadListCa());
             tableDSNgay.setModel(new CaVaNgayController().LoadListNgay());
+            tableDSCa.setModel(new CaVaNgayController().LoadListCa());
+            
         } catch (Exception ex) {
             Logger.getLogger(FrameCaVaNgay.class.getName()).log(Level.SEVERE, null, ex);
         }
