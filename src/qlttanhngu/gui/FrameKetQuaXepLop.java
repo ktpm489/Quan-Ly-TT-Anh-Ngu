@@ -154,10 +154,7 @@ public class FrameKetQuaXepLop extends javax.swing.JInternalFrame {
 
         tableDiemThiThu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Mã học viên", "Tên học viên", "điểm"
@@ -344,6 +341,8 @@ public class FrameKetQuaXepLop extends javax.swing.JInternalFrame {
         JTable jTable = (JTable) evt.getSource();
         int row = jTable.getSelectedRow();
 
+        if(jTable.getRowCount() == 0)
+            return;
         txtDiemThiCuoiKhoa.setText(jTable.getValueAt(row, 2).toString());
         mahocvien = jTable.getValueAt(row, 0).toString();
     }//GEN-LAST:event_tableDiemThiThuMouseClicked

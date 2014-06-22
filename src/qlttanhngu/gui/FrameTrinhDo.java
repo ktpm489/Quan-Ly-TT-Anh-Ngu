@@ -245,7 +245,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
                                 trinhdodto.setTenTrinhDoTienQuyet(cbbTrinhDoTienQuyet.getSelectedItem().toString());
                                 trinhdobo.themTrinhDo(trinhdodto);
                                 tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
-                                List<String> trinhdolst = trinhdobo.layTenTrinhDo();
+                                List<String> trinhdolst = new TrinhDoBO().layTenTrinhDo();
                                 cbbTrinhDoTienQuyet.removeAllItems();
                                 for(String trinhdo1:trinhdolst){
                                     cbbTrinhDoTienQuyet.addItem(trinhdo);

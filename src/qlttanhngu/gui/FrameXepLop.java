@@ -62,6 +62,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
         btnChTiet = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
+        btnXepLop = new javax.swing.JButton();
         comboBoxMaLop = new javax.swing.JComboBox();
         txtTenLop = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
@@ -139,6 +140,11 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
 
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Dóng");
+        btnDong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDongActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/save.png"))); // NOI18N
         btnLuu.setText("Lưu");
@@ -148,18 +154,27 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
             }
         });
 
+        btnXepLop.setText("Xếp lớp thi thử");
+        btnXepLop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXepLopActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelChucNangLayout = new javax.swing.GroupLayout(panelChucNang);
         panelChucNang.setLayout(panelChucNangLayout);
         panelChucNangLayout.setHorizontalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChucNangLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnXepLop)
                 .addGap(18, 18, 18)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnChTiet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
+                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnChTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -171,7 +186,8 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
                     .addComponent(btnThem)
                     .addComponent(btnChTiet)
                     .addComponent(btnDong)
-                    .addComponent(btnLuu))
+                    .addComponent(btnLuu)
+                    .addComponent(btnXepLop, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -321,7 +337,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnChonTatCa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,7 +345,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
                     .addComponent(btnXoaTatCa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnXoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(panelXepLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -339,7 +355,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
                 .addComponent(panelXepLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnChonTatCa)
@@ -619,6 +635,20 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_btnLuuActionPerformed
 
+    private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnDongActionPerformed
+
+    private void btnXepLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXepLopActionPerformed
+        FrameXepLopThiThu frameKetQuaThiThu = new FrameXepLopThiThu();
+
+        if (StoreSave.isExsting(frameKetQuaThiThu)) {
+            StoreSave.desktop.add(frameKetQuaThiThu);
+            frameKetQuaThiThu.setLocation(300, 60);
+            frameKetQuaThiThu.show();
+        }
+    }//GEN-LAST:event_btnXepLopActionPerformed
+
      //Khởi Tạo các frameInternal
     private void InitFrameInternal(JInternalFrame jInternalFrame)
     {         
@@ -666,6 +696,7 @@ public class FrameXepLop extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXepLop;
     private javax.swing.JButton btnXoaDon;
     private javax.swing.JButton btnXoaTatCa;
     private javax.swing.JComboBox comboBoxMaLop;

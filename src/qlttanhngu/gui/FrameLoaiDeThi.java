@@ -290,8 +290,8 @@ public class FrameLoaiDeThi extends javax.swing.JInternalFrame {
         try {
             // TODO add your handling code here:
             cbbTrinhDo.removeAllItems();
-            TrinhDoBO trinhdobo = new TrinhDoBO();
-            List<String> tentrinhdo = trinhdobo.layTenTrinhDo();
+          //  TrinhDoBO trinhdobo = new TrinhDoBO();
+            List<String> tentrinhdo = new TrinhDoBO().layTenTrinhDo();
             for(String ten:tentrinhdo){
                 cbbTrinhDo.addItem(ten);
             }
