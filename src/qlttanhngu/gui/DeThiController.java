@@ -35,6 +35,7 @@ public class DeThiController {
             rowData = new Vector<>();
             rowData.add(tempDeThi.get(i).getMaDeThi());
             rowData.add(tempDeThi.get(i).getLoaiDeThi());
+            rowData.add(tempDeThi.get(i).getTrinhDo());
             rowData.add(tempDeThi.get(i).getNgayCap1());
             tableDefault.addRow(rowData);
         }      

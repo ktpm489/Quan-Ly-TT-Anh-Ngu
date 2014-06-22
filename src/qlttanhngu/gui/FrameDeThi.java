@@ -227,7 +227,8 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
                 dethidto.setTrinhDo(cbbTrinhDo.getSelectedItem().toString());
                 dethidto.setNgayCap(dateNgayCap.getDate());
                 dethibo.addDeThi(dethidto);
-                tblDeThi.setModel((new DeThiController()).LoadListDeThi());
+                DeThiController dethictr = new DeThiController();
+                tblDeThi.setModel(dethictr.LoadListDeThi());
             }
         } catch (Exception ex) {
             Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,7 +240,7 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
             DeThiBO dethibo = new DeThiBO();
             DeThiDTO dethidto = new DeThiDTO();
             dethidto.setMaDeThi(tblDeThi.getValueAt(tblDeThi.getSelectedRow(), 0).toString());
-            
+            dethibo.deleteDeThi(dethidto);
             tblDeThi.setModel((new DeThiController()).LoadListDeThi());
         } catch (Exception ex) {
             Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
@@ -288,14 +289,14 @@ public class FrameDeThi extends javax.swing.JInternalFrame {
          cbbLoaiDeThi.removeAllItems();
                 if(!"".equals(cbbTrinhDo.getSelectedItem().toString())){
              try {
-                 LoaiDeThiBO loaidethibo = new LoaiDeThiBO();
-                 List<String> tenloaidethi = loaidethibo.layLoaiDeThi(cbbTrinhDo.getSelectedItem().toString());
-                 for(String ten:tenloaidethi){
+                LoaiDeThiBO loaidethibo = new LoaiDeThiBO();
+                List<String> tenloaidethi = loaidethibo.layLoaiDeThi(cbbTrinhDo.getSelectedItem().toString());
+                for(String ten:tenloaidethi){
                      cbbLoaiDeThi.addItem(ten);
-                 }
-             } catch (Exception ex) {
-                 Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
-             }
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(FrameDeThi.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
     }//GEN-LAST:event_cbbTrinhDoItemStateChanged
 

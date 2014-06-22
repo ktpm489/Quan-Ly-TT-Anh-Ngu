@@ -49,4 +49,19 @@ public class DeThiBO {
         }
         return false;
     }
+    
+    public boolean deleteDeThi(DeThiDTO dethidto) throws Exception{
+        try{
+            if(dethidao.deleteDeThi(dethidto)){
+                return true;
+            }
+        }catch(Exception ex){
+                    
+            
+        }
+        finally{
+            dethidao.closeConnection();
+        }
+        return false;
+    }
 }

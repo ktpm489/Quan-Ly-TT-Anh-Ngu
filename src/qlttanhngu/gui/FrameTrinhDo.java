@@ -366,11 +366,7 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
             trinhdodto.setMaTrinhDo(tblTrinhDo.getValueAt(tblTrinhDo.getSelectedRow(), 0).toString());
             trinhdobo.xoaTrinhDo(trinhdodto);
             tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
-            List<String> trinhdolst = trinhdobo.layTenTrinhDo();
-            cbbTrinhDoTienQuyet.removeAllItems();
-            for(String trinhdo:trinhdolst){
-                cbbTrinhDoTienQuyet.addItem(trinhdo);
-            }
+            txtDiemSo.setText("");
             cbbTrinhDoTienQuyet.addItem("");
             tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
                     } catch (Exception ex) {
