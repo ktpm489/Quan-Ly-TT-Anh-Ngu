@@ -227,6 +227,16 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         try {
             // TODO add your handling code here:
+            TrinhDoBO trinhdobo1 = new TrinhDoBO();
+            List<String> tentrinhdo = trinhdobo1.layTenTrinhDo();
+            boolean check =false;
+            for(String ten:tentrinhdo){
+                if(ten.equals(cbbLoaiChuongTrinh.getSelectedItem().toString() + " "+txtDiemSo.getText())){
+                    check = true;
+                    break;
+                }
+            }
+            if(!check){
             switch(cbbLoaiChuongTrinh.getSelectedItem().toString()){
                 case "TOIEC":{
                     try{
@@ -339,6 +349,11 @@ public class FrameTrinhDo extends javax.swing.JInternalFrame {
             }
             cbbTrinhDoTienQuyet.addItem("");
             tblTrinhDo.setModel((new TrinhDoController()).LoadListTrinhDo());
+            }
+            else{
+                txtDiemSo.setText("");
+                JOptionPane.showMessageDialog(this, "Trình độ đã tồn tại");
+            }
         } catch (Exception ex) {
             Logger.getLogger(FrameTrinhDo.class.getName()).log(Level.SEVERE, null, ex);
         }

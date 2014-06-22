@@ -5,6 +5,10 @@
 package qlttanhngu.gui;
 
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import qlttanhngu.bo.KhoaHocBO;
 
 /**
  *
@@ -34,11 +38,30 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
         btnBaoCao = new javax.swing.JButton();
         btnInBaoCao = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbbKhoaHoc = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBaoCaoDK = new javax.swing.JTable();
 
         setTitle("Báo Cáo Đăng Ký");
         setToolTipText("");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         panelChuCNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
@@ -62,6 +85,8 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Khóa học");
+
         javax.swing.GroupLayout panelChuCNangLayout = new javax.swing.GroupLayout(panelChuCNang);
         panelChuCNang.setLayout(panelChuCNangLayout);
         panelChuCNangLayout.setHorizontalGroup(
@@ -71,13 +96,17 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
                 .addComponent(lblThoiGianBaoCaoDK)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dateChooserThoiGianBaoCaoDK, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbbKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(btnBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addComponent(btnInBaoCao)
                 .addGap(68, 68, 68)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
         panelChuCNangLayout.setVerticalGroup(
             panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +119,10 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
                         .addComponent(btnDong))
                     .addGroup(panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblThoiGianBaoCaoDK)
-                        .addComponent(dateChooserThoiGianBaoCaoDK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dateChooserThoiGianBaoCaoDK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(cbbKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -135,11 +167,28 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            cbbKhoaHoc.removeAllItems();
+            KhoaHocBO khoahocbo = new KhoaHocBO();
+            List<String> tenkhoahoc =  khoahocbo.layKhoaHoc();
+            for(String ten:tenkhoahoc){
+                cbbKhoaHoc.addItem(ten);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formInternalFrameActivated
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBaoCao;
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnInBaoCao;
+    private javax.swing.JComboBox cbbKhoaHoc;
     private com.toedter.calendar.JDateChooser dateChooserThoiGianBaoCaoDK;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblThoiGianBaoCaoDK;
     private javax.swing.JPanel panelChuCNang;

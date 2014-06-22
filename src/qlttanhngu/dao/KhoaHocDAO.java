@@ -88,5 +88,19 @@ public class KhoaHocDAO extends DataBase {
         }
        return false;
     }
+    
+    public List<String> layKhoaHoc() throws SQLException{
+        List<String> lstKH = new ArrayList<String>();
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+        int i = 0;
+        callableStatement = getConnection().prepareCall("{call LayKhoaHoc()}");
+        resultSet = this.executeQuery(this.getConnection(), callableStatement);
+        while(resultSet.next()){
+            String temp = resultSet.getString(1);
+            lstKH.add(temp);
+        };
+        return lstKH;
+    }
 }
 

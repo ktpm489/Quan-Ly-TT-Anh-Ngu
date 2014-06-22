@@ -59,4 +59,15 @@ public class KhoaHocBO {
         }
         return false;
     }
+    
+     public List<String> layKhoaHoc() throws SQLException, Exception{
+        try {
+            return khoahocdao.layKhoaHoc();
+        } catch (SQLException ex) {
+            Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            khoahocdao.closeConnection();
+        }
+        return null; 
+    }
 }
