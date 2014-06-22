@@ -315,7 +315,7 @@ public class FrameLoaiDeThi extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         char vChar = evt.getKeyChar();
         int len = txtThoiLuongThi.getText().length();
-        if (!(Character.isDigit(vChar)) || (vChar == KeyEvent.VK_BACK_SPACE) || (vChar == KeyEvent.VK_DELETE) || (vChar == KeyEvent.VK_ENTER) || (vChar == KeyEvent.VK_TAB) || (len > 11)) {
+        if (!(Character.isDigit(vChar)) || (vChar == KeyEvent.VK_BACK_SPACE) || (vChar == KeyEvent.VK_DELETE) || (vChar == KeyEvent.VK_ENTER) || (vChar == KeyEvent.VK_TAB) || (len > 4)) {
             evt.consume(); 
         } 
     }//GEN-LAST:event_txtThoiLuongThiKeyTyped
