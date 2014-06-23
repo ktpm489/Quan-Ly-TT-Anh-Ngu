@@ -30,7 +30,7 @@ public class ChuongTrinhHocController {
      public DefaultTableModel GetChuongTrinhHoc() throws Exception {
         DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
     new String [] {
-        "Mã Chương Trình Học", "Mã Trình Độ", "Học Phí(VND)" });       
+        "Mã Chương Trình Học", "Trình Độ", "Học Phí(VND)" });       
         List<ChuongTrinhHocDTO> temp = cthocbo.GetChuongTrinhHoc();
        // DangKiDTO
         Vector<Object> rowData ;
@@ -38,7 +38,8 @@ public class ChuongTrinhHocController {
         for(int i = 0; i < temp.size(); i++){
             rowData = new Vector<>();
             rowData.add(temp.get(i).getMaChuongTrinhHoc());
-            rowData.add(temp.get(i).getMaTrinhDo());
+            cthocbo = new ChuongTrinhHocBO();
+            rowData.add(cthocbo.GetTenTrinhDoTheoMa(temp.get(i).getMaTrinhDo()));
             rowData.add(temp.get(i).getHocPhi());  
             tableDefault.addRow(rowData);
         }      

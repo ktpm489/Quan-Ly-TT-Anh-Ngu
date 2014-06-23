@@ -66,8 +66,8 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 9));
             dangkibo = new DangKiBO();
             rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
-            dangkibo = new DangKiBO();
-            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
+           
+            rowData.add(tableDefault1.getValueAt(i, 11).toString());
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);
@@ -203,8 +203,8 @@ public class DangKiController {
           //  ==============
              dangkibo = new DangKiBO();
             rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
-             dangkibo = new DangKiBO();
-            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
+            
+            rowData.add(tableDefault1.getValueAt(i, 11).toString());
           //  =================
             
             String gt3 = null;
@@ -277,8 +277,8 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 9));
              dangkibo = new DangKiBO();
             rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
-             dangkibo = new DangKiBO();
-            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
+             
+            rowData.add(tableDefault1.getValueAt(i, 11).toString());
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);
@@ -351,8 +351,8 @@ public class DangKiController {
             rowData.add(tableDefault1.getValueAt(i, 9));
              dangkibo = new DangKiBO();
            rowData.add(dangkibo.GetNgayHocTheoMa(tableDefault1.getValueAt(i, 10).toString()));
-            dangkibo = new DangKiBO();
-            rowData.add(dangkibo.GetCaHocTheoMa(tableDefault1.getValueAt(i, 11).toString()));
+            
+            rowData.add(tableDefault1.getValueAt(i, 11).toString());
             
             String gt3 = null;
             gt = tableDefault1.getValueAt(i, 12);

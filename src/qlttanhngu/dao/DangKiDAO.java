@@ -265,18 +265,18 @@ public class DangKiDAO extends DataBase{
         try {
            
             //them hoc vien
-            callableStatement = this.getConnection().prepareCall("{call UpdateThongTinDangKi(?,?,?,?,?,?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call UpdateThongTinDangKi(?,?,?,?,?,?,?,?)}");
             //tao ma theo so TT
-            callableStatement.setDate(1, dkdto.getNgayDangKi());
-            callableStatement.setString(2, dkdto.getMaNgay());
-            callableStatement.setString(3, dkdto.getMaCa());
-            callableStatement.setString(4,mahv);
-            callableStatement.setBoolean(5, false);
-            callableStatement.setBoolean(6, dkdto.getTinhTrangHoc());
             
-            callableStatement.setString(7, dkdto.getTrinhDoToiThieu());
-            callableStatement.setString(8, dkdto.getTrinhDoMuonHoc());
-            callableStatement.setString(9, dkdto.getTrinhDoDuocHoc());
+            callableStatement.setString(1, dkdto.getMaNgay());
+            callableStatement.setString(2, dkdto.getMaCa());
+            callableStatement.setString(3,mahv);
+            callableStatement.setBoolean(4, false);
+            callableStatement.setBoolean(5, dkdto.getTinhTrangHoc());
+            
+            callableStatement.setString(6, dkdto.getTrinhDoToiThieu());
+            callableStatement.setString(7, dkdto.getTrinhDoMuonHoc());
+            callableStatement.setString(8, dkdto.getTrinhDoDuocHoc());
             
             resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
            if(resultSet != 0)
@@ -336,22 +336,6 @@ public class DangKiDAO extends DataBase{
             }  
       return temp;
    }
-   
-   public String GetCaHocTheoMa(String ma){
-      String temp = "";
-      CallableStatement callableStatement = null;
-      ResultSet resultSet = null;  
-            try {
-                 callableStatement = getConnection().prepareCall("{call LayTenCaHocTheoMa(?)}");
-                 callableStatement.setString(1, ma);
-                resultSet = this.executeQuery(this.getConnection(), callableStatement);
-                  while(resultSet.next()){
-                 temp = resultSet.getString(1);
-                  };
-            } catch (SQLException ex) {
-                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }  
-      return temp;
-   }
+  
 }
 

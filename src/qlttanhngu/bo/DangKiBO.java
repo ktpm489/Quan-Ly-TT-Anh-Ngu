@@ -199,20 +199,5 @@ public class DangKiBO {
             dangkidao.closeConnection();
         }
        return "";
-   }
-  
-   public String GetCaHocTheoMa(String ma) throws Exception{
-        try {
-            return dangkidao.GetCaHocTheoMa(ma);
-            
-        } catch (Exception ex) {
-            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            dangkidao.closeConnection();
-        }
-       return "";
-   }
-    
-
-    
+   }   
 }

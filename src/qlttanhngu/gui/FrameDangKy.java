@@ -536,13 +536,9 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         } catch (Exception ex) {
                             Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        try {
-                            dangki.setMaCa(new DangKiController().GetMaCaTheoTen(this.ComboxMaCa.getSelectedItem().toString()));
-                        } catch (Exception ex) {
-                            Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-
+                       
+                        dangki.setMaCa(this.ComboxMaCa.getSelectedItem().toString());
+                      
                         dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
                         dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
                         dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
@@ -753,68 +749,86 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
         int select = this.tableDSHocVienDK.getSelectedRow();
         DangKiController dangkicontrol = null;
         if (select >= 0) {
-            //cap nhat
-            Object maHov = this.tableDSHocVienDK.getValueAt(select, 0);
-            DangKiDTO dangki = new DangKiDTO();
-            dangki.setCmnd(this.txtCMND.getText());
-            dangki.setDiaChi(this.txtDiaChi.getText());
-            dangki.setEmail(this.txtEmail.getText());
-            dangki.setGioiTinh(this.comboxGioiTinh.getSelectedItem().toString());
-            dangki.setGioiTinh2();
-            dangki.setNamSinh(this.DateChooserNgaySinh.getDate());
-            dangki.setNgheNghiep(this.txtNgheNghiep.getText());
-            dangki.setSoDienThoai(Integer.parseInt(this.txtSODT.getText()));
-            dangki.setTenHocVien(this.txtHoTen.getText());
+            if (checkFill()) {
+                if (checkCMND(this.txtCMND.getText())) {
+                    if (checkSDT(this.txtSODT.getText())) {
+                        if (checkGmail(this.txtEmail.getText())) {
+                            //cap nhat
+                            Object maHov = this.tableDSHocVienDK.getValueAt(select, 0);
+                            DangKiDTO dangki = new DangKiDTO();
+                            dangki.setCmnd(this.txtCMND.getText());
+                            dangki.setDiaChi(this.txtDiaChi.getText());
+                            dangki.setEmail(this.txtEmail.getText());
+                            dangki.setGioiTinh(this.comboxGioiTinh.getSelectedItem().toString());
+                            dangki.setGioiTinh2();
+                            dangki.setNamSinh(this.DateChooserNgaySinh.getDate());
+                            dangki.setNgheNghiep(this.txtNgheNghiep.getText());
+                            dangki.setSoDienThoai(Integer.parseInt(this.txtSODT.getText()));
+                            dangki.setTenHocVien(this.txtHoTen.getText());
 
-            //thong tin cho bang dangkithongtin
-            dangki.setTenTinhTrangHoc(this.comboxTinhTrangHoc.getSelectedItem().toString());
-            dangki.setTinhTrangHoc();
+                            //thong tin cho bang dangkithongtin
+                            dangki.setTenTinhTrangHoc(this.comboxTinhTrangHoc.getSelectedItem().toString());
+                            dangki.setTinhTrangHoc();
 
-            dangki.setNgayDangKi(this.DateChooseNgayDK.getDate());
-            try {
-                dangki.setMaNgay(new DangKiController().GetMaNgayTheoTen(this.ComboxMaNgay.getSelectedItem().toString()));
-            } catch (Exception ex) {
-                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                dangki.setMaCa(new DangKiController().GetMaCaTheoTen(this.ComboxMaCa.getSelectedItem().toString()));
-            } catch (Exception ex) {
-                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
-            dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
-            dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
-            try {
+                            //dangki.setNgayDangKi(this.DateChooseNgayDK.getDate());
+                            try {
+                                dangki.setMaNgay(new DangKiController().GetMaNgayTheoTen(this.ComboxMaNgay.getSelectedItem().toString()));
+                            } catch (Exception ex) {
+                                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 
-                dangkicontrol = new DangKiController();
+                            dangki.setMaCa(this.ComboxMaCa.getSelectedItem().toString());
 
-                //them hoc vien
-                if (dangkicontrol.UpdateHocVien(dangki, maHov.toString())) {
-                    JOptionPane.showMessageDialog(this, "Cập Nhật thành công!");
+                            dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
+                            dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
+                            dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
+                            try {
 
-                    if (new DangKiController().UpdateThongTinDangKi(dangki, maHov.toString())) {
-                        /*
-                         MessageBoxCustom messageBoxHocViens = new MessageBoxCustom("Thêm thông tin đăng kí thành công!");
-                         StoreSave.desktop.add(messageBoxHocViens);
-                         messageBoxHocViens.setBounds(400, 100, 511, 189);
-                         messageBoxHocViens.show();*/
-                        //Cap Nhat List Hoc Vien
-                        try {
-                            this.tableDSHocVienDK.setModel(new DangKiController().LoadListHocVien());
-                        } catch (Exception ex) {
-                            Logger.getLogger(FramePhongHoc.class.getName()).log(Level.SEVERE, null, ex);
+                                dangkicontrol = new DangKiController();
+
+                                //them hoc vien
+                                if (dangkicontrol.UpdateHocVien(dangki, maHov.toString())) {
+                                    JOptionPane.showMessageDialog(this, "Cập Nhật thành công!");
+
+                                    if (new DangKiController().UpdateThongTinDangKi(dangki, maHov.toString())) {
+                                        /*
+                                         MessageBoxCustom messageBoxHocViens = new MessageBoxCustom("Thêm thông tin đăng kí thành công!");
+                                         StoreSave.desktop.add(messageBoxHocViens);
+                                         messageBoxHocViens.setBounds(400, 100, 511, 189);
+                                         messageBoxHocViens.show();*/
+                                        //Cap Nhat List Hoc Vien
+                                        try {
+                                            this.tableDSHocVienDK.setModel(new DangKiController().LoadListHocVien());
+                                        } catch (Exception ex) {
+                                            Logger.getLogger(FramePhongHoc.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    } else//dang ki that bai
+                                    {
+                                        JOptionPane.showMessageDialog(this, "Cập Nhật thông tin đăng kí thất bại!");
+
+                                    }
+                                } else//dang ki that bai
+                                {
+                                    JOptionPane.showMessageDialog(this, "Cập Nhật thất bại!");
+                                }
+                            } catch (Exception ex) {
+                                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+                            //Email khong hop le
+                            JOptionPane.showMessageDialog(this, "Email không hợp lệ !");
                         }
-                    } else//dang ki that bai
+                    } else//SDT khong hop le
                     {
-                        JOptionPane.showMessageDialog(this, "Cập Nhật thông tin đăng kí thất bại!");
-
+                        JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ !");
                     }
-                } else//dang ki that bai
+                } else//CMND khong hop le
                 {
-                    JOptionPane.showMessageDialog(this, "Cập Nhật thất bại!");
+                    JOptionPane.showMessageDialog(this, "Số CMND không hợp lệ !");
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                //chua nhap du thong tin
+                JOptionPane.showMessageDialog(this, "Chưa nhập đủ thông tin !");
             }
 
         } else {
