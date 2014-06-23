@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package qlttanhngu.gui;
+package qlttanhngu.controller;
 
 import java.util.List;
 import java.util.Vector;

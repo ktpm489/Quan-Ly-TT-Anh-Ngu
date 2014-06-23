@@ -4,11 +4,30 @@
  */
 package qlttanhngu.gui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
+import qlttanhngu.bo.BaoCaoDangKyBO;
 import qlttanhngu.bo.KhoaHocBO;
+import qlttanhngu.controller.BaoCaoDangKyController;
+import qlttanhngu.dto.BaoCaoDangKyDTO;
 
 /**
  *
@@ -73,9 +92,19 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
 
         btnBaoCao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/inBill.png"))); // NOI18N
         btnBaoCao.setText("Báo Cáo");
+        btnBaoCao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaoCaoActionPerformed(evt);
+            }
+        });
 
         btnInBaoCao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Printer-icon.png"))); // NOI18N
         btnInBaoCao.setText("In Báo Cáo");
+        btnInBaoCao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInBaoCaoActionPerformed(evt);
+            }
+        });
 
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Đóng");
@@ -181,6 +210,43 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
             Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaoCaoActionPerformed
+        try {
+            // TODO add your handling code here:
+            tableBaoCaoDK.setModel((new BaoCaoDangKyController()).LoadListDeThi(
+                    cbbKhoaHoc.getSelectedItem().toString(), new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime())));
+        } catch (Exception ex) {
+            Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnBaoCaoActionPerformed
+
+    private void btnInBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInBaoCaoActionPerformed
+        try {
+            // TODO add your handling code here:
+            JasperReport jr = JasperCompileManager.compileReport("Report/rptBaoCaoDangKy.jrxml");
+            InputStream reportStream = new FileInputStream("Report/rptBaoCaoDangKy.jasper");
+            Map parameters = new HashMap();
+            Collection<BaoCaoDangKyDTO> data = new ArrayList<>();
+            BaoCaoDangKyBO bcdk = new BaoCaoDangKyBO();
+            List<BaoCaoDangKyDTO> lsBaoCao = bcdk.layBaoCaoDangKy(cbbKhoaHoc.getSelectedItem().toString(),new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime()));
+            for(BaoCaoDangKyDTO bc:lsBaoCao){
+                data.add(bc);
+            }
+            JRDataSource datasource = new JRBeanCollectionDataSource(data, true);
+            parameters.put("khoahoc", cbbKhoaHoc.getSelectedItem().toString());
+            parameters.put("ngaydk", new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime()));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, parameters, datasource);
+            JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnInBaoCaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBaoCao;
