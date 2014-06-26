@@ -5,6 +5,7 @@
 package qlttanhngu.gui;
 
 import Assest.StoreSave;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -86,9 +87,23 @@ public class FrameThemVaCapNhatLopHoc extends javax.swing.JInternalFrame {
 
         lblThu.setText("Thứ ");
 
+        txtTenLop.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTenLopKeyTyped(evt);
+            }
+        });
+
+        txtMaLop.setEnabled(false);
+
         comboBoxThu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Hai", "Ba", "Tư", "Năm", "Sáu", "Bảy", "CN" }));
 
         lblBuoi.setText("Buổi");
+
+        txtHocPhi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHocPhiKeyTyped(evt);
+            }
+        });
 
         lblNgayBatDau.setText("Ngày Bắt Đầu");
 
@@ -214,7 +229,7 @@ public class FrameThemVaCapNhatLopHoc extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                .addComponent(lblNgayKetThuc, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(dateChooserNgayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +241,7 @@ public class FrameThemVaCapNhatLopHoc extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblThu)
                             .addComponent(comboBoxThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 15, Short.MAX_VALUE))
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -276,35 +291,67 @@ public class FrameThemVaCapNhatLopHoc extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Lỗi .Xin vui lòng kiểm tra lại kiểu dữ liệu đã nhập vào !");
             return;
         }
-
+        if(StoreSave.lophoc != null){
         try {
-            lophocdto.setMaLop(txtMaLop.getText());
-            lophocdto.setMaNhanVien(getKey(new LopHocController().GetListGiangVien(),comboBoxGVien.getSelectedItem().toString()));
-            lophocdto.setMaPhong(getKey(new LopHocController().GetListPhongHoc(), comboBoxTenPhong.getSelectedItem().toString()));
-            lophocdto.setMaChuongTrinhHoc(getKey(new LopHocController().GetListChuongTrinhHoc(), comboBoxChuongTrinhHoc.getSelectedItem().toString()));
-            lophocdto.setMaKhoaHoc(getKey(new LopHocController().GetListKhoaHoc(), comboBoxKhoaHoc.getSelectedItem().toString()));
-            lophocdto.setTenLop(txtTenLop.getText());
-            
+                lophocdto.setMaLop(txtMaLop.getText());
+                lophocdto.setMaNhanVien(getKey(new LopHocController().GetListGiangVien(),comboBoxGVien.getSelectedItem().toString()));
+                lophocdto.setMaPhong(getKey(new LopHocController().GetListPhongHoc(), comboBoxTenPhong.getSelectedItem().toString()));
+                lophocdto.setMaChuongTrinhHoc(getKey(new LopHocController().GetListChuongTrinhHoc(), comboBoxChuongTrinhHoc.getSelectedItem().toString()));
+                lophocdto.setMaKhoaHoc(getKey(new LopHocController().GetListKhoaHoc(), comboBoxKhoaHoc.getSelectedItem().toString()));
+                lophocdto.setTenLop(txtTenLop.getText());
 
-            lophocdto.setNgayBatDau(this.dateChooserNgayBatDau.getDate());
-            lophocdto.setNgayKetThuc(this.dateChooserNgayKetThuc.getDate());
-            lophocdto.setHocPhi(Double.parseDouble(("".equals(txtHocPhi.getText()))? "0" : txtHocPhi.getText()));
-            
-            //Lay thong tin de cap nhat
-            StoreSave.lophoc = lophocdto;
-            //Kiểm tra xem có chắc chắn cập nhât không?
-            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
-            if (x == 0) {
-                try {
-                    new LopHocController().CapNhatThemLopHoc(StoreSave.lophoc);//ien(StoreSave.hocvien);
-                } catch (Exception ex) {
-                    Logger.getLogger(FrameThemVaCapNhatLopHoc.class.getName()).log(Level.SEVERE, null, ex);
+
+                lophocdto.setNgayBatDau(this.dateChooserNgayBatDau.getDate());
+                lophocdto.setNgayKetThuc(this.dateChooserNgayKetThuc.getDate());
+                lophocdto.setHocPhi(Double.parseDouble(("".equals(txtHocPhi.getText()))? "0" : txtHocPhi.getText()));
+
+                //Lay thong tin de cap nhat
+                StoreSave.lophoc = lophocdto;
+                //Kiểm tra xem có chắc chắn cập nhât không?
+                int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật lớp học này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
+                if (x == 0) {
+                    try {
+                        new LopHocController().CapNhatThemLopHoc(StoreSave.lophoc);//ien(StoreSave.hocvien);
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameThemVaCapNhatLopHoc.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                //refresh lại table ds lớp học
+                StoreSave.frameLopHoc.refreshTable();
+            } catch (Exception ex) {
+                Logger.getLogger(FrameLopHoc.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //refresh lại table ds hoc vien
-            StoreSave.frameLopHoc.refreshTable();
-        } catch (Exception ex) {
-            Logger.getLogger(FrameLopHoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        else{
+            try {
+                lophocdto.setMaLop(txtMaLop.getText());
+                lophocdto.setMaNhanVien(getKey(new LopHocController().GetListGiangVien(),comboBoxGVien.getSelectedItem().toString()));
+                lophocdto.setMaPhong(getKey(new LopHocController().GetListPhongHoc(), comboBoxTenPhong.getSelectedItem().toString()));
+                lophocdto.setMaChuongTrinhHoc(getKey(new LopHocController().GetListChuongTrinhHoc(), comboBoxChuongTrinhHoc.getSelectedItem().toString()));
+                lophocdto.setMaKhoaHoc(getKey(new LopHocController().GetListKhoaHoc(), comboBoxKhoaHoc.getSelectedItem().toString()));
+                lophocdto.setTenLop(txtTenLop.getText());
+
+
+                lophocdto.setNgayBatDau(this.dateChooserNgayBatDau.getDate());
+                lophocdto.setNgayKetThuc(this.dateChooserNgayKetThuc.getDate());
+                lophocdto.setHocPhi(Double.parseDouble(("".equals(txtHocPhi.getText()))? "0" : txtHocPhi.getText()));
+
+                //Lay thong tin de cap nhat
+                StoreSave.lophoc = lophocdto;
+                //Kiểm tra xem có chắc chắn thêm không?
+                int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn thêm lớp học này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
+                if (x == 0) {
+                    try {
+                        new LopHocController().ThemLopHoc(StoreSave.lophoc);//ien(StoreSave.hocvien);
+                    } catch (Exception ex) {
+                        Logger.getLogger(FrameThemVaCapNhatLopHoc.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                //refresh lại table ds lớp học
+                StoreSave.frameLopHoc.refreshTable();
+            } catch (Exception ex) {
+                Logger.getLogger(FrameLopHoc.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
@@ -355,9 +402,41 @@ public class FrameThemVaCapNhatLopHoc extends javax.swing.JInternalFrame {
                 Logger.getLogger(FrameThemVaCapNhatLopHoc.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else{
+            try {
+                txtMaLop.setText(this.CreateMa());
+                txtTenLop.setText("");
+                txtHocPhi.setText("0");
+                dateChooserNgayBatDau.setDate(null);
+                dateChooserNgayKetThuc.setDate(null);
+            } catch (Exception ex) {
+                Logger.getLogger(FrameThemVaCapNhatLopHoc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
             
             
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void txtTenLopKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenLopKeyTyped
+        int len = txtTenLop.getText().length();
+
+        if (len > 15) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTenLopKeyTyped
+
+    private void txtHocPhiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHocPhiKeyTyped
+        char vChar = evt.getKeyChar();
+        int len = txtHocPhi.getText().length();
+
+        if (!(Character.isDigit(vChar))
+                || (vChar == KeyEvent.VK_BACK_SPACE)
+                || (vChar == KeyEvent.VK_DELETE)
+                || (vChar == KeyEvent.VK_ENTER)
+                || (vChar == KeyEvent.VK_TAB) || (len > 10)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtHocPhiKeyTyped
     
     private String getKey(HashMap<String, String> hashMap ,String value) {
         try {
@@ -369,8 +448,19 @@ public class FrameThemVaCapNhatLopHoc extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrameLopHoc.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return null;
-}
+        return null;
+    }
+    public String CreateMa() throws Exception {
+        Integer maLop = (new LopHocController().MaLop());
+        maLop += 1;
+
+        int len = maLop.toString().length();
+        String maMacDinh = "L000000000";
+
+        maMacDinh = maMacDinh.substring(0, maMacDinh.length() - len) + maLop.toString();
+
+        return maMacDinh;
+    }
     
     private static HashMap hashMapChuongTrinhHoc;
     private static HashMap hashMapKhoahoc;

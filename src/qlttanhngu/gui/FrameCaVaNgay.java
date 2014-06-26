@@ -367,27 +367,38 @@ public class FrameCaVaNgay extends javax.swing.JInternalFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         CaVaNgayDTO cavangaydto = new CaVaNgayDTO();
         //Kiểm tra mã, họ tên không dc null, kiểm tra kiễu dữ số dt, ......
-
+        
+        
+        
         try {
+            String str ="";
+        if(checkBoxThu2.isSelected())
+            str = "- Thứ 2 -";
+        if(checkBoxThu3.isSelected())
+            str += " Thứ 3 -";
+        if(checkBoxThu4.isSelected())
+            str += " Thứ 4 -";
+        if(checkBoxThu5.isSelected())
+            str += " Thứ 5 -";
+        if(checkBoxThu6.isSelected())
+            str += " Thứ 6 -";
+        if(checkBoxThu7.isSelected())
+            str += " Thứ 7 -";
             cavangaydto.setMaNgay(this.CreateMa());
-            cavangaydto.setDanhSachNgay(checkBoxThu2.getSelectedObjects().toString()+checkBoxThu3.getSelectedObjects().toString()+checkBoxThu4.getSelectedObjects().toString()+checkBoxThu5.getSelectedObjects().toString()+checkBoxThu6.getSelectedObjects().toString()+checkBoxThu7.getSelectedObjects().toString());
-            cavangaydto.setMaCa(comboBoxCa.getSelectedItem().toString());
-            cavangaydto.setMaCa(comboBoxBuoi.getSelectedItem().toString());
-            cavangaydto.setGioBatDau(Integer.parseInt(txtGioBatDau.getText().toString()));
-            cavangaydto.setGioKetThuc(Integer.parseInt(txtGioKetThuc.getText().toString()));
-            
+            cavangaydto.setDanhSachNgay(str);
+
             //Kiểm tra xem có chắc chắn cập nhât không?
             int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn cập nhật học viên này không ?", "Thông báo", JOptionPane.OK_CANCEL_OPTION);
             if (x == 0) {
                 try {
                     new CaVaNgayController().ThemNgay(cavangaydto);
-                    new CaVaNgayController().ThemCa(cavangaydto);
+                    //new CaVaNgayController().ThemCa(cavangaydto);
                 } catch (Exception ex) {
                     Logger.getLogger(FrameCaVaNgay.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            //refresh lại table ds hoc vien
-            //StoreSave.frameCaVaNgay.refreshTable();
+            
+            StoreSave.frameCaVaNgay.refreshTable();
         } catch (Exception ex) {
             Logger.getLogger(FrameThemVaCapNhatNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }

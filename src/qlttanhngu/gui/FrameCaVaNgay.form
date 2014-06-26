@@ -47,7 +47,7 @@
               <Component id="jPanel4" min="-2" pref="235" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="DanhSachCaVaNgay" pref="0" max="32767" attributes="0"/>
+                  <Component id="DanhSachCaVaNgay" pref="251" max="32767" attributes="0"/>
                   <Component id="DanhSachCaVaNgay1" pref="247" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>

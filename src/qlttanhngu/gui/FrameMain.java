@@ -663,7 +663,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void btnXepLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXepLopActionPerformed
         if (frameXepLop == null || frameXepLop.isClosed()) {
             frameXepLop = new FrameXepLop();
-
+            StoreSave.frameXepLop = frameXepLop;
             if (StoreSave.isExsting(frameXepLop)) {
                 StoreSave.InitFrameInternal(frameXepLop);
             }
@@ -683,7 +683,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void btnDSGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSGiangVienActionPerformed
         if (frameNhanVien == null || frameNhanVien.isClosed()) {
             frameNhanVien = new FrameNhanVien();
-
+            StoreSave.frameNhanVien = frameNhanVien;
             if (StoreSave.isExsting(frameNhanVien)) {
                 StoreSave.InitFrameInternal(frameNhanVien);
             }

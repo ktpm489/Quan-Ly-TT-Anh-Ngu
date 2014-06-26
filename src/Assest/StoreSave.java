@@ -66,6 +66,8 @@ public class StoreSave {
     
     public static FrameCaVaNgay frameCaVaNgay;
     
+    
+    
     public static FrameNhanVien frameNhanVien;
     //sử dụng để update frame main
     public static FrameMain frameMain;

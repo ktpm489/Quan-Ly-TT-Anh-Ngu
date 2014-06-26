@@ -99,6 +99,10 @@ public class LopHocBO {
         return null;
     }
     
+    
+    public HashMap<String, Integer> GetListSoLuongHocVienTrongPhong(){
+        return lophocdao.GetListSoLuongHocVienTrongPhong();
+    }
     public HashMap<String, String> GetListChuongTrinhHoc(){
         return lophocdao.GetListChuongTrinhHoc();
     }
@@ -113,5 +117,8 @@ public class LopHocBO {
     }
     public HashMap<String, String> GetListLopHoc(){
         return lophocdao.GetListLopHoc();
+    }
+    public int MaLop(){
+        return lophocdao.MaLop();
     }
 }

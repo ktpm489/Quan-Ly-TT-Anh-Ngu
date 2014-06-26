@@ -124,6 +124,10 @@ public class LopHocController {
         return tableDefault;
     }
     
+    
+    public HashMap<String, Integer> GetListSoLuongHocVienTrongPhong(){
+        return lophocbo.GetListSoLuongHocVienTrongPhong();
+    }
     public HashMap<String, String> GetListChuongTrinhHoc(){
         return lophocbo.GetListChuongTrinhHoc();
     }
@@ -139,6 +143,8 @@ public class LopHocController {
     public HashMap<String, String> GetListLopHoc(){
         return lophocbo.GetListLopHoc();
     }
-
+    public int MaLop(){
+        return lophocbo.MaLop();
+    }
     
 }

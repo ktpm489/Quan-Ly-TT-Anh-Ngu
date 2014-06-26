@@ -36,7 +36,6 @@ public class FrameChiTietXepLop extends javax.swing.JInternalFrame {
         txtMaLop = new javax.swing.JTextField();
         txtTenLop = new javax.swing.JTextField();
         panelChucNang = new javax.swing.JPanel();
-        btnXoa = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblTraCuu = new javax.swing.JLabel();
@@ -77,31 +76,28 @@ public class FrameChiTietXepLop extends javax.swing.JInternalFrame {
 
         panelChucNang.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức Năng"));
 
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/delete.png"))); // NOI18N
-        btnXoa.setText("Xóa");
-        btnXoa.setToolTipText("Xóa Học Viên Ra Khỏi Lớp Học");
-
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Close1.png"))); // NOI18N
         btnDong.setText("Đóng");
+        btnDong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDongActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelChucNangLayout = new javax.swing.GroupLayout(panelChucNang);
         panelChucNang.setLayout(panelChucNangLayout);
         panelChucNangLayout.setHorizontalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelChucNangLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChucNangLayout.createSequentialGroup()
+                .addContainerGap(113, Short.MAX_VALUE)
                 .addComponent(btnDong)
-                .addGap(42, 42, 42))
+                .addGap(105, 105, 105))
         );
         panelChucNangLayout.setVerticalGroup(
             panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChucNangLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(panelChucNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXoa)
-                    .addComponent(btnDong))
+                .addGap(29, 29, 29)
+                .addComponent(btnDong)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -173,12 +169,11 @@ public class FrameChiTietXepLop extends javax.swing.JInternalFrame {
                     .addComponent(lblTenLop)
                     .addComponent(txtTenLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelThongTinLayout.createSequentialGroup()
+            .addGroup(panelThongTinLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelThongTinLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -215,7 +210,7 @@ public class FrameChiTietXepLop extends javax.swing.JInternalFrame {
                 .addComponent(panelThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,11 +233,14 @@ public class FrameChiTietXepLop extends javax.swing.JInternalFrame {
         txtMaLop.setText(StoreSave.frameXepLop.GetcomboBoxMaLop().getSelectedItem().toString());
         txtTenLop.setText(StoreSave.frameXepLop.GettxtTenLop().getText());
     }//GEN-LAST:event_formInternalFrameActivated
+
+    private void btnDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnDongActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnTraCuu;
-    private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox comboBoxTraCuu;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

@@ -126,8 +126,8 @@ public class LopHocDAO extends DataBase{
             callableStatement.setString(4, lophocdto.getMaChuongTrinhHoc());
             callableStatement.setString(5, lophocdto.getMaKhoaHoc());
             callableStatement.setString(6, lophocdto.getTenLop());
-            callableStatement.setString(7, lophocdto.getNgayBatDau());
-            callableStatement.setString(8, lophocdto.getNgayKetThuc());
+            callableStatement.setDate(7, lophocdto.getNgayBatDauUpdate());
+            callableStatement.setDate(8, lophocdto.getNgayKetThucUpdate());
             callableStatement.setDouble(9, lophocdto.getHocPhi());
             
             resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
@@ -149,8 +149,8 @@ public class LopHocDAO extends DataBase{
             callableStatement.setString(4, lophocdto.getMaChuongTrinhHoc());
             callableStatement.setString(5, lophocdto.getMaKhoaHoc());
             callableStatement.setString(6, lophocdto.getTenLop());
-            callableStatement.setString(7, lophocdto.getNgayBatDau());
-            callableStatement.setString(8, lophocdto.getNgayKetThuc());
+            callableStatement.setDate(7, lophocdto.getNgayBatDauUpdate());
+            callableStatement.setDate(8, lophocdto.getNgayKetThucUpdate());
             callableStatement.setDouble(9, lophocdto.getHocPhi());
             
             resultSet = this.executeQueryUpdate(this.getConnection(), callableStatement);
@@ -284,5 +284,37 @@ public class LopHocDAO extends DataBase{
             Logger.getLogger(LopHocDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return hashMapLopHoc;
+    }
+    
+    public HashMap<String, Integer> GetListSoLuongHocVienTrongPhong(){
+        HashMap<String, Integer> hashMapSoLuong = new HashMap<String, Integer>();
+        ResultSet resultSet = null;
+        try{
+            resultSet = this.executeQuery("{call LaySoLuongHocVienTrongPhong()}");      
+            while(resultSet.next()){
+                hashMapSoLuong.put(resultSet.getString(1), resultSet.getInt(2));
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(LopHocDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hashMapSoLuong;
+    }
+    
+    public int MaLop(){
+        int kq = 0;
+        ResultSet resultSet = null;
+        CallableStatement callableStatement = null;
+        try {
+            callableStatement = this.getConnection().prepareCall("{call DemSoLopHoc()}");
+            resultSet = this.executeQuery(this.getConnection(), callableStatement);
+            while(resultSet.next()){
+            kq = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LopHocDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return kq;
+        
+        
     }
 }

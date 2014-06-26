@@ -43,7 +43,7 @@ public class CaVaNgayController {
     
     public DefaultTableModel LoadListCa() throws Exception{
         DefaultTableModel tableDefault = new DefaultTableModel(new Object [][]{},new String []{
-            "Mã ngày", "Danh sách ngày"
+            "Ca", "Buổi", "Giờ bắt đầu", "Giờ kết thúc"
         });
         List<CaVaNgayDTO> listCaNgay = cavangaybo.LoadListCa();
         Vector<Object> rowData;
