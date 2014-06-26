@@ -216,7 +216,7 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
             JRDataSource datasource = new JRBeanCollectionDataSource(data, true);
             parameters.put("ngaydk", new SimpleDateFormat("dd-MM-yyyy").format(dateChooserThoiGianBaoCaoDK.getDate()));
             JasperPrint jasperPrint = JasperFillManager.fillReport(jr, parameters, datasource);
-            JasperViewer.viewReport(jasperPrint);
+            JasperViewer.viewReport(jasperPrint, false);
         } catch (JRException ex) {
             Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {

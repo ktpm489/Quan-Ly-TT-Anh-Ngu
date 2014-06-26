@@ -26,7 +26,7 @@ public class BaoCaoKeToanController {
     public DefaultTableModel LoadListBaoCao(java.sql.Date ngaylap) throws Exception {
         DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
     new String [] {
-        "Tên lớp", "Trình độ", "Số lượng đăng ký", "Tỉ lệ đăng ký"
+        "Tên lớp", "Trình độ", "Sỉ số", "Tổng số tiền thu"
     });       
         List<BaoCaoKeToanDTO> tempBaoCao = dethibo.layBaoCaoDangKy(ngaylap);
         Vector<Object> rowData ;
