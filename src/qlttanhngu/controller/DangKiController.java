@@ -90,10 +90,12 @@ public class DangKiController {
                  gt4 = "Tiềm Năng";
             }
             rowData.add(gt4);
-            
-            rowData.add(tableDefault1.getValueAt(i, 14));
-            rowData.add(tableDefault1.getValueAt(i, 15));
-            rowData.add(tableDefault1.getValueAt(i, 16));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 14).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 15).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 16).toString()));
             
             tableDefault.addRow(rowData);
         }
@@ -230,9 +232,12 @@ public class DangKiController {
             }
             rowData.add(gt4);
             
-            rowData.add(tableDefault1.getValueAt(i, 14));
-            rowData.add(tableDefault1.getValueAt(i, 15));
-            rowData.add(tableDefault1.getValueAt(i, 16));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 14).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 15).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 16).toString()));
             
             tableDefault.addRow(rowData);
         }
@@ -303,9 +308,12 @@ public class DangKiController {
             }
             rowData.add(gt4);
             
-            rowData.add(tableDefault1.getValueAt(i, 14));
-            rowData.add(tableDefault1.getValueAt(i, 15));
-            rowData.add(tableDefault1.getValueAt(i, 16));
+             dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 14).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 15).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 16).toString()));
             
             tableDefault.addRow(rowData);
         }
@@ -377,9 +385,12 @@ public class DangKiController {
             }
             rowData.add(gt4);
             
-            rowData.add(tableDefault1.getValueAt(i, 14));
-            rowData.add(tableDefault1.getValueAt(i, 15));
-            rowData.add(tableDefault1.getValueAt(i, 16));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 14).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 15).toString()));
+            dangkibo = new DangKiBO();
+            rowData.add(dangkibo.LayTenTrinhDoTheoMa(tableDefault1.getValueAt(i, 16).toString()));
             
             tableDefault.addRow(rowData);
         }
@@ -390,5 +401,11 @@ public class DangKiController {
     }
       public String GetMaNgayTheoTen(String ten) throws Exception{
         return dangkibo.GetMaNgayHocTheoTen(ten);
+    }
+        public String LayMaTrinhDoTheoTen(String ten) throws Exception{
+        return dangkibo.LayMaTrinhDoTheoTen(ten);
+    }
+          public String LayTenTrinhDoTheoMa(String ten) throws Exception{
+        return dangkibo.LayTenTrinhDoTheoMa(ten);
     }
 }

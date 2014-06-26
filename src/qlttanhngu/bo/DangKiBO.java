@@ -176,6 +176,28 @@ public class DangKiBO {
         }
        return "";
    }
+          public String LayTenTrinhDoTheoMa(String ma) throws Exception{
+        try {
+            return dangkidao.LayTenTrinhDoTheoMa(ma);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            dangkidao.closeConnection();
+        }
+       return "";
+   }
+               public String LayMaTrinhDoTheoTen(String ten) throws Exception{
+        try {
+            return dangkidao.LayMaTrinhDoTheoTen(ten);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(DangKiBO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            dangkidao.closeConnection();
+        }
+       return "";
+   }
       
        public String GetMaNgayHocTheoTen(String name) throws Exception{
         try {

@@ -131,7 +131,7 @@ public class BienLaiHocPhiDAO extends DataBase{
              }
             callableStatement = this.getConnection().prepareCall("{call ThemBienLaiHocPhi(?,?,?,?,?,?,?,?)}");
             //tao ma theo so TT
-            callableStatement.setString(1, "BLHP"+count);
+            callableStatement.setString(1, "BLHP00000"+count);
             callableStatement.setString(2, hpdto.getMaNhanVien());
             callableStatement.setString(3, hpdto.getMaLop());
             callableStatement.setString(4,hpdto.getMaHocVien());

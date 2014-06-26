@@ -538,10 +538,21 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                         }
                        
                         dangki.setMaCa(this.ComboxMaCa.getSelectedItem().toString());
-                      
-                        dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
-                        dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
-                        dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
+                        try {
+                            dangki.setTrinhDoToiThieu(new DangKiController().LayMaTrinhDoTheoTen(this.comboxTrinhdoToiThieu.getSelectedItem().toString()));
+                        } catch (Exception ex) {
+                            Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try {
+                            dangki.setTrinhDoMuonHoc(new DangKiController().LayMaTrinhDoTheoTen(this.comboxTrinhDoMuonHoc.getSelectedItem().toString()));
+                        } catch (Exception ex) {
+                            Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try {
+                            dangki.setTrinhDoDuocHoc(new DangKiController().LayMaTrinhDoTheoTen(this.comboxTrinhDoDuocHoc.getSelectedItem().toString()));
+                        } catch (Exception ex) {
+                            Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         try {
 
                             dangkicontrol = new DangKiController();
@@ -778,10 +789,21 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                             }
 
                             dangki.setMaCa(this.ComboxMaCa.getSelectedItem().toString());
-
-                            dangki.setTrinhDoToiThieu(this.comboxTrinhdoToiThieu.getSelectedItem().toString());
-                            dangki.setTrinhDoMuonHoc(this.comboxTrinhDoMuonHoc.getSelectedItem().toString());
-                            dangki.setTrinhDoDuocHoc(this.comboxTrinhDoDuocHoc.getSelectedItem().toString());
+                            try {
+                                dangki.setTrinhDoToiThieu(new DangKiController().LayMaTrinhDoTheoTen(this.comboxTrinhdoToiThieu.getSelectedItem().toString()));
+                            } catch (Exception ex) {
+                                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            try {
+                                dangki.setTrinhDoMuonHoc(new DangKiController().LayMaTrinhDoTheoTen(this.comboxTrinhDoMuonHoc.getSelectedItem().toString()));
+                            } catch (Exception ex) {
+                                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            try {
+                                dangki.setTrinhDoDuocHoc(new DangKiController().LayMaTrinhDoTheoTen(this.comboxTrinhDoDuocHoc.getSelectedItem().toString()));
+                            } catch (Exception ex) {
+                                Logger.getLogger(FrameDangKy.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             try {
 
                                 dangkicontrol = new DangKiController();
@@ -791,11 +813,7 @@ public class FrameDangKy extends javax.swing.JInternalFrame {
                                     JOptionPane.showMessageDialog(this, "Cập Nhật thành công!");
 
                                     if (new DangKiController().UpdateThongTinDangKi(dangki, maHov.toString())) {
-                                        /*
-                                         MessageBoxCustom messageBoxHocViens = new MessageBoxCustom("Thêm thông tin đăng kí thành công!");
-                                         StoreSave.desktop.add(messageBoxHocViens);
-                                         messageBoxHocViens.setBounds(400, 100, 511, 189);
-                                         messageBoxHocViens.show();*/
+                                      
                                         //Cap Nhat List Hoc Vien
                                         try {
                                             this.tableDSHocVienDK.setModel(new DangKiController().LoadListHocVien());

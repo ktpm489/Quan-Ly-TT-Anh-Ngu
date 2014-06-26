@@ -120,7 +120,7 @@ public class ChuongTrinhHocDAO extends DataBase{
              }
             callableStatement = this.getConnection().prepareCall("{call ThemChuongTrinhHoc(?,?,?)}");
             //tao ma theo so TT
-            callableStatement.setString(1, "CTH"+count);
+            callableStatement.setString(1, "CTH000000"+count);
             callableStatement.setString(2, dto.getMaTrinhDo());
             callableStatement.setDouble(3, dto.getHocPhi());
                 

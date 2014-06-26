@@ -109,7 +109,7 @@ public class DangKiDAO extends DataBase{
              }
             callableStatement = this.getConnection().prepareCall("{call ThemHocVien(?,?,?,?,?,?,?,?,?)}");
             //tao ma theo so TT
-            callableStatement.setString(1, "HV"+count);
+            callableStatement.setString(1, "HV0000000"+count);
             callableStatement.setString(2, dkdto.getTenHocVien());
             callableStatement.setString(3, dkdto.getCmnd());
             callableStatement.setDate(4,dkdto.getNamSinhUpdate());
@@ -154,7 +154,7 @@ public class DangKiDAO extends DataBase{
             callableStatement.setDate(1, dkdto.getNgayDangKi());
             callableStatement.setString(2, dkdto.getMaNgay());
             callableStatement.setString(3, dkdto.getMaCa());
-            callableStatement.setString(4,"HV"+ count);
+            callableStatement.setString(4,"HV0000000"+ count);
             callableStatement.setBoolean(5, false);
             callableStatement.setBoolean(6, dkdto.getTinhTrangHoc());
             
@@ -265,7 +265,7 @@ public class DangKiDAO extends DataBase{
         try {
            
             //them hoc vien
-            callableStatement = this.getConnection().prepareCall("{call UpdateThongTinDangKi(?,?,?,?,?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call UpdateThongTinDangKi4(?,?,?,?,?,?,?,?)}");
             //tao ma theo so TT
             
             callableStatement.setString(1, dkdto.getMaNgay());
@@ -326,6 +326,38 @@ public class DangKiDAO extends DataBase{
       ResultSet resultSet = null;  
             try {
                  callableStatement = getConnection().prepareCall("{call LayTenNgayHocTheoMa(?)}");
+                 callableStatement.setString(1, ma);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
+   }
+    public String LayMaTrinhDoTheoTen(String ten){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayMaTrinhDoTheoTen(?)}");
+                 callableStatement.setString(1, ten);
+                resultSet = this.executeQuery(this.getConnection(), callableStatement);
+                  while(resultSet.next()){
+                 temp = resultSet.getString(1);
+                  };
+            } catch (SQLException ex) {
+                Logger.getLogger(DangKiDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+      return temp;
+   }
+     public String LayTenTrinhDoTheoMa(String ma){
+      String temp = "";
+      CallableStatement callableStatement = null;
+      ResultSet resultSet = null;  
+            try {
+                 callableStatement = getConnection().prepareCall("{call LayTenTrinhDoTheoMa(?)}");
                  callableStatement.setString(1, ma);
                 resultSet = this.executeQuery(this.getConnection(), callableStatement);
                   while(resultSet.next()){

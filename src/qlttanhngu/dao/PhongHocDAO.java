@@ -71,7 +71,7 @@ public class PhongHocDAO extends DataBase{
              }
             callableStatement = this.getConnection().prepareCall("{call ThemPhongHoc(?,?,?,?)}");
             //tao ma theo so TT
-            callableStatement.setString(1, "PH"+count);
+            callableStatement.setString(1, "PH0000000"+count);
             callableStatement.setString(2, dto.getTenPhong());
             callableStatement.setInt(3, dto.getSoLuong());
             callableStatement.setString(4, dto.getDiaChi());
