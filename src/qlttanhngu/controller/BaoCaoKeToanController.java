@@ -9,36 +9,36 @@ package qlttanhngu.controller;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import qlttanhngu.bo.BaoCaoDangKyBO;
-import qlttanhngu.dto.BaoCaoDangKyDTO;
+import qlttanhngu.bo.BaoCaoKeToanBO;
+import qlttanhngu.dto.BaoCaoKeToanDTO;
 
 /**
  *
  * @author EvilZ
  */
-public class BaoCaoDangKyController {
-    private BaoCaoDangKyBO dethibo;
+public class BaoCaoKeToanController {
+    private BaoCaoKeToanBO dethibo;
     
-    public BaoCaoDangKyController() throws Exception{
-        dethibo = new BaoCaoDangKyBO();
+    public BaoCaoKeToanController() throws Exception{
+        dethibo = new BaoCaoKeToanBO();
     }
     
-    public DefaultTableModel LoadListBaoCao(java.sql.Date ngaydk) throws Exception {
+    public DefaultTableModel LoadListBaoCao(java.sql.Date ngaylap) throws Exception {
         DefaultTableModel tableDefault = new DefaultTableModel( new Object [][] {},
     new String [] {
         "Tên lớp", "Trình độ", "Số lượng đăng ký", "Tỉ lệ đăng ký"
     });       
-        List<BaoCaoDangKyDTO> tempBaoCao = dethibo.layBaoCaoDangKy(ngaydk);
+        List<BaoCaoKeToanDTO> tempBaoCao = dethibo.layBaoCaoDangKy(ngaylap);
         Vector<Object> rowData ;
         
         for(int i = 0; i < tempBaoCao.size(); i++){
             rowData = new Vector<>();
             rowData.add(tempBaoCao.get(i).getTenLop());
             rowData.add(tempBaoCao.get(i).getTrinhDo());
-            rowData.add(tempBaoCao.get(i).getSoLuongDangKy());
-            rowData.add(tempBaoCao.get(i).getTiLeDat());
+            rowData.add(tempBaoCao.get(i).getSiSo());
+            rowData.add(tempBaoCao.get(i).getSoTienThu());
             tableDefault.addRow(rowData);
         }      
-        return tableDefault;     
+        return tableDefault;
     }
 }

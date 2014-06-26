@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -57,8 +58,6 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
         btnBaoCao = new javax.swing.JButton();
         btnInBaoCao = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        cbbKhoaHoc = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBaoCaoDK = new javax.swing.JTable();
 
@@ -114,8 +113,6 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Khóa học");
-
         javax.swing.GroupLayout panelChuCNangLayout = new javax.swing.GroupLayout(panelChuCNang);
         panelChuCNang.setLayout(panelChuCNangLayout);
         panelChuCNangLayout.setHorizontalGroup(
@@ -125,17 +122,13 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
                 .addComponent(lblThoiGianBaoCaoDK)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dateChooserThoiGianBaoCaoDK, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbbKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(165, 165, 165)
                 .addComponent(btnBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(18, 18, 18)
                 .addComponent(btnInBaoCao)
-                .addGap(68, 68, 68)
+                .addGap(18, 18, 18)
                 .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
         panelChuCNangLayout.setVerticalGroup(
             panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,10 +141,7 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
                         .addComponent(btnDong))
                     .addGroup(panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(lblThoiGianBaoCaoDK)
-                        .addComponent(dateChooserThoiGianBaoCaoDK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelChuCNangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(cbbKhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(dateChooserThoiGianBaoCaoDK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -198,46 +188,34 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            cbbKhoaHoc.removeAllItems();
-            KhoaHocBO khoahocbo = new KhoaHocBO();
-            List<String> tenkhoahoc =  khoahocbo.layKhoaHoc();
-            for(String ten:tenkhoahoc){
-                cbbKhoaHoc.addItem(ten);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void btnBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaoCaoActionPerformed
         try {
             // TODO add your handling code here:
-            tableBaoCaoDK.setModel((new BaoCaoDangKyController()).LoadListDeThi(
-                    cbbKhoaHoc.getSelectedItem().toString(), new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime())));
+            tableBaoCaoDK.setModel((new BaoCaoDangKyController()).LoadListBaoCao(
+                    new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime())));
         } catch (Exception ex) {
             Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_btnBaoCaoActionPerformed
 
     private void btnInBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInBaoCaoActionPerformed
         try {
             // TODO add your handling code here:
-            JasperReport jr = JasperCompileManager.compileReport("Report/rptBaoCaoDangKy.jrxml");
-            InputStream reportStream = new FileInputStream("Report/rptBaoCaoDangKy.jasper");
+            JasperReport jr = JasperCompileManager.compileReport("src/Report/rpt1.jrxml");
+            //InputStream reportStream = new FileInputStream("Report/rptBaoCaoDangKy.jasper");
             Map parameters = new HashMap();
             Collection<BaoCaoDangKyDTO> data = new ArrayList<>();
             BaoCaoDangKyBO bcdk = new BaoCaoDangKyBO();
-            List<BaoCaoDangKyDTO> lsBaoCao = bcdk.layBaoCaoDangKy(cbbKhoaHoc.getSelectedItem().toString(),new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime()));
+            List<BaoCaoDangKyDTO> lsBaoCao = bcdk.layBaoCaoDangKy(new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime()));
             for(BaoCaoDangKyDTO bc:lsBaoCao){
                 data.add(bc);
             }
             JRDataSource datasource = new JRBeanCollectionDataSource(data, true);
-            parameters.put("khoahoc", cbbKhoaHoc.getSelectedItem().toString());
-            parameters.put("ngaydk", new java.sql.Date(dateChooserThoiGianBaoCaoDK.getDate().getTime()));
-            JasperPrint jasperPrint = JasperFillManager.fillReport(reportStream, parameters, datasource);
+            parameters.put("ngaydk", new SimpleDateFormat("dd-MM-yyyy").format(dateChooserThoiGianBaoCaoDK.getDate()));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jr, parameters, datasource);
             JasperViewer.viewReport(jasperPrint);
         } catch (JRException ex) {
             Logger.getLogger(FrameBaoCaoDangKy.class.getName()).log(Level.SEVERE, null, ex);
@@ -252,9 +230,7 @@ public class FrameBaoCaoDangKy extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBaoCao;
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnInBaoCao;
-    private javax.swing.JComboBox cbbKhoaHoc;
     private com.toedter.calendar.JDateChooser dateChooserThoiGianBaoCaoDK;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblThoiGianBaoCaoDK;
     private javax.swing.JPanel panelChuCNang;

@@ -31,7 +31,6 @@ public class KhoaHocDAO extends DataBase {
         List<KhoaHocDTO> lstKH = new ArrayList<KhoaHocDTO>();
         KhoaHocDTO khoahoc_dto = null;
         ResultSet resultSet = null;
-        int i = 0;
         
         resultSet = this.executeQuery("{call LayDanhSachKhoaHoc()}");
         try {
@@ -43,7 +42,6 @@ public class KhoaHocDAO extends DataBase {
                 khoahoc_dto.setNgayKhaiGiang(resultSet.getDate(3));
                 
                 lstKH.add(khoahoc_dto);
-                i++;
             }    
         } catch (SQLException ex) {
             Logger.getLogger(HocVienDAO.class.getName()).log(Level.SEVERE, null, ex);

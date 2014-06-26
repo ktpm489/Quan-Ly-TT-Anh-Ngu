@@ -32,7 +32,7 @@ public class ConnectionDataBase
                 + "jdbc:mysql://localhost:3306/"
                 + "qlttanhngu?useUnicode=true&characterEncoding=UTF-8";
         dbUserName = "root";
-        dbPassword = "";
+        dbPassword = "vertrigo";
         if (connect == null) 
         {
             loadJDBCDriver();

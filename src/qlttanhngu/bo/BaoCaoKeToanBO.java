@@ -10,22 +10,22 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import qlttanhngu.dao.BaoCaoDangKyDAO;
-import qlttanhngu.dto.BaoCaoDangKyDTO;
+import qlttanhngu.dao.BaoCaoKeToanDAO;
+import qlttanhngu.dto.BaoCaoKeToanDTO;
 
 /**
  *
  * @author EvilZ
  */
-public class BaoCaoDangKyBO {
-    BaoCaoDangKyDAO baocaodao;
-    public BaoCaoDangKyBO() throws Exception{
-        baocaodao = new BaoCaoDangKyDAO();
+public class BaoCaoKeToanBO {
+    BaoCaoKeToanDAO baocaodao;
+    public BaoCaoKeToanBO() throws Exception{
+        baocaodao = new BaoCaoKeToanDAO();
     }
     
-    public List<BaoCaoDangKyDTO> layBaoCaoDangKy(java.sql.Date ngaydk) throws SQLException, Exception{
+    public List<BaoCaoKeToanDTO> layBaoCaoDangKy(java.sql.Date ngaylap) throws SQLException, Exception{
         try {
-            return baocaodao.layBaoCaoDangKy(ngaydk);
+            return baocaodao.layBaoCaoDangKy(ngaylap);
         } catch (SQLException ex) {
             Logger.getLogger(HocVienBO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -33,6 +33,4 @@ public class BaoCaoDangKyBO {
         }
         return null;
     }
-    
-    
 }

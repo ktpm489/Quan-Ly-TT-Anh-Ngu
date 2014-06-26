@@ -10,35 +10,34 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import qlttanhngu.connection.DataBase;
-import qlttanhngu.dto.BaoCaoDangKyDTO;
+import qlttanhngu.dto.BaoCaoKeToanDTO;
 
 /**
  *
  * @author EvilZ
  */
-public class BaoCaoDangKyDAO extends DataBase{
+public class BaoCaoKeToanDAO extends DataBase {
     
-    public BaoCaoDangKyDAO() throws Exception{
+    public BaoCaoKeToanDAO() throws Exception{
         super();
     }
     
-    public List<BaoCaoDangKyDTO> layBaoCaoDangKy(java.sql.Date ngaydk) throws SQLException{
-        List<BaoCaoDangKyDTO> lstBc = new ArrayList<BaoCaoDangKyDTO>();
+    public List<BaoCaoKeToanDTO> layBaoCaoDangKy(java.sql.Date ngaylap) throws SQLException{
+        List<BaoCaoKeToanDTO> lstBc = new ArrayList<BaoCaoKeToanDTO>();
         ResultSet resultSet = null;
         CallableStatement callableStatement = null;
         int i = 0;
-        callableStatement = getConnection().prepareCall("{call TaoBaoCaoDangKy(?)}");
-        callableStatement.setDate(1, ngaydk);
+        callableStatement = getConnection().prepareCall("{call TaoBaoCaoKeToan(?)}");
+        callableStatement.setDate(1, ngaylap);
         resultSet = this.executeQuery(this.getConnection(), callableStatement);
         while(resultSet.next()){
-            BaoCaoDangKyDTO baocaodto = new BaoCaoDangKyDTO();
+            BaoCaoKeToanDTO baocaodto = new BaoCaoKeToanDTO();
             baocaodto.setTenLop(resultSet.getString(1));
             baocaodto.setTrinhDo(resultSet.getString(2));
-            baocaodto.setSoLuongDangKy(resultSet.getFloat(3));
-            baocaodto.setTiLeDat(resultSet.getFloat(4));
+            baocaodto.setSiSo(resultSet.getInt(3));
+            baocaodto.setSoTienThu(resultSet.getFloat(4));
             lstBc.add(baocaodto);
         };
         return lstBc;
