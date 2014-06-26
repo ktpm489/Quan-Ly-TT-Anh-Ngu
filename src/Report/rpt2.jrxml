@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt2" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6afc8fdc-5fd9-4cd3-9c7e-3924c88e07e7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="ngaylap" class="java.lang.String"/>
+	<field name="tenLop" class="java.lang.String"/>
+	<field name="trinhDo" class="java.lang.String"/>
+	<field name="siSo" class="java.lang.Integer"/>
+	<field name="soTienThu" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="35" y="0" width="478" height="33" uuid="95118d00-63fa-4034-96d9-f1d1f440292f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[BÁO CÁO SỐ TIỀN THU THEO THÁNG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="50" width="100" height="20" uuid="219d6a7b-bc94-4d36-be4e-625951cdb51d"/>
+				<text><![CDATA[Ngày lập báo cáo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="259" y="50" width="100" height="20" uuid="0bf24e79-64b8-4a6e-9173-f0479e77df8d"/>
+				<textFieldExpression><![CDATA[$P{ngaylap}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="71b1477e-0ff7-4a98-9c6d-8c946e20323c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="35" y="16" width="59" height="20" uuid="ee644b67-0236-4031-a3b8-ffd6f7dae5fb"/>
+				<text><![CDATA[STT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="16" width="100" height="20" uuid="e9188009-60b8-490a-a1fe-490721abaecf"/>
+				<text><![CDATA[Tên lớp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="16" width="100" height="20" uuid="bfec8806-a2b1-4276-8726-1eb398cbcb04"/>
+				<text><![CDATA[Trình độ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="16" width="100" height="20" uuid="a76d02d2-85f4-47ab-b330-22be4b07cfba"/>
+				<text><![CDATA[Sỉ số]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="16" width="100" height="20" uuid="695b0b7b-ae2a-4f49-8eb3-8565bc7a4a85"/>
+				<text><![CDATA[Tổng số tiền thu]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="892478c3-69de-4640-bae3-c88016377082"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="35" y="0" width="59" height="20" uuid="f552c342-c35f-4cc2-80db-c52798a85737"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="100" height="20" uuid="baa3c097-f616-433c-a148-b7594335a0d7"/>
+				<textFieldExpression><![CDATA[$F{tenLop}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="0" width="100" height="20" uuid="f232e373-1fb7-45e2-831e-1056ae1cb87a"/>
+				<textFieldExpression><![CDATA[$F{trinhDo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="0" width="100" height="20" uuid="245b38dd-79ce-4906-81f2-8ca7e361f37b"/>
+				<textFieldExpression><![CDATA[$F{siSo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="0" width="100" height="20" uuid="3422205f-1239-48df-a940-8a39dc111924"/>
+				<textFieldExpression><![CDATA[$F{soTienThu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="b334850b-f79b-4eaf-bd78-d8b50a7f4f8d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="bb24b9e8-9570-4db4-9f8f-1d8408b16cab"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="21a07227-a393-4342-952c-678e2e9343a1"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="a1831984-2b8c-464f-ac35-233ef26fd8d3"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

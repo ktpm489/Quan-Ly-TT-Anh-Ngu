@@ -180,7 +180,7 @@ public class FrameBaoCaoNo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            JasperReport jr = JasperCompileManager.compileReport("src/Report/rpt1.jrxml");
+            JasperReport jr = JasperCompileManager.compileReport("src/Report/rpt2.jrxml");
             //InputStream reportStream = new FileInputStream("Report/rptBaoCaoDangKy.jasper");
             Map parameters = new HashMap();
             Collection<BaoCaoKeToanDTO> data = new ArrayList<>();
