@@ -265,7 +265,7 @@ public class DangKiDAO extends DataBase{
         try {
            
             //them hoc vien
-            callableStatement = this.getConnection().prepareCall("{call UpdateThongTinDangKi4(?,?,?,?,?,?,?,?)}");
+            callableStatement = this.getConnection().prepareCall("{call UpdateThongTinDangKi(?,?,?,?,?,?,?,?)}");
             //tao ma theo so TT
             
             callableStatement.setString(1, dkdto.getMaNgay());
